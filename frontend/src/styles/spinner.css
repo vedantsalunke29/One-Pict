@@ -1,0 +1,40 @@
+@keyframes spinner {
+	30% {
+		transform: scale(1.2);
+	}
+	40%,
+	60% {
+		transform: rotate(-20deg) scale(1.2);
+	}
+	50% {
+		transform: rotate(20deg) scale(1.2);
+	}
+	70% {
+		transform: rotate(0deg) scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.loading-spinner {
+	animation: spinner 1s infinite;
+    > img {
+		transform: scale(0.5);
+	}
+}
+
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	z-index: 20;
+	background: linear-gradient(
+		rgba(183, 243, 163, 0.4),
+		rgba(140, 228, 252, 0.4)
+	);
+	
+}

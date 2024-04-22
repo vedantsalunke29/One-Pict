@@ -1,0 +1,52 @@
+.main-club-info-div {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 2rem;
+}
+
+.club-name-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 1rem 2rem;
+	margin: 1rem 0rem;
+	img {
+		margin-top: 3rem;
+		border-radius: 20px;
+		max-height: 200px;
+		padding: 0.5rem;
+	}
+	h1 {
+		border: 1px solid rgba(250, 194, 121, 0.528);
+		padding: 0.5rem 3rem;
+		margin-top: 1rem;
+		text-transform: uppercase;
+		font-family: "Roboto Slab";
+		font-size: calc(1vw + 1vh + 1vmin);
+		font-weight: 400;
+		color: rgb(78, 96, 83);
+	}
+}
+
+.club-info-div {
+	background-color: rgba(198, 143, 249, 0.374);
+	border-radius: 0px 50px 0px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+	padding: 1.5rem;
+	color: #57696e;
+	p {
+		font-family: "Source Serif 4";
+		font-size: calc(0.6vw + 0.6vh + 1vmin);
+	}
+	a{
+		color: #57696e
+	}
+}

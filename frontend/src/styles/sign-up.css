@@ -1,0 +1,202 @@
+.main-signup-body {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vw;
+	position: fixed;
+	height: 100vh;
+}
+.main-reset-body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.side-video {
+	height: 100vh;
+}
+
+.video {
+	height: 100%;
+	width: 60%;
+	object-fit: cover;
+}
+.resetFrm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	position: relative;
+}
+.signupFrm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	position: relative;
+	top: 8vh;
+}
+
+.form {
+	background-color: white;
+	width: 460px;
+	border-radius: 8px;
+	margin: 0.5rem 2rem;
+	padding:10px 40px;
+}
+
+.title {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	text-align: justify;
+	margin: 30px 5px;
+	font: bold 30px/35px "Mona Sans", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+}
+
+.inputContainer {
+	position: relative;
+	height: 45px;
+	width: 100%;
+	margin-bottom: 17px;
+}
+
+.input {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	border: 1px solid #dadce0;
+	border-radius: 7px;
+	font-size: 16px;
+	padding: 0 20px;
+	outline: none;
+	background: none;
+	z-index: 1;
+}
+
+/* Hide the placeholder texts (a) */
+
+::placeholder {
+	color: transparent;
+}
+
+.label {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	padding: 0 4px;
+	background-color: white;
+	color: #b7b9bd;
+	font-size: 16px;
+	transition: 0.5s;
+	z-index: 0;
+}
+
+.submitBtn {
+	display: block;
+	margin-left: auto;
+	width: 100%;
+	padding: 15px 30px;
+	border: none;
+	background-color: #000000;
+	color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 30px;
+}
+
+.submitBtn:hover {
+	background-color: #373636;
+	transform: translateY(-2px);
+}
+
+.input:focus + .label {
+	top: -7px;
+	left: 3px;
+	z-index: 10;
+	font-size: 14px;
+	font-weight: 600;
+	color: #000000;
+}
+
+.input:focus {
+	border: 1px solid #fda9fd7e;
+	box-shadow: #f9abf07e 1px 2px 4px;
+}
+
+.input:not(:placeholder-shown) + .label {
+	top: -7px;
+	left: 3px;
+	z-index: 10;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.sign-up-redirect {
+	display: block;
+	padding: 10%;
+	align-items: center;
+
+	.link {
+		color: #000000;
+		text-decoration: underline;
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+
+.forgot-pass {
+	position: absolute;
+	right: 0;
+	top: 110%;
+	.for-title {
+		color: #000000;
+		text-decoration: underline;
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+.main-verification-div{
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	justify-content:center;
+}
+.pop-code {
+	position: relative;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 1rem 2.5rem;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 10px;
+	box-shadow: rgba(100, 100, 111, 0.254) 0px 7px 29px 0px;
+}
+
+.pop-title {
+	font-size: 1.5rem;
+	padding: 0.2rem 0rem 2.2rem 0rem;
+	font-family: "Roboto Slab";
+}
+
+
+@media (max-width : 635px) {
+	.main-signup-body{
+		position: relative;
+		top: 15vh;
+	}
+	.main-reset-body{
+		position: relative;
+		top: 20vh;
+		justify-content: space-between;
+	}
+}

@@ -1,0 +1,104 @@
+.main-foot-div {
+	color: white;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 10px;
+	position: relative;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
+
+.content-foot-div {
+	display: flex;
+	color: #000000;
+	justify-content: space-around;
+	width: 100%;
+	gap: 8px;
+	align-items: center;
+	a {
+		color: #000;
+		opacity: 0.8;
+		h3 {
+			font-weight: 300;
+			font-size: calc(0.6vw + 0.6vh + 0.8vmin);
+			font-family: "Roboto";
+			display: flex;
+			align-items: center;
+			gap: 5px;
+		}
+		&:hover {
+			opacity: 1;
+			transform: scale(1.1);
+		}
+	}
+}
+.logo-foot-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	h1 {
+		font-weight: 400;
+		font-size: calc(0.6vw + 0.6vh + 0.8vmin);
+		font-family: "Anta";
+	}
+	.logo-foot {
+		height: 3vh;
+		object-fit: contain;
+		transition: all 0.4s;
+	}
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+.foot-address-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	padding: 0.3rem 1rem;
+	h3 {
+		svg {
+			font-size: calc(0.5vw + 0.5vh + 0.9vmin);
+		}
+	}
+	p {
+		padding: 0rem 0.5rem;
+		font-weight: 300;
+		font-size: calc(0.3vw + 0.2vh + 0.4vmin);
+		font-family: "Roboto Slab";
+	}
+}
+
+.copyright-foot-div {
+	font-weight: 500;
+	font-size: calc(0.3vw + 0.2vh + 0.4vmin);
+	font-family: "Roboto Slab";
+
+	padding: 0.5rem 0rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3px;
+	border-top: 1px solid black;
+	color: rgb(0, 0, 0);
+}
+
+@media (max-width: 560px) {
+	.foot-address-div {
+		gap: 2px;
+		padding: 0.3rem 0.6rem;
+
+		p {
+			padding: 0rem 0.2rem;
+		}
+	}
+	.copyright-foot-div {
+		padding: 0.2rem 0rem;
+	}
+}
+

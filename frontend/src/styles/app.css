@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
+@import url(./home.css);
+@import url(./nav.css);
+@import url(./buying.css);
+@import url(./buysell.css);
+@import url(./sign-up.css);
+@import url(./sell.css);
+@import url(./account.css);
+@import url(./product-page.css);
+@import url(./footer.css);
+@import url(./display-event.css);
+@import url(./club-info.css);
+@import url(./contact.css);
+@import url(./about-us.css);
+@import url(./spinner.css);
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	box-sizing: border-box;
+	outline: none;
+}
+
+body {
+	background-color: #fff;
+	height: 100vh;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	height: 0;
+}
+::-webkit-scrollbar-track {
+	margin-block: 0.2em;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: rgb(157, 153, 153);
+}
+::-webkit-scrollbar-track:hover {
+	background-color: rgb(79, 79, 79);
+}
+::-webkit-scrollbar-thumb {
+	background-color: rgb(188, 192, 190);
+	border-radius: 4px;
+	cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: rgb(203, 211, 211);
+}

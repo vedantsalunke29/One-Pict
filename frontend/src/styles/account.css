@@ -1,0 +1,335 @@
+.account-main-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	position: relative;
+	top: 18vh;
+	flex-direction: column;
+}
+.main-center-div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: row;
+	width: 90%;
+	padding: 1rem;
+	gap: 10px;
+	border-radius: 10px;
+	flex-wrap: wrap;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+		rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.user-image {
+	margin: 0.8rem;
+	display: flex;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	font-size: 3rem;
+	background-color: #000000;
+	> img {
+		aspect-ratio: 1/1;
+		height: 300px;
+		object-fit: contain;
+		border-radius: 50%;
+	}
+}
+
+.remove-user-img {
+	position: absolute;
+	display: none;
+	width: 60px;
+	aspect-ratio: 1/1;
+	background-color: rgba(255, 0, 0, 0.549);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	cursor: pointer;
+}
+
+.greet-user {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	&:hover .remove-user-img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 1;
+	}
+	&:hover .user-image {
+		opacity: 0.5;
+	}
+}
+
+.main-done-text-div {
+	position: relative;
+	aspect-ratio: 1/1;
+	width: 200px;
+	font-size: smaller;
+	display: flex;
+	border-radius: 50%;
+	gap: 5px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: rgb(10, 248, 26);
+	background-color: #000000;
+}
+
+.no-div-class {
+	display: none;
+}
+.addUserImage {
+	width: 200px;
+	height: 200px;
+	aspect-ratio: 1/1;
+	color: #fff;
+	padding: 3rem;
+}
+.done-div {
+	background-color: green;
+	width: 30px;
+	aspect-ratio: 1/1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	color: #ffffff;
+	cursor: pointer;
+}
+.username-h1 {
+	font-family: "Roboto Slab", sans-serif;
+}
+.user-info-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.username-edit-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.regId-p {
+	color: #ffffff;
+	background-color: rgb(255, 85, 0);
+	padding: 1rem;
+	border-radius: 10px;
+	font-weight: 500;
+	font-family: "Roboto Slab", sans-serif;
+	font-size: 1.2rem;
+}
+
+.button-50 {
+	appearance: button;
+	background-color: #000;
+	background-image: none;
+	border: 1px solid #000;
+	border-radius: 4px;
+	box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+	box-sizing: border-box;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "Roboto Slab";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	margin: 0 5px 10px 0;
+	overflow: visible;
+	padding: 12px 40px;
+	text-align: center;
+	text-transform: none;
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	transition: all 0.5s;
+	margin: 0.5rem 0rem;
+}
+
+.button-50:focus {
+	text-decoration: none;
+}
+
+.button-50:hover {
+	text-decoration: none;
+	opacity: 0.8;
+}
+
+.button-50:active {
+	box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
+	outline: 0;
+}
+
+.button-50:not([disabled]):active {
+	box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+	transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+	.button-50 {
+		padding: 12px 50px;
+	}
+}
+
+.edit-name-input {
+	padding: 5px 10px;
+	margin-bottom: 8px;
+	border-radius: 10px;
+	font-size: 1rem;
+	font-family: "Roboto", sans-serif;
+}
+
+.details-div {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 90%;
+	padding: 2rem;
+	margin: 2rem 0rem;
+	border-radius: 10px;
+	background-color: #000000;
+	gap: 14px;
+	flex-wrap: wrap;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+		rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.button-49,
+.button-49:after {
+	width: 150px;
+	height: 76px;
+	font-size: 1.2rem;
+	gap: 4px;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Anta";
+	background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+	border: 0;
+	color: #fff;
+	box-shadow: 6px 0px 0px #00e6f6;
+	outline: transparent;
+	position: relative;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+}
+
+.button-49:after {
+	--slice-0: inset(50% 50% 50% 50%);
+	--slice-1: inset(80% -6px 0 0);
+	--slice-2: inset(50% -6px 30% 0);
+	--slice-3: inset(10% -6px 85% 0);
+	--slice-4: inset(40% -6px 43% 0);
+	--slice-5: inset(80% -6px 5% 0);
+
+	content: "ALTERNATE TEXT";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		45deg,
+		transparent 3%,
+		#00e6f6 3%,
+		#00e6f6 5%,
+		#ff013c 5%
+	);
+	text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+	clip-path: var(--slice-0);
+}
+
+.button-49:hover:after {
+	animation: 1s glitch;
+	animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+	0% {
+		clip-path: var(--slice-1);
+		transform: translate(-20px, -10px);
+	}
+	10% {
+		clip-path: var(--slice-3);
+		transform: translate(10px, 10px);
+	}
+	20% {
+		clip-path: var(--slice-1);
+		transform: translate(-10px, 10px);
+	}
+	30% {
+		clip-path: var(--slice-3);
+		transform: translate(0px, 5px);
+	}
+	40% {
+		clip-path: var(--slice-2);
+		transform: translate(-5px, 0px);
+	}
+	50% {
+		clip-path: var(--slice-3);
+		transform: translate(5px, 0px);
+	}
+	60% {
+		clip-path: var(--slice-4);
+		transform: translate(5px, 10px);
+	}
+	70% {
+		clip-path: var(--slice-2);
+		transform: translate(-10px, 10px);
+	}
+	80% {
+		clip-path: var(--slice-5);
+		transform: translate(20px, -10px);
+	}
+	90% {
+		clip-path: var(--slice-1);
+		transform: translate(-10px, 0px);
+	}
+	100% {
+		clip-path: var(--slice-1);
+		transform: translate(0);
+	}
+}
+
+@media (min-width: 768px) {
+	.button-49,
+	.button-49:after {
+		width: 200px;
+		height: 86px;
+	}
+}
+
+@media (max-width: 425px) {
+	.user-image {
+		height: 200px;
+		> img {
+			aspect-ratio: 1/1;
+			height: 200px;
+			object-fit: contain;
+			border-radius: 50%;
+		}
+	}
+	.account-main-container {
+		top: 16vh;
+	}
+}
+
+@media (min-height: 825px) {
+	.account-main-container {
+		top: 12vh;
+	}
+}
