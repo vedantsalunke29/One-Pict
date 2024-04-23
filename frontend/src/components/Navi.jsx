@@ -34,7 +34,7 @@ export default function Navi() {
 	const logOut = () => {
 		Cookies.remove("regIdNo");
 	};
-
+	axios.defaults.withCredentials = true;
 	const showName = async () => {
 		try {
 			await axios
