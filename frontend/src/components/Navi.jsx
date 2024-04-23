@@ -38,7 +38,7 @@ export default function Navi() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/profile", { cookieVal })
+				.post("https://one-pict-api.vercel.app/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("User");
