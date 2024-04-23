@@ -9,7 +9,6 @@ export default function Img({ img }) {
 		},
 	});
 
-	// Use the image with public ID, 'front_face'.
 	const myImage = cld.image(img);
 	return <AdvancedImage cldImg={myImage} />;
 }

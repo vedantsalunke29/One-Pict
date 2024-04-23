@@ -34,11 +34,11 @@ export default function Navi() {
 	const logOut = () => {
 		Cookies.remove("regIdNo");
 	};
-	axios.defaults.withCredentials = true;
+
 	const showName = async () => {
 		try {
 			await axios
-				.post("https://one-pict-api.vercel.app/profile", { cookieVal })
+				.post("http://localhost:5000/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("User");
