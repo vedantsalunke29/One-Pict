@@ -26,8 +26,8 @@ const corsConfig = {
     methods: ["POST", "GET", "PUT", "DELETE"],
     credential: true
 }
-app.options("", cors(corsConfig));
 app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
 app.use(cookieParser())
 app.use(fileUpload({
     useTempFiles: true,
