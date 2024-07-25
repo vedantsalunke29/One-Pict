@@ -28,10 +28,7 @@ export default function Buysell() {
 			<ScrollContainer>
 				{!cookieVal && (
 					<>
-						<ScrollPage
-							className="buysell-scroller"
-							style={{ overflow: "scroll", scrollbarWidth: "none" }}
-						>
+						<ScrollPage className="buysell-scroller">
 							<div className="main-conatiner-not-login">
 								<div className="main-not-login-div">
 									<div className="login-to-see">

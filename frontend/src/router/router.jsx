@@ -62,10 +62,7 @@ export default function Router() {
 					path="/buy-sell"
 					element={<Buysell />}
 				/>
-				<Route
-					path="/signup"
-					element={<Signup />}
-				/>
+
 				<Route
 					path="/forgot-password"
 					element={<ForgotPass />}
@@ -87,10 +84,16 @@ export default function Router() {
 					element={<AboutUs />}
 				/>
 				{cookieVal === undefined && (
-					<Route
-						path="/signin"
-						element={<SignIn />}
-					/>
+					<>
+						<Route
+							path="/signup"
+							element={<Signup />}
+						/>
+						<Route
+							path="/signin"
+							element={<SignIn />}
+						/>
+					</>
 				)}
 				{cookieVal !== undefined && !cookieVal.includes("CB") && (
 					<>

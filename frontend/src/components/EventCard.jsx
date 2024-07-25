@@ -35,7 +35,7 @@ export default function EventCard({
 		}
 	};
 	return (
-		<>
+		<>   
 			<div
 				className="card-event"
 				key={id}

@@ -74,6 +74,7 @@ export default function SignIn() {
 						onSubmit={submit}
 					>
 						<h1 className="title">Sign in </h1>
+						
 						<div className="inputContainer">
 							<input
 								type="text"
@@ -92,7 +93,7 @@ export default function SignIn() {
 								Reg.ID.No./Club ID
 							</label>
 						</div>
-
+						
 						<div className="inputContainer">
 							<input
 								type="password"
@@ -120,11 +121,10 @@ export default function SignIn() {
 								</Link>
 							</span>
 						</div>
-
 						<input
 							type="submit"
 							className="submitBtn"
-							value="Sign up"
+							value="Sign in"
 						/>
 						<span className="sign-up-redirect">
 							Don't have an account?{" "}

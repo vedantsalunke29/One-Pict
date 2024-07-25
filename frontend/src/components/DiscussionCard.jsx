@@ -140,11 +140,7 @@ export default function DiscussionCard({ item }) {
 		)
 			setLiked(true);
 
-		if (
-			date.getDate() < new Date().getDate() &&
-			date.getMonth() < new Date().getMonth()
-		)
-			deleteDiscussion();
+		if (new Date().valueOf() - date.valueOf() > 241920000) deleteDiscussion();
 	}, []);
 
 	return (

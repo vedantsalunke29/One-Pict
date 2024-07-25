@@ -34,6 +34,7 @@ import "slick-carousel/slick/slick-theme.css";
 import toast from "react-hot-toast";
 import DiscussionCard from "./DiscussionCard";
 import { useSelector } from "react-redux";
+import MovieRecommendations from "./MovieRecommendations";
 
 export default function Home() {
 	let settings = {
@@ -136,7 +137,7 @@ export default function Home() {
 		getEventData();
 		getDiscussion();
 	}, [cookieVal]);
-	
+
 	useEffect(() => {
 		getDiscussion();
 	}, [replyInput]);
@@ -435,11 +436,12 @@ export default function Home() {
 						<div className="third-page-div">
 							<div className="main-div-third-page">
 								<Animator animation={batch(FadeIn(), MoveIn(100, 0))}>
-									<img
-										src={logoText}
-										className="logo-text"
-									/>
+									<h1 >Want some binge-watch suggestion ?</h1>
 								</Animator>
+								<div>
+									
+								</div>
+								<MovieRecommendations movieName={"Star Wars (1977)"} />
 								<Animator animation={batch(FadeIn(), MoveIn(-100, 0))}>
 									<p>
 										Developed by PICT student for fostering connections,

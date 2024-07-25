@@ -215,8 +215,8 @@
 	}
 	img {
 		padding: 1rem;
-		max-width: 450px;
-		aspect-ratio: 1/1;
+		max-width: 400px;
+		aspect-ratio: 1/.9;
 	}
 }
 
