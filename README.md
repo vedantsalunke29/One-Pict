@@ -15,11 +15,13 @@
 
 - **Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT, Nodemailer, Cookies
 - **Frontend:** React.js, Axios, React Router
+- **Machine Learing:** Pandas, Numpy, Scikit-learn.
 		<div class="third">
 			<h1>⭐ Features</h1>
 			<p>
-				One Pict is Community and E-commerce website which functionality like
-				Event display and also information about college renowned clubs. It is
+				One Pict is Community and E-commerce website with movie recommendation ML model which provide functionality like
+  				suggest movie on your personal favorite movies, just enter name and we will recommended you with more movies,
+  				also website has many feature like college event display and also information about college renowned clubs. It is
 				also forum for discussion where student can discuss and reply each other
 				freely. Here we consider student security and privacy so we mostly use
 				college unique Reg. Id for sign up and sign in. Also we provide seperate
