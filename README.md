@@ -10,19 +10,11 @@
 			</h1>
 			<p>Community and E-Commerce web for college collaboration</p>
 		</div>
-		<div class="second">
-			<p>One Pict is developed using following :-</p>
-			<div class="cover">
-				<button class="button-2">React js</button>
-				<button class="button-2">Node js</button>
-				<button class="button-2">Express js</button>
-				<button class="button-2">Moongoose</button>
-				<button class="button-2">MongoDb</button>
-				<button class="button-2">Cloudinary</button>
-				<button class="button-2">Javascript</button>
-			</div>
-			<p>Also used many functionality like Nodemailer, React redux, etc.</p>
-		</div>
+  
+  ## Technologies Used
+
+- **Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT, Nodemailer, Cookies
+- **Frontend:** React.js, Axios, React Router
 		<div class="third">
 			<h1>⭐ Features</h1>
 			<p>
