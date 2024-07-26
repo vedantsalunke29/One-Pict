@@ -59,7 +59,7 @@ export default function ManageContent() {
 							return (
 								<>
 									<EventCard
-										id={i._id}
+										_id={i._id}
 										name={i.eventName}
 										eventDate={i.eventDate}
 										imgSrc={i.eventImg[0]}

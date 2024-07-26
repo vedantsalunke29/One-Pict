@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 export default function EventCard({
-	id,
+	_id,
 	name,
 	eventDate,
 	imgSrc,
@@ -20,7 +20,7 @@ export default function EventCard({
 		try {
 			await axios
 				.post("https://one-pict.onrender.com/delete-event", {
-					id
+					_id,
 				})
 				.then((res) => {
 					if (res.data === "success") {
