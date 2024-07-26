@@ -3,7 +3,7 @@ import axios from "axios";
 
 const MovieRecommendations = () => {
 	const [recommendations, setRecommendations] = useState([]);
-	const API_URL = "https://one-pict-ml.onrender.com";
+	const API_URL = "https://movie-recommendation-suz4.onrender.com";
 	const [movie, setMovie] = useState("");
 	const fetchRecommendations = async (movie_name) => {
 		try {
