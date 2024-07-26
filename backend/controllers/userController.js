@@ -417,10 +417,12 @@ const deleteEvent = asyncHandler(async (req, res) => {
     const { _id } = req.body;
 
     const object = await Events.findOne({ _id: _id }).catch((e) => {
+
         console.log(e)
     })
 
-    const image = object.img;
+
+    const image = object.eventImg;
 
     await image.map(async (i) => {
 
@@ -431,11 +433,14 @@ const deleteEvent = asyncHandler(async (req, res) => {
         })
     })
 
+
     await Events.deleteOne({ _id: _id }).catch((e) => {
         console.log(e)
         res.status(404)
 
     });
+
+
     res.json("success");
 })
 
