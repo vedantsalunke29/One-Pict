@@ -38,7 +38,7 @@ export default function EventCard({
 		<>
 			<div
 				className="card-event"
-				key={id}
+				key={_id}
 				onClick={() => setShowDelete(!showDelete)}
 			>
 				<div class="container-event">
