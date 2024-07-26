@@ -7,7 +7,8 @@
 	"scripts": {
 		"backend": "nodemon backend/index.js",
 		"frontend": "npm run dev --prefix frontend",
-		"dev": "concurrently \"npm run frontend\" \"npm run backend\""
+		"ml" : "cd backend/ml && python app.py",
+		"dev": "concurrently \"npm run frontend\" \"npm run backend\" \"npm run ml\""
 	},
 	"author": "",
 	"license": "ISC",

@@ -5,10 +5,12 @@ import difflib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from settings import PORT
+
 app = Flask(__name__)
 CORS(app)
 
-
+app.config.from_pyfile("settings.py")
 # Load Movie dataset
 df = pd.read_csv("imdb.csv")
 index = range(0, len(df))
@@ -94,4 +96,4 @@ def get_recommendations(movie_name):
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3500, debug=True)
+    app.run(host="127.0.0.1", port=PORT, debug=True)

@@ -33,9 +33,7 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }))
 
-app.get("/", cors(), (req, res) => {
 
-})
 
 app.use("/", userRoutes);
 
