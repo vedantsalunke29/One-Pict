@@ -29,7 +29,7 @@ export default function Club() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/profile", { cookieVal })
+				.post("https://one-pict.onrender.com/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("");
@@ -40,13 +40,13 @@ export default function Club() {
 				});
 		} catch (error) {
 			throw new Error(`ERROR:${error}`);
-		}  
+		}
 	};
 	const deleteUserProfile = async () => {
 		try {
 			const imgSrc = userImageSource.userImg;
 			axios
-				.post("http://localhost:5000/userImage-delete", {
+				.post("https://one-pict.onrender.com/userImage-delete", {
 					cookieVal,
 					imgSrc,
 				})
@@ -66,7 +66,10 @@ export default function Club() {
 		setShowDone(false);
 		try {
 			axios
-				.post("http://localhost:5000/userImage-post", { userImg, cookieVal })
+				.post("https://one-pict.onrender.com/userImage-post", {
+					userImg,
+					cookieVal,
+				})
 				.then((res) => {
 					if (res.data === "done") {
 						setShowUserImg(false);
@@ -81,7 +84,7 @@ export default function Club() {
 	const changeName = async () => {
 		try {
 			axios
-				.post("http://localhost:5000/userName-update", {
+				.post("https://one-pict.onrender.com/userName-update", {
 					cookieVal,
 					userNameUpdate,
 				})
@@ -101,12 +104,12 @@ export default function Club() {
 	const userImageFetch = async () => {
 		try {
 			axios
-				.post("http://localhost:5000/userImage-get", { cookieVal })
+				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") setShowUserImg(false);
 					else {
 						setUserImgageSource(res.data);
-						setUserClass("user-image")
+						setUserClass("user-image");
 						dispatch(showImagetoNav(showUserImg));
 						setShowUserImg(true);
 					}
@@ -119,7 +122,7 @@ export default function Club() {
 	const onChooseFile = (e) => {
 		e.preventDefault();
 		inputRef.current.click();
-		setUserClass("no-div-class")
+		setUserClass("no-div-class");
 		setShowDone(true);
 	};
 

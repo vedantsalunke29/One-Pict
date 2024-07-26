@@ -38,7 +38,7 @@ export default function Navi() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/profile", { cookieVal })
+				.post("https://one-pict.onrender.com/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("User");
@@ -57,7 +57,7 @@ export default function Navi() {
 	const userImageFetch = async () => {
 		try {
 			axios
-				.post("http://localhost:5000/userImage-get", { cookieVal })
+				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") setShowUserImg(false);
 					else {

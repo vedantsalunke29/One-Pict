@@ -12,7 +12,7 @@ export default function YourProduct() {
 	const showImage = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/get-user-image", { regIdNo })
+				.post("https://one-pict.onrender.com/get-user-image", { regIdNo })
 				.then((res) => {
 					if (res.data === "nothing") setShowCard(false);
 					else {

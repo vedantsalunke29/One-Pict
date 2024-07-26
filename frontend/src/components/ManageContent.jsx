@@ -12,7 +12,9 @@ export default function ManageContent() {
 	const showEvent = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/eventInfo-get-regIdNo", { regIdNo })
+				.post("https://one-pict.onrender.com/eventInfo-get-regIdNo", {
+					regIdNo,
+				})
 				.then((res) => {
 					if (res.data === "nothing") setShowCard(false);
 					else {

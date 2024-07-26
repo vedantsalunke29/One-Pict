@@ -44,7 +44,7 @@ export default function ForgotPass() {
 			form.otp = OTP;
 
 			await axios
-				.post("http://localhost:5000/send-email", form)
+				.post("https://one-pict.onrender.com/send-email", form)
 				.then((res) => {
 					if (res.data === "pass") {
 						setIsLoading(false);

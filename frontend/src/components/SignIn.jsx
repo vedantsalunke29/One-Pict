@@ -19,7 +19,7 @@ export default function SignIn() {
 		setIsLoading(true);
 		try {
 			await axios
-				.post("http://localhost:5000/signin", form)
+				.post("https://one-pict.onrender.com/signin", form)
 				.then((res) => {
 					if (res.data === "loginpass") {
 						Cookies.set("regIdNo", form.regIdNo, { expires: 7 });
@@ -74,7 +74,7 @@ export default function SignIn() {
 						onSubmit={submit}
 					>
 						<h1 className="title">Sign in </h1>
-						
+
 						<div className="inputContainer">
 							<input
 								type="text"
@@ -93,7 +93,7 @@ export default function SignIn() {
 								Reg.ID.No./Club ID
 							</label>
 						</div>
-						
+
 						<div className="inputContainer">
 							<input
 								type="password"

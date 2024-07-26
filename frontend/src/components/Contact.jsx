@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 
-
 export default function Contact() {
 	const [form, setForm] = useState({
 		name: "",
@@ -14,21 +13,22 @@ export default function Contact() {
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
 
-
 	const submit = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 		try {
-			await axios.post("http://localhost:5000/contact", form).then((res) => {
-				if (res.data === "done") {
-					toast.success("Message Sent");
-					navigate("/");
-					setIsLoading(false);
-				} else {
-					setIsLoading(false);
-					toast.error("Something went wrong !!");
-				}
-			});
+			await axios
+				.post("https://one-pict.onrender.com/contact", form)
+				.then((res) => {
+					if (res.data === "done") {
+						toast.success("Message Sent");
+						navigate("/");
+						setIsLoading(false);
+					} else {
+						setIsLoading(false);
+						toast.error("Something went wrong !!");
+					}
+				});
 		} catch (error) {
 			setIsLoading(false);
 			console.log(error);

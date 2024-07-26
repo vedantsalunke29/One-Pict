@@ -7,7 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import Loader from "./Loader";  
+import Loader from "./Loader";
 
 export default function Sell() {
 	const inputRef = useRef();
@@ -73,7 +73,7 @@ export default function Sell() {
 			setUploadStatus("uploading");
 			await axios
 				.post(
-					"http://localhost:5000/image",
+					"https://one-pict.onrender.com/image",
 					{ form, cookieVal },
 					{
 						onUploadProgress: (progressEvent) => {

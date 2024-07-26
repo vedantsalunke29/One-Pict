@@ -71,7 +71,7 @@ export default function UploadContent() {
 			setIsLoading(true);
 			axios
 				.post(
-					"http://localhost:5000/eventInfo",
+					"https://one-pict.onrender.com/eventInfo",
 					{ form, cookieVal },
 					{
 						onUploadProgress: (progressEvent) => {

@@ -31,7 +31,7 @@ export default function Account() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/profile", { cookieVal })
+				.post("https://one-pict.onrender.com/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("");
@@ -48,7 +48,7 @@ export default function Account() {
 		try {
 			const imgSrc = userImageSource.userImg;
 			axios
-				.post("http://localhost:5000/userImage-delete", {
+				.post("https://one-pict.onrender.com/userImage-delete", {
 					cookieVal,
 					imgSrc,
 				})
@@ -69,7 +69,10 @@ export default function Account() {
 		setIsLoading(true);
 		try {
 			axios
-				.post("http://localhost:5000/userImage-post", { userImg, cookieVal })
+				.post("https://one-pict.onrender.com/userImage-post", {
+					userImg,
+					cookieVal,
+				})
 				.then((res) => {
 					if (res.data === "done") {
 						setShowUserImg(false);
@@ -90,7 +93,7 @@ export default function Account() {
 	const changeName = async () => {
 		try {
 			axios
-				.post("http://localhost:5000/userName-update", {
+				.post("https://one-pict.onrender.com/userName-update", {
 					cookieVal,
 					userNameUpdate,
 				})
@@ -110,7 +113,7 @@ export default function Account() {
 	const userImageFetch = async () => {
 		try {
 			axios
-				.post("http://localhost:5000/userImage-get", { cookieVal })
+				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") setShowUserImg(false);
 					else {

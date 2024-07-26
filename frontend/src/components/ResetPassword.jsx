@@ -18,7 +18,10 @@ export default function ResetPassword() {
 				toast.error("Password and Confirm Password does not match!!");
 			else {
 				await axios
-					.post("http://localhost:5000/resetpassword", { cookieVal, password })
+					.post("https://one-pict.onrender.com/resetpassword", {
+						cookieVal,
+						password,
+					})
 					.then((res) => {
 						if (res.data === "pass") {
 							Cookies.remove("resetRegister");

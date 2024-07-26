@@ -12,7 +12,7 @@ export default function DisplayEvent() {
 	const showEvent = async (_id) => {
 		try {
 			await axios
-				.post("http://localhost:5000/eventInfo-get", { _id })
+				.post("https://one-pict.onrender.com/eventInfo-get", { _id })
 				.then((res) => {
 					if (res.data === "not") {
 						setShowCard(false);

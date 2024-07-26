@@ -19,7 +19,7 @@ export default function EventCard({
 	const deleteEvent = async () => {
 		try {
 			await axios
-				.post("http://localhost:5000/delete-event", {
+				.post("https://one-pict.onrender.com/delete-event", {
 					id,
 				})
 				.then((res) => {
@@ -35,7 +35,7 @@ export default function EventCard({
 		}
 	};
 	return (
-		<>   
+		<>
 			<div
 				className="card-event"
 				key={id}
