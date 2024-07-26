@@ -167,13 +167,13 @@ export default function Navi() {
 					className="main-text-style"
 					to={"/"}
 				>
-					Technical
+					Community
 				</Link>
 				<Link
 					className="main-text-style"
 					to={"/buy-sell"}
 				>
-					Non Technical
+					Pict OLX
 				</Link>
 			</div>
 			{show && (

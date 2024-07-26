@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import Validate from "../models/validateModel.js";
 import userImage from "../models/userImageModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs"
 import generateToken from "../utils/generateToken.js"
 import Image from "../models/imageModel.js";
 import nodemailer from "nodemailer"
