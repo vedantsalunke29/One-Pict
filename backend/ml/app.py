@@ -1,51 +1,97 @@
 from flask import Flask, jsonify
-import pandas as pd
 from flask_cors import CORS
-import numpy as np
-import json
+import pandas as pd
+import difflib
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 app = Flask(__name__)
 CORS(app)
 
+
 # Load Movie dataset
-column_names = ['user_id', 'item_id', 'rating', 'timestamp']
-df = pd.read_csv('u.data', sep='\t', names=column_names)
-movie_titles = pd.read_csv("Movie_Id_Titles.txt")
+df = pd.read_csv("imdb.csv")
+index = range(0, len(df))
+df["index"] = index
+df.set_index("index")
 
-# Merge datasets
-df = pd.merge(df,movie_titles,on='item_id')
-
-
-# Filter movies and ratings for simplicity
-ratings = pd.DataFrame(df.groupby('title')['rating'].mean())
-ratings['num of ratings'] = pd.DataFrame(df.groupby('title')['rating'].count())
-
-moviemat = df.pivot_table(index='user_id',columns='title',values='rating')
-
-ratings.sort_values('num of ratings',ascending=False)
+# Select columns for similar movies
+selected_features = ["Genre", "Series_Title", "Overview", "Director", "Star1"]
 
 
+# replacing the null valuess with null string
 
-def recommend_movies(movie):
+for feature in selected_features:
+    df[feature] = df[feature].fillna("")
+
+# combining all the 5 selected features
+
+combined_features = (
+    df["Genre"]
+    + " "
+    + df["Director"]
+    + " "
+    + df["Star1"]
+    + " "
+    + df["Overview"]
+    + " "
+    + df["Series_Title"]
+)
+
+# converting the text data to feature vectors
+
+vectorizer = TfidfVectorizer()
+
+feature_vectors = vectorizer.fit_transform(combined_features)
+
+# Cosine Similarity
+
+similarity = cosine_similarity(feature_vectors)
+
+
+def recommend_movies(movie_name):
     # Function to return similar movie to entered movie.
-    starwars_user_ratings = moviemat[movie]
-    similar_to_starwars = moviemat.corrwith(starwars_user_ratings)
-    corr_starwars = pd.DataFrame(similar_to_starwars,columns=['Correlation'])
-    corr_starwars.dropna(inplace=True)
-    corr_starwars = corr_starwars.join(ratings['num of ratings'])
-  
-    # return of similar movies
-    return corr_starwars[corr_starwars['num of ratings']>100].sort_values('Correlation',ascending=False).head()
-   
-    
-    
-@app.route('/recommendations/<movieName>', methods=['GET'])
+    # list of all titles
+    list_of_all_titles = df["Series_Title"].tolist()
+    # Find close match
+    find_close_match = difflib.get_close_matches(movie_name, list_of_all_titles)
+    if len(find_close_match) == 0:
+        return []
 
-def get_recommendations(movieName):
-    df = recommend_movies(movie=movieName)
-    recommend = df.transpose()
-    df = recommend.to_dict()
-    df = list(df.keys())
+    close_match = find_close_match[0]
+
+    index_of_the_movie = df[df.Series_Title == close_match]["index"].values[0]
+
+    similarity_score = list(enumerate(similarity[index_of_the_movie]))
+
+    # Similar movie using cosine similarity
+    sorted_similar_movies = sorted(similarity_score, key=lambda x: x[1], reverse=True)
+
+    i = 0
+    title_from_index = []
+    # Adding titles of similar movies in list
+    for movie in sorted_similar_movies:
+        idx = movie[0]
+        if i < 5:
+            title_from_index.append(
+                [
+                    df[df.index == idx]["Series_Title"].values[0],
+                    df[df.index == idx]["Poster_Link"].values[0],
+                ]
+            )
+
+            i += 1
+
+    return title_from_index
+
+
+@app.route("/recommendations/<movie_name>", methods=["GET"])
+def get_recommendations(movie_name):
+
+    df = recommend_movies(movie_name=movie_name)
+
     return jsonify(df)
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=3500, debug=True)
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=3500, debug=True)

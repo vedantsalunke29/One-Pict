@@ -429,19 +429,25 @@ export default function Home() {
 							alignItems: "center",
 							flexWrap: "wrap",
 							justifyContent: "center",
-							marginTop: 20,
+							height:800,
 							position: "relative",
 						}}
 					>
 						<div className="third-page-div">
 							<div className="main-div-third-page">
-								<Animator animation={batch(FadeIn(), MoveIn(100, 0))}>
-									<h1 >Want some binge-watch suggestion ?</h1>
-								</Animator>
-								<div>
-									
+								<div className="home-movie-div">
+									<Animator animation={batch(FadeIn(), MoveIn(100, 0))}>
+										<h1 className="Heading-for-movies">
+											Want some binge-watch suggestion ?
+										</h1>
+									</Animator>
+
+									<div className="info-movie">
+										Get similar content according to your previous watch and
+										discover movies you'll love!
+									</div>
+									<MovieRecommendations />
 								</div>
-								<MovieRecommendations movieName={"Star Wars (1977)"} />
 								<Animator animation={batch(FadeIn(), MoveIn(-100, 0))}>
 									<p>
 										Developed by PICT student for fostering connections,
