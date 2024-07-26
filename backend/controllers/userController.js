@@ -414,9 +414,9 @@ const getEventInfoByRegIdNo = asyncHandler(async (req, res) => {
 
 const deleteEvent = asyncHandler(async (req, res) => {
 
-    const { id } = req.body;
+    const { _id } = req.body;
 
-    const object = await Events.findOne({ _id: id }).catch((e) => {
+    const object = await Events.findOne({ _id: _id }).catch((e) => {
         console.log(e)
     })
 
