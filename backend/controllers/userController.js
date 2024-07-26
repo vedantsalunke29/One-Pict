@@ -431,7 +431,7 @@ const deleteEvent = asyncHandler(async (req, res) => {
         })
     })
 
-    await Events.deleteOne({ _id: id }).catch((e) => {
+    await Events.deleteOne({ _id: _id }).catch((e) => {
         console.log(e)
         res.status(404)
 
