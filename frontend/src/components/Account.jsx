@@ -13,7 +13,7 @@ import { showNameToNav } from "../store/slices/userNameSlice";
 import { showImagetoNav } from "../store/slices/imageSlice";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
-import { DNA } from "react-loader-spinner";
+
 
 export default function Account() {
 	const inputRef = useRef();

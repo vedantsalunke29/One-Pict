@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { showNameToNav } from "../store/slices/userNameSlice";
 import { showImagetoNav } from "../store/slices/imageSlice";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 export default function Club() {
 	const inputRef = useRef();
@@ -25,6 +26,7 @@ export default function Club() {
 	const [userNameUpdate, setUserNameUpdate] = useState("");
 	const [userClass, setUserClass] = useState("user-image");
 	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(false);
 
 	const showName = async () => {
 		try {
@@ -44,6 +46,7 @@ export default function Club() {
 	};
 	const deleteUserProfile = async () => {
 		try {
+			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
 			axios
 				.post("https://one-pict.onrender.com/userImage-delete", {
@@ -53,11 +56,16 @@ export default function Club() {
 				.then((res) => {
 					if (res.data === "done") {
 						toast.success("Profile removed");
+						setIsLoading(false);
 						setShowUserImg(false);
 						dispatch(showImagetoNav(showUserImg));
-					} else toast.error("Something went wrong");
+					} else {
+						toast.error("Something went wrong");
+						setIsLoading(false);
+					}
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`Error : ${error}`);
 		}
 	};
@@ -65,6 +73,8 @@ export default function Club() {
 	const userImageUpload = async () => {
 		setShowDone(false);
 		try {
+			setIsLoading(true);
+
 			axios
 				.post("https://one-pict.onrender.com/userImage-post", {
 					userImg,
@@ -74,15 +84,23 @@ export default function Club() {
 					if (res.data === "done") {
 						setShowUserImg(false);
 						setUserImg(true);
-					} else setShowUserImg(false);
+						setIsLoading(false);
+					} else {
+						setShowUserImg(false);
+						setIsLoading(false);
+					}
 				});
 		} catch (error) {
+			setIsLoading(false);
+
 			throw new Error(`Error : ${error}`);
 		}
 	};
 
 	const changeName = async () => {
 		try {
+			setIsLoading(true);
+
 			axios
 				.post("https://one-pict.onrender.com/userName-update", {
 					cookieVal,
@@ -91,30 +109,42 @@ export default function Club() {
 				.then((res) => {
 					if (res.data === "pass") {
 						setShowEdit(!showEdit);
+						setIsLoading(false);
 
 						dispatch(showNameToNav(showEdit));
 						toast.success("Name changed");
-					} else toast.error("Can't change name!!");
+					} else {
+						toast.error("Can't change name!!");
+						setIsLoading(false);
+					}
 				});
 		} catch (error) {
+			setIsLoading(false);
+
 			throw new Error(`Error : ${error}`);
 		}
 	};
 
 	const userImageFetch = async () => {
 		try {
+			setIsLoading(true);
+
 			axios
 				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
-					if (res.data === "notexist") setShowUserImg(false);
-					else {
+					if (res.data === "notexist") {
+						setShowUserImg(false);
+						setIsLoading(false);
+					} else {
 						setUserImgageSource(res.data);
 						setUserClass("user-image");
+						setIsLoading(false);
 						dispatch(showImagetoNav(showUserImg));
 						setShowUserImg(true);
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`Error : ${error}`);
 		}
 	};
@@ -157,6 +187,7 @@ export default function Club() {
 
 	return (
 		<>
+			{isLoading && <Loader />}
 			<div className="account-main-container">
 				<div className="main-center-div">
 					<h1

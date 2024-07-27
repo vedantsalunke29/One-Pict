@@ -3,29 +3,37 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import video from "../assets/empty.mp4";
 import EventCard from "./EventCard";
+import Loader from "./Loader";
 
 export default function ManageContent() {
 	const [regIdNo, setRegIdNo] = useState(Cookies.get("regIdNo"));
 	const [eventCardItem, setEventCardItem] = useState([]);
 	const [showCard, setShowCard] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const showEvent = async () => {
 		try {
+			setIsLoading(true);
 			await axios
 				.post("https://one-pict.onrender.com/eventInfo-get-regIdNo", {
 					regIdNo,
 				})
 				.then((res) => {
-					if (res.data === "nothing") setShowCard(false);
-					else {
+					if (res.data === "nothing") {
+						setShowCard(false);
+						setIsLoading(false);
+					} else {
 						setEventCardItem(res.data);
+						setIsLoading(false);
 						setShowCard(true);
 					}
 				})
 				.catch((error) => {
+					setIsLoading(false);
 					console.log(error);
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`ERROR:${error}`);
 		}
 	};
@@ -49,6 +57,8 @@ export default function ManageContent() {
 
 	return (
 		<>
+			{isLoading && <Loader />}
+
 			{showCard && (
 				<div className="main-buy-page-main">
 					<div className="title-your-product">
@@ -71,22 +81,7 @@ export default function ManageContent() {
 					</div>
 				</div>
 			)}
-			{!showCard && (
-				<div className="nothing-to-dis">
-					<video
-						autoPlay
-						muted
-						loop
-						className="video"
-					>
-						<source
-							src={video}
-							type="video/mp4"
-						/>
-						Sorry, your browser doesn't support videos.
-					</video>
-				</div>
-			)}
+			{!showCard && <h1 className="no-product">No Event</h1>}
 		</>
 	);
 }

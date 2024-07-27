@@ -5,6 +5,7 @@ import { SlCalender } from "react-icons/sl";
 import { AiFillDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Loader from "./Loader";
 
 export default function EventCard({
 	_id,
@@ -15,9 +16,12 @@ export default function EventCard({
 }) {
 	const [showDelete, setShowDelete] = useState(false);
 	let color = randomColor();
+	const [isLoading, setIsLoading] = useState(false);
 
 	const deleteEvent = async () => {
 		try {
+			setIsLoading(true);
+
 			await axios
 				.post("https://one-pict.onrender.com/delete-event", {
 					_id,
@@ -25,17 +29,23 @@ export default function EventCard({
 				.then((res) => {
 					if (res.data === "success") {
 						toast.success("Successfully Deleted");
+						setIsLoading(false);
 						setShowCard(false);
 					} else {
+						setIsLoading(false);
+
 						toast.error("Can't Delete");
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`ERROR:${error}`);
 		}
 	};
 	return (
 		<>
+			{isLoading && <Loader />}
+
 			<div
 				className="card-event"
 				key={_id}
