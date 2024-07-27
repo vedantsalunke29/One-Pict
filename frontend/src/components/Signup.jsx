@@ -58,120 +58,125 @@ export default function Signup() {
 		<>
 			<div className="main-signup-body">
 				{isLoading && <Loader />}
-				<div className="side-video">
-					<video
-						autoPlay
-						muted
-						loop
-						className="video"
-					>
-						<source
-							src={video}
-							type="video/mp4"
-						/>
-						Sorry, your browser doesn't support videos.
-					</video>
-				</div>
-
-				<div class="signupFrm">
-					<form
-						action=""
-						className="form"
-						onSubmit={submit}
-					>
-						<h1 className="title">Sign up </h1>
-
-						<div className="inputContainer">
-							<input
-								type="text"
-								className="input"
-								placeholder="a"
-								required
-								value={form.regIdNo}
-								onChange={(e) => {
-									setForm({ ...form, regIdNo: e.target.value });
-								}}
+				<div className="next-main-extra-sign">
+					<div className="side-video">
+						<video
+							autoPlay
+							muted
+							loop
+							className="video"
+						>
+							<source
+								src={video}
+								type="video/mp4"
 							/>
-							<label
-								for=""
-								className="label"
-							>
-								Reg.ID.No./Club ID
-							</label>
-						</div>
+							Sorry, your browser doesn't support videos.
+						</video>
+					</div>
 
-						<div className="inputContainer">
+					<div class="signupFrm">
+						<form
+							action=""
+							className="form"
+							onSubmit={submit}
+						>
+							<h1 className="title">Sign up </h1>
+
+							<div className="inputContainer">
+								<input
+									type="text"
+									className="input"
+									placeholder="a"
+									required
+									value={form.regIdNo}
+									onChange={(e) => {
+										setForm({ ...form, regIdNo: e.target.value.toUpperCase() });
+									}}
+								/>
+								<label
+									for=""
+									className="label"
+								>
+									Reg.ID.No./Club ID
+								</label>
+							</div>
+
+							<div className="inputContainer">
+								<input
+									type="text"
+									className="input"
+									placeholder="a"
+									required
+									value={form.name}
+									onChange={(e) => {
+										setForm({
+											...form,
+											name: e.target.value,
+										});
+									}}
+								/>
+								<label
+									for=""
+									className="label"
+								>
+									Name
+								</label>
+							</div>
+
+							<div className="inputContainer">
+								<input
+									type="password"
+									className="input"
+									required
+									placeholder="a"
+									value={form.password}
+									onChange={(e) => {
+										setForm({ ...form, password: e.target.value });
+									}}
+								/>
+								<label
+									for=""
+									className="label"
+								>
+									Password
+								</label>
+							</div>
+
+							<div className="inputContainer">
+								<input
+									type="password"
+									className="input"
+									required
+									placeholder="a"
+									value={form.cPassword}
+									onChange={(e) => {
+										setForm({ ...form, cPassword: e.target.value });
+									}}
+								/>
+								<label
+									for=""
+									className="label"
+								>
+									Confirm Password
+								</label>
+							</div>
+
 							<input
-								type="text"
-								className="input"
-								placeholder="a"
-								required
-								value={form.name}
-								onChange={(e) => {
-									setForm({ ...form, name: e.target.value });
-								}}
+								type="submit"
+								className="submitBtn"
+								value="Sign up"
 							/>
-							<label
-								for=""
-								className="label"
-							>
-								Name
-							</label>
-						</div>
-
-						<div className="inputContainer">
-							<input
-								type="password"
-								className="input"
-								required
-								placeholder="a"
-								value={form.password}
-								onChange={(e) => {
-									setForm({ ...form, password: e.target.value });
-								}}
-							/>
-							<label
-								for=""
-								className="label"
-							>
-								Password
-							</label>
-						</div>
-
-						<div className="inputContainer">
-							<input
-								type="password"
-								className="input"
-								required
-								placeholder="a"
-								value={form.cPassword}
-								onChange={(e) => {
-									setForm({ ...form, cPassword: e.target.value });
-								}}
-							/>
-							<label
-								for=""
-								className="label"
-							>
-								Confirm Password
-							</label>
-						</div>
-
-						<input
-							type="submit"
-							className="submitBtn"
-							value="Sign up"
-						/>
-						<span className="sign-up-redirect">
-							Already have an account?{" "}
-							<Link
-								to={"/signin"}
-								className="link"
-							>
-								Sign in
-							</Link>
-						</span>
-					</form>
+							<span className="sign-up-redirect">
+								Already have an account?{" "}
+								<Link
+									to={"/signin"}
+									className="link"
+								>
+									Sign in
+								</Link>
+							</span>
+						</form>
+					</div>
 				</div>
 			</div>
 		</>

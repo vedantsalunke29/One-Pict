@@ -2,6 +2,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+}
+.next-main-extra-sign {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	top: 8vh;
 	position: relative;
 }
@@ -192,10 +198,13 @@
 }
 
 @media (max-width: 724px) {
-	.main-signup-body {
+	.main-signup-body{
 		align-items: normal;
-		flex-direction: column-reverse;
-
+		
+	}
+	.next-main-extra-sign {
+		align-items: normal;
+		justify-content: center;
 		.side-video {
 			display: none;
 		}
@@ -205,5 +214,12 @@
 		position: relative;
 		top: 20vh;
 		justify-content: space-between;
+	}
+}
+
+@media (max-width: 465px)
+{
+	.form{
+		width: 300px;
 	}
 }

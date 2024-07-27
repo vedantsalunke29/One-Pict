@@ -28,9 +28,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 200vh;
-	width: 98vw;
-	position: absolute;
+	background-size: cover;
+	width: 100vw;
+	position: fixed;
 	z-index: 200;
 	background: linear-gradient(
 		rgba(183, 243, 163, 0.4),

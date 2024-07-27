@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Img from "./Img";
 import axios from "axios";
-import { FaExpand } from "react-icons/fa";
-import video from "../assets/empty.mp4";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 export default function Buy() {
 	const [productItem, setProductItem] = useState([]);
 	const [showCard, setShowCard] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -42,16 +42,24 @@ export default function Buy() {
 
 	const getImageData = async () => {
 		try {
+			setIsLoading(true);
+			setShowCard(!showCard);
 			await axios
 				.get("https://one-pict.onrender.com/get-image")
 				.then((res) => {
-					if (res.data === "nothing") setShowCard(false);
-					else {
+					if (res.data === "nothing") {
+						setShowCard(false);
+						setIsLoading(false);
+					} else {
 						setProductItem(res.data);
-						setShowCard(!showCard);
+						setIsLoading(false);
+
+						
 					}
 				})
 				.catch((error) => {
+					setIsLoading(false);
+
 					console.log(error);
 				});
 		} catch (error) {
@@ -64,6 +72,7 @@ export default function Buy() {
 
 	return (
 		<>
+			{isLoading && <Loader />}
 			{showCard && (
 				<>
 					{" "}
@@ -88,22 +97,7 @@ export default function Buy() {
 					</div>
 				</>
 			)}
-			{!showCard && (
-				<div className="nothing-to-dis">
-					<video
-						autoPlay
-						muted
-						loop
-						className="video"
-					>
-						<source
-							src={video}
-							type="video/mp4"
-						/>
-						Sorry, your browser doesn't support videos.
-					</video>
-				</div>
-			)}
+			{!showCard && <h1 className="no-product">No Product</h1>}
 		</>
 	);
 }

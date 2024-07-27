@@ -49,90 +49,92 @@ export default function SignIn() {
 		<>
 			<div className="main-signup-body">
 				{isLoading && <Loader />}
-				<div className="side-video">
-					<video
-						autoPlay
-						muted
-						loop
-						className="video"
-					>
-						<source
-							src={video}
-							type="video/mp4"
-						/>
-						Sorry, your browser doesn't support videos.
-					</video>
-				</div>
-
-				<div className="signupFrm">
-					<form
-						action=""
-						className="form"
-						onSubmit={submit}
-					>
-						<h1 className="title">Sign in </h1>
-
-						<div className="inputContainer">
-							<input
-								type="text"
-								className="input"
-								placeholder="a"
-								required
-								value={form.regIdNo}
-								onChange={(e) => {
-									setForm({ ...form, regIdNo: e.target.value });
-								}}
+				<div className="next-main-extra-sign">
+					<div className="side-video">
+						<video
+							autoPlay
+							muted
+							loop
+							className="video"
+						>
+							<source
+								src={video}
+								type="video/mp4"
 							/>
-							<label
-								for=""
-								className="label"
-							>
-								Reg.ID.No./Club ID
-							</label>
-						</div>
+							Sorry, your browser doesn't support videos.
+						</video>
+					</div>
 
-						<div className="inputContainer">
-							<input
-								type="password"
-								className="input"
-								required
-								placeholder="a"
-								value={form.password}
-								onChange={(e) => {
-									setForm({ ...form, password: e.target.value });
-								}}
-							/>
-							<label
-								for=""
-								className="label"
-							>
-								Password
-							</label>
+					<div className="signupFrm">
+						<form
+							action=""
+							className="form"
+							onSubmit={submit}
+						>
+							<h1 className="title">Sign in </h1>
 
-							<span className="forgot-pass">
-								<Link
-									to={"/forgot-password"}
-									className="for-title"
+							<div className="inputContainer">
+								<input
+									type="text"
+									className="input"
+									placeholder="a"
+									required
+									value={form.regIdNo}
+									onChange={(e) => {
+										setForm({ ...form, regIdNo: e.target.value.toUpperCase() });
+									}}
+								/>
+								<label
+									for=""
+									className="label"
 								>
-									Forgot?
+									Reg.ID.No./Club ID
+								</label>
+							</div>
+
+							<div className="inputContainer">
+								<input
+									type="password"
+									className="input"
+									required
+									placeholder="a"
+									value={form.password}
+									onChange={(e) => {
+										setForm({ ...form, password: e.target.value });
+									}}
+								/>
+								<label
+									for=""
+									className="label"
+								>
+									Password
+								</label>
+
+								<span className="forgot-pass">
+									<Link
+										to={"/forgot-password"}
+										className="for-title"
+									>
+										Forgot?
+									</Link>
+								</span>
+							</div>
+							<input
+								type="submit"
+								className="submitBtn"
+								value="Sign in"
+							/>
+							<span className="sign-up-redirect">
+								Don't have an account?{" "}
+								<Link
+									to={"/signup"}
+									className="link"
+								>
+									Sign up
 								</Link>
 							</span>
-						</div>
-						<input
-							type="submit"
-							className="submitBtn"
-							value="Sign in"
-						/>
-						<span className="sign-up-redirect">
-							Don't have an account?{" "}
-							<Link
-								to={"/signup"}
-								className="link"
-							>
-								Sign up
-							</Link>
-						</span>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</>

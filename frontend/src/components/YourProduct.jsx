@@ -3,24 +3,32 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import video from "../assets/empty.mp4";
 import ProductCard from "./ProductCard";
+import Loader from "./Loader";
 
 export default function YourProduct() {
 	const [regIdNo, setRegIdNo] = useState(Cookies.get("regIdNo"));
 	const [image, setImage] = useState([]);
 	const [showCard, setShowCard] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const showImage = async () => {
 		try {
+			setIsLoading(true);
+
 			await axios
 				.post("https://one-pict.onrender.com/get-user-image", { regIdNo })
 				.then((res) => {
-					if (res.data === "nothing") setShowCard(false);
-					else {
+					if (res.data === "nothing") {
+						setShowCard(false);
+						setIsLoading(false);
+					} else {
 						setImage(res.data);
 						setShowCard(true);
+						setIsLoading(false);
 					}
 				})
 				.catch((error) => {
+					setIsLoading(false);
 					throw new Error(`ERROR:${error}`);
 				});
 		} catch (error) {
@@ -47,6 +55,7 @@ export default function YourProduct() {
 
 	return (
 		<>
+			{isLoading && <Loader />}
 			{showCard && (
 				<div className="main-buy-page-main">
 					<div className="title-your-product">
@@ -69,22 +78,7 @@ export default function YourProduct() {
 					</div>
 				</div>
 			)}
-			{!showCard && (
-				<div className="nothing-to-dis">
-					<video
-						autoPlay
-						muted
-						loop
-						className="video"
-					>
-						<source
-							src={video}
-							type="video/mp4"
-						/>
-						Sorry, your browser doesn't support videos.
-					</video>
-				</div>
-			)}
+			{!showCard && <h1 className="no-product">No Product</h1>}
 		</>
 	);
 }

@@ -11,6 +11,7 @@ import vi from "timeago.js/lib/lang/vi";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { showNameToNav } from "../store/slices/userNameSlice";
+import { DNA } from "react-loader-spinner";
 
 timeago.register("vi", vi);
 
@@ -27,6 +28,8 @@ export default function DiscussionCard({ item }) {
 	const [replyMsg, setReplyMsg] = useState("");
 	const [showReply, setShowReply] = useState(false);
 	const replyArray = item.replyBy;
+	const [isLoading, setIsLoading] = useState(false);
+
 	const dispatch = useDispatch();
 
 	const handleClick = () => {
@@ -49,20 +52,6 @@ export default function DiscussionCard({ item }) {
 		}
 	};
 
-	const getLike = async () => {
-		try {
-			axios
-				.post("https://one-pict.onrender.com/get-like", { _id })
-				.then((res) => {
-					if (res.data === "fail") {
-					}
-					setLikes(res.data);
-				});
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
 	const deleteDiscussion = async () => {
 		try {
 			axios.post("https://one-pict.onrender.com/delete-discussion", {
@@ -76,6 +65,8 @@ export default function DiscussionCard({ item }) {
 
 	const submitReply = async () => {
 		try {
+			setIsLoading(true);
+
 			axios
 				.post("https://one-pict.onrender.com/reply-to-discussion", {
 					_id,
@@ -90,15 +81,19 @@ export default function DiscussionCard({ item }) {
 						dispatch(showNameToNav(replyInput));
 						setData(res.data.contain);
 						setShowReply(true);
+						setIsLoading(false);
 					}
+					setIsLoading(false);
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`Error : ${error}`);
 		}
 	};
 
 	const getReply = async () => {
 		try {
+			setIsLoading(true);
 			axios
 				.post("https://one-pict.onrender.com/get-reply-to-discussion", {
 					replyArray,
@@ -107,13 +102,16 @@ export default function DiscussionCard({ item }) {
 				.then((res) => {
 					if (res.data === "fail") {
 						setShowReply(false);
+						setIsLoading(false);
 					} else {
 						setData(res.data);
 						setShowReply(true);
+						setIsLoading(false);
 					}
 				});
 		} catch (error) {
 			setShowReply(false);
+			setIsLoading(false);
 			throw new Error(`Error : ${error}`);
 		}
 	};
@@ -216,6 +214,16 @@ export default function DiscussionCard({ item }) {
 								</button>
 							</div>
 						)}
+						{isLoading && (
+							<DNA
+								visible={true}
+								height="80"
+								width="80"
+								ariaLabel="dna-loading"
+								wrapperStyle={{}}
+								wrapperClass="dna-wrapper"
+							/>
+						)}
 						{showReply && (
 							<div className="reply-contain-div">
 								{data.map((item) => {
@@ -228,7 +236,9 @@ export default function DiscussionCard({ item }) {
 								})}
 							</div>
 						)}
-						{!showReply && <h1 className="no-reply-div">No reply</h1>}
+						{!showReply && !isLoading && (
+							<h1 className="no-reply-div">No reply</h1>
+						)}
 					</div>
 				)}
 			</div>

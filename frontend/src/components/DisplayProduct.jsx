@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Img from "./Img";
 import axios from "axios";
-import video from "../assets/empty.mp4";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -28,16 +27,22 @@ export default function DisplayProduct() {
 
 	const showProduct = async (_id) => {
 		try {
+			setIsLoading(true);
 			await axios
 				.post("https://one-pict.onrender.com/product-info", { _id })
 				.then((res) => {
-					if (res.data === "not") setShowCard(false);
-					else {
+					if (res.data === "not") {
+						setIsLoading(false);
+						setShowCard(false);
+					} else {
 						setData(res.data);
 						setShowCard(true);
+						setIsLoading(false);
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
+
 			throw new Error(`ERROR:${error}`);
 		}
 	};
@@ -190,22 +195,7 @@ export default function DisplayProduct() {
 				</>
 			)}
 
-			{!showCard && (
-				<div className="nothing-to-dis">
-					<video
-						autoPlay
-						muted
-						loop
-						className="video"
-					>
-						<source
-							src={video}
-							type="video/mp4"
-						/>
-						Sorry, your browser doesn't support videos.
-					</video>
-				</div>
-			)}
+			{!showCard && <Loader />}
 		</>
 	);
 }

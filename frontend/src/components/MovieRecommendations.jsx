@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { DNA } from "react-loader-spinner";
 
 const MovieRecommendations = () => {
 	const [recommendations, setRecommendations] = useState([]);
 	const API_URL = "https://movie-recommendation-suz4.onrender.com";
 	const [movie, setMovie] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+
 	const fetchRecommendations = async (movie_name) => {
 		try {
+			setIsLoading(true);
 			await axios
 				.get(`${API_URL}/recommendations/${movie_name}`)
 				.then((res) => {
-					if (res.length < 0) setRecommendations([]);
-					else {
+					setIsLoading(true);
+					if (res.length < 0) {
+						setRecommendations([]);
+						setIsLoading(false);
+					} else {
 						setRecommendations(res.data);
+						setIsLoading(false);
 					}
 				})
 				.catch((error) => {
+					setIsLoading(false);
 					console.error("Error fetching recommendations:", error);
 				});
 		} catch (error) {
@@ -68,7 +77,23 @@ const MovieRecommendations = () => {
 					</div>
 				</>
 			) : (
-				<div className="no-recommendations">No recommendations available.</div>
+				<>
+					{isLoading && (
+						<DNA
+							visible={true}
+							height="80"
+							width="80"
+							ariaLabel="dna-loading"
+							wrapperStyle={{}}
+							wrapperClass="dna-wrapper"
+						/>
+					)}
+					{!isLoading && (
+						<div className="no-recommendations">
+							No recommendations available.
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	);

@@ -729,25 +729,6 @@ const getReply = asyncHandler(async (req, res) => {
 
 })
 
-const getLike = asyncHandler(async (req, res) => {
-
-    const { _id } = req.body;
-    try {
-
-        const data = await Discuss.findOne({ _id: _id }).catch((e) => {
-            console.log(e)
-        })
 
 
-        if (data) res.json(data.like);
-
-    } catch (error) {
-        res.send("fail");
-        console.log(error)
-        res.status(404)
-    }
-
-
-})
-
-export { createUser, signinUser, getImage, postImage, getCurrentUserProfile, sendEmail, resetPass, getUserImage, deleteUserImage, getProductById, postUserImg, getUserProfileImage, deleteUserProfileImage, updateUserName, uploadEventInfo, getEventInfo, getEventInfoById, getEventInfoByRegIdNo, deleteEvent, postContactMsg, buyRequestToOwner, postDiscussMsg, discussInfo, handleLike, deleteDiscussion, replyDiscussion, getReply, getLike };
+export { createUser, signinUser, getImage, postImage, getCurrentUserProfile, sendEmail, resetPass, getUserImage, deleteUserImage, getProductById, postUserImg, getUserProfileImage, deleteUserProfileImage, updateUserName, uploadEventInfo, getEventInfo, getEventInfoById, getEventInfoByRegIdNo, deleteEvent, postContactMsg, buyRequestToOwner, postDiscussMsg, discussInfo, handleLike, deleteDiscussion, replyDiscussion, getReply };

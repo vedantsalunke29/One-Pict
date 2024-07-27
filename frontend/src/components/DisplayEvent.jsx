@@ -4,24 +4,30 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineDescription } from "react-icons/md";
 import Img from "./Img";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 export default function DisplayEvent() {
 	const [data, setData] = useState([]);
 	const [showCard, setShowCard] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const showEvent = async (_id) => {
 		try {
+			setIsLoading(true);
 			await axios
 				.post("https://one-pict.onrender.com/eventInfo-get", { _id })
 				.then((res) => {
 					if (res.data === "not") {
 						setShowCard(false);
+						setIsLoading(false);
 					} else {
 						setData([res.data]);
+						setIsLoading(false);
 						setShowCard(!showCard);
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`ERROR:${error.response.data}`);
 		}
 	};
@@ -33,6 +39,7 @@ export default function DisplayEvent() {
 
 	return (
 		<>
+			{isLoading && <Loader />}
 			{showCard && (
 				<>
 					<div className="main-conatiner-event-display-div">

@@ -13,6 +13,7 @@ import { showNameToNav } from "../store/slices/userNameSlice";
 import { showImagetoNav } from "../store/slices/imageSlice";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
+import { DNA } from "react-loader-spinner";
 
 export default function Account() {
 	const inputRef = useRef();
@@ -46,6 +47,7 @@ export default function Account() {
 	};
 	const deleteUserProfile = async () => {
 		try {
+			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
 			axios
 				.post("https://one-pict.onrender.com/userImage-delete", {
@@ -55,11 +57,13 @@ export default function Account() {
 				.then((res) => {
 					if (res.data === "done") {
 						toast.success("Profile removed");
+						setIsLoading(false);
 						setShowUserImg(false);
 						dispatch(showImagetoNav(showUserImg));
 					} else toast.error("Something went wrong");
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`Error : ${error}`);
 		}
 	};
@@ -75,10 +79,9 @@ export default function Account() {
 				})
 				.then((res) => {
 					if (res.data === "done") {
+						setUserImg(true);
 						setShowUserImg(false);
 						setIsLoading(false);
-						setUserImg(true);
-						userImageFetch();
 					} else {
 						setIsLoading(false);
 						setShowUserImg(false);
@@ -112,17 +115,22 @@ export default function Account() {
 
 	const userImageFetch = async () => {
 		try {
+			setIsLoading(true);
 			axios
 				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
-					if (res.data === "notexist") setShowUserImg(false);
-					else {
+					if (res.data === "notexist") {
+						setShowUserImg(false);
+						setIsLoading(false);
+					} else {
 						setUserImgageSource(res.data);
-						dispatch(showImagetoNav(showUserImg));
 						setShowUserImg(true);
+						dispatch(showImagetoNav(showUserImg));
+						setIsLoading(false);
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`Error : ${error}`);
 		}
 	};
@@ -136,7 +144,7 @@ export default function Account() {
 
 	useEffect(() => {
 		userImageFetch();
-	}, [showUserImg, userImg, cookieVal]);
+	}, [userImg]);
 
 	const handleOnChange = (e) => {
 		let file = inputRef.current.files[0];

@@ -27,7 +27,6 @@ import {
     deleteDiscussion,
     replyDiscussion,
     getReply,
-    getLike,
 } from '../controllers/userController.js';
 
 
@@ -60,7 +59,7 @@ router.post("/handle-like", handleLike);
 router.post("/delete-discussion", deleteDiscussion);
 router.post("/reply-to-discussion", replyDiscussion)
 router.post("/get-reply-to-discussion", getReply);
-router.post("/get-like", getLike);
+
 
 
 export default router;

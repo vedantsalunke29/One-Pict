@@ -131,22 +131,13 @@
 	}
 }
 
-.nothing-to-dis {
+.no-product{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-	top: 10vh;
-	min-height: 47vh;
+	height: 100vh;
 }
 
-.video {
-	max-width: 60vw;
-	aspect-ratio: 1/1.03;
-	object-fit: contain;
-	outline: none;
-	border: none;
-}
 
 .delete-btn {
 	position: absolute;

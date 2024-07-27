@@ -13,7 +13,6 @@ import PAC from "../assets/PAC.png";
 import PIC from "../assets/pictoreal.png";
 import { useNavigate } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
-import logoText from "../assets/onepict.png";
 import home from "../assets/unnamed-removebg.png";
 import forum from "../assets/oneforum.png";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -35,6 +34,7 @@ import toast from "react-hot-toast";
 import DiscussionCard from "./DiscussionCard";
 import { useSelector } from "react-redux";
 import MovieRecommendations from "./MovieRecommendations";
+import { DNA } from "react-loader-spinner";
 
 export default function Home() {
 	let settings = {
@@ -53,6 +53,8 @@ export default function Home() {
 	const [discussMsg, setDiscussMsg] = useState("");
 	const [cookieVal, setCookieVal] = useState(Cookies.get("regIdNo"));
 	const [data, setData] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+
 	const replyInput = useSelector((state) => {
 		return state.userName;
 	});
@@ -75,24 +77,32 @@ export default function Home() {
 
 	const getEventData = async () => {
 		try {
+			setIsLoading(true);
 			await axios
 				.get("https://one-pict.onrender.com/get-eventInfo")
 				.then((res) => {
-					if (res.data === "nothing") setShowCard(false);
-					else {
+					if (res.data === "nothing") {
+						setShowCard(false);
+						setIsLoading(false);
+					} else {
 						setEventCardItem(res.data);
+						setIsLoading(false);
 						setShowCard(!showCard);
 					}
 				})
 				.catch((error) => {
+					setIsLoading(false);
 					console.log(error);
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`ERROR:${error}`);
 		}
 	};
 	const sumbitDiscuss = async () => {
 		try {
+			setIsLoading(true);
+
 			await axios
 				.post("https://one-pict.onrender.com/postDiscuss", {
 					cookieVal,
@@ -102,32 +112,39 @@ export default function Home() {
 					if (res.data.message === "fail") {
 						setDiscussMsg("");
 						toast.error("Error Occured");
+						setIsLoading(false);
 					} else if (res.data.message === "done") {
 						setDiscussMsg("");
 						setData(res.data.contain);
 						setShowDiscussion(true);
 						toast.success("Added ✔");
+						setIsLoading(false);
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
+
 			console.log(error);
 		}
 	};
 
 	const getDiscussion = async () => {
 		try {
+			setIsLoading(true);
 			await axios
 				.get("https://one-pict.onrender.com/get-discussion-data")
 				.then((res) => {
 					if (res.data === "fail") {
+						setIsLoading(false);
 						setShowDiscussion(false);
 					} else {
 						setData(res.data);
-
+						setIsLoading(false);
 						setShowDiscussion(true);
 					}
 				});
 		} catch (error) {
+			setIsLoading(false);
 			setShowDiscussion(false);
 			console.log(error);
 		}
@@ -223,24 +240,37 @@ export default function Home() {
 									<p>Upcoming Event</p>
 								</div>
 							</Animator>
+
 							<div className="event-announcement">
-								<div className="card-slider">
-									<Slider {...settings}>
-										{eventCardItem.map((i) => {
-											return (
-												<>
-													<EventCard
-														key={i._id}
-														id={i._id}
-														name={i.eventName}
-														eventDate={i.eventDate}
-														imgSrc={i.eventImg[0]}
-													/>
-												</>
-											);
-										})}
-									</Slider>
-								</div>
+								{isLoading && (
+									<DNA
+										visible={true}
+										height="80"
+										width="80"
+										ariaLabel="dna-loading"
+										wrapperStyle={{ position: "absolute" }}
+										wrapperClass="dna-wrapper"
+									/>
+								)}
+								{!isLoading && (
+									<div className="card-slider">
+										<Slider {...settings}>
+											{eventCardItem.map((i) => {
+												return (
+													<>
+														<EventCard
+															key={i._id}
+															id={i._id}
+															name={i.eventName}
+															eventDate={i.eventDate}
+															imgSrc={i.eventImg[0]}
+														/>
+													</>
+												);
+											})}
+										</Slider>
+									</div>
+								)}
 							</div>
 						</div>
 					</ScrollPage>
@@ -415,7 +445,17 @@ export default function Home() {
 												})}
 											</div>
 										)}
-										{!showDiscussion && (
+										{isLoading && (
+											<DNA
+												visible={true}
+												height="80"
+												width="80"
+												ariaLabel="dna-loading"
+												wrapperStyle={{}}
+												wrapperClass="dna-wrapper"
+											/>
+										)}
+										{!showDiscussion && !isLoading && (
 											<h1 className="no-discussion-available">No Discussion</h1>
 										)}
 									</div>
