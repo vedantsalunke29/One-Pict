@@ -19,7 +19,7 @@
 
 .loading-spinner {
 	animation: spinner 1s infinite;
-    > img {
+	> img {
 		transform: scale(0.5);
 	}
 }
@@ -31,10 +31,9 @@
 	height: 100vh;
 	width: 100vw;
 	position: fixed;
-	z-index: 20;
+	z-index: 50;
 	background: linear-gradient(
 		rgba(183, 243, 163, 0.4),
 		rgba(140, 228, 252, 0.4)
 	);
-	
 }

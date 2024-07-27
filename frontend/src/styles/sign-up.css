@@ -1,11 +1,11 @@
 .main-signup-body {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	width: 100vw;
-	position: fixed;
-	height: 100vh;
+	justify-content: center;
+	top: 8vh;
+	position: relative;
 }
+
 .main-reset-body {
 	display: flex;
 	align-items: center;
@@ -16,12 +16,17 @@
 
 .side-video {
 	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .video {
-	height: 100%;
-	width: 60%;
+	border-radius: 100px;
+	height: 60%;
 	object-fit: cover;
+	width: 54%;
+	aspect-ratio: 1/1;
 }
 .resetFrm {
 	display: flex;
@@ -36,15 +41,13 @@
 	align-items: center;
 	height: 100vh;
 	position: relative;
-	top: 8vh;
 }
 
 .form {
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	width: 460px;
 	border-radius: 8px;
-	margin: 0.5rem 2rem;
-	padding:10px 40px;
+	padding: 1vw 2vw;
 }
 
 .title {
@@ -90,7 +93,7 @@
 	top: 15px;
 	left: 15px;
 	padding: 0 4px;
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	color: #b7b9bd;
 	font-size: 16px;
 	transition: 0.5s;
@@ -104,7 +107,7 @@
 	padding: 15px 30px;
 	border: none;
 	background-color: #000000;
-	color: white;
+	color: rgb(255, 255, 255);
 	border-radius: 6px;
 	cursor: pointer;
 	font-size: 16px;
@@ -126,8 +129,8 @@
 }
 
 .input:focus {
-	border: 1px solid #fda9fd7e;
-	box-shadow: #f9abf07e 1px 2px 4px;
+	border: 1px solid #d2d2d27e;
+	box-shadow: #ffffff7e 1px 2px 4px;
 }
 
 .input:not(:placeholder-shown) + .label {
@@ -140,7 +143,7 @@
 
 .sign-up-redirect {
 	display: block;
-	padding: 10%;
+	padding: 8% 0%;
 	align-items: center;
 
 	.link {
@@ -164,11 +167,11 @@
 		}
 	}
 }
-.main-verification-div{
+.main-verification-div {
 	display: flex;
 	align-items: center;
 	height: 100vh;
-	justify-content:center;
+	justify-content: center;
 }
 .pop-code {
 	position: relative;
@@ -188,13 +191,17 @@
 	font-family: "Roboto Slab";
 }
 
+@media (max-width: 724px) {
+	.main-signup-body {
+		align-items: normal;
+		flex-direction: column-reverse;
 
-@media (max-width : 635px) {
-	.main-signup-body{
-		position: relative;
-		top: 15vh;
+		.side-video {
+			display: none;
+		}
 	}
-	.main-reset-body{
+
+	.main-reset-body {
 		position: relative;
 		top: 20vh;
 		justify-content: space-between;

@@ -49,24 +49,21 @@ export default function SignIn() {
 		<>
 			<div className="main-signup-body">
 				{isLoading && <Loader />}
-				<div className="left-video-div">
-					<div className="side-video">
-						<video
-							autoPlay
-							muted
-							loop
-							width="420"
-							align="right"
-							className="video"
-						>
-							<source
-								src={video}
-								type="video/mp4"
-							/>
-							Sorry, your browser doesn't support videos.
-						</video>
-					</div>
+				<div className="side-video">
+					<video
+						autoPlay
+						muted
+						loop
+						className="video"
+					>
+						<source
+							src={video}
+							type="video/mp4"
+						/>
+						Sorry, your browser doesn't support videos.
+					</video>
 				</div>
+
 				<div className="signupFrm">
 					<form
 						action=""

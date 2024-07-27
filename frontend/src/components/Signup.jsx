@@ -63,8 +63,6 @@ export default function Signup() {
 						autoPlay
 						muted
 						loop
-						width="420"
-						align="right"
 						className="video"
 					>
 						<source
