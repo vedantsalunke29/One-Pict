@@ -36,8 +36,8 @@ export default function DisplayProduct() {
 						setShowCard(false);
 					} else {
 						setData(res.data);
-						setShowCard(true);
 						setIsLoading(false);
+						setShowCard(true);
 					}
 				});
 		} catch (error) {
