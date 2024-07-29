@@ -433,6 +433,16 @@ export default function Home() {
 								</div>
 								<div className="lower-dicussion-conatiner-div-main">
 									<div className="main-lower-div-page-5">
+										{isLoading && (
+											<DNA
+												visible={true}
+												height="80"
+												width="80"
+												ariaLabel="dna-loading"
+												wrapperStyle={{}}
+												wrapperClass="dna-wrapper"
+											/>
+										)}
 										{showDiscussion && (
 											<div className="main-discuss-info-div">
 												{data.map((item) => {
@@ -444,16 +454,6 @@ export default function Home() {
 													);
 												})}
 											</div>
-										)}
-										{isLoading && (
-											<DNA
-												visible={true}
-												height="80"
-												width="80"
-												ariaLabel="dna-loading"
-												wrapperStyle={{}}
-												wrapperClass="dna-wrapper"
-											/>
 										)}
 										{!showDiscussion && !isLoading && (
 											<h1 className="no-discussion-available">No Discussion</h1>
