@@ -409,16 +409,6 @@ export default function Home() {
 													>
 														Submit
 													</button>
-													{isLoading && (
-														<DNA
-															visible={true}
-															height="80"
-															width="80"
-															ariaLabel="dna-loading"
-															wrapperStyle={{}}
-															wrapperClass="dna-wrapper"
-														/>
-													)}
 												</>
 											</div>
 										)}
@@ -441,6 +431,16 @@ export default function Home() {
 										</div>
 									</div>
 								</div>
+								{isLoading && (
+									<DNA
+										visible={true}
+										height="80"
+										width="80"
+										ariaLabel="dna-loading"
+										wrapperStyle={{}}
+										wrapperClass="dna-wrapper"
+									/>
+								)}
 								<div className="lower-dicussion-conatiner-div-main">
 									<div className="main-lower-div-page-5">
 										{showDiscussion && (
