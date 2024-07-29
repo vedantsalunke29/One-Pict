@@ -409,6 +409,16 @@ export default function Home() {
 													>
 														Submit
 													</button>
+													{isLoading && (
+														<DNA
+															visible={true}
+															height="80"
+															width="80"
+															ariaLabel="dna-loading"
+															wrapperStyle={{}}
+															wrapperClass="dna-wrapper"
+														/>
+													)}
 												</>
 											</div>
 										)}
@@ -433,16 +443,6 @@ export default function Home() {
 								</div>
 								<div className="lower-dicussion-conatiner-div-main">
 									<div className="main-lower-div-page-5">
-										{isLoading && (
-											<DNA
-												visible={true}
-												height="80"
-												width="80"
-												ariaLabel="dna-loading"
-												wrapperStyle={{}}
-												wrapperClass="dna-wrapper"
-											/>
-										)}
 										{showDiscussion && (
 											<div className="main-discuss-info-div">
 												{data.map((item) => {
