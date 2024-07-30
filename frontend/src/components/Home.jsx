@@ -33,7 +33,6 @@ import "slick-carousel/slick/slick-theme.css";
 import toast from "react-hot-toast";
 import DiscussionCard from "./DiscussionCard";
 import { useSelector } from "react-redux";
-import MovieRecommendations from "./MovieRecommendations";
 import { DNA } from "react-loader-spinner";
 
 export default function Home() {
@@ -104,7 +103,7 @@ export default function Home() {
 			setIsLoading(true);
 
 			await axios
-				.get(`http://localhost:3500/detect/${text}`)
+				.get(`http://127.0.0.1:5000/detect/${text}`)
 				.then((res) => {
 					setIsLoading(true);
 					if (res.length < 0) {
@@ -496,25 +495,11 @@ export default function Home() {
 							alignItems: "center",
 							flexWrap: "wrap",
 							justifyContent: "center",
-							height: 800,
 							position: "relative",
 						}}
 					>
 						<div className="third-page-div">
 							<div className="main-div-third-page">
-								<div className="home-movie-div">
-									<Animator animation={batch(FadeIn(), MoveIn(100, 0))}>
-										<h1 className="Heading-for-movies">
-											Want some binge-watch suggestion ?
-										</h1>
-									</Animator>
-
-									<div className="info-movie">
-										Get similar content according to your previous watch and
-										discover movies you'll love!
-									</div>
-									<MovieRecommendations />
-								</div>
 								<Animator animation={batch(FadeIn(), MoveIn(-100, 0))}>
 									<p>
 										Developed by PICT student for fostering connections,
