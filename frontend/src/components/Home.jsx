@@ -99,6 +99,31 @@ export default function Home() {
 			throw new Error(`ERROR:${error}`);
 		}
 	};
+	const getTextReport = async (text) => {
+		try {
+			setIsLoading(true);
+
+			await axios
+				.get(`http://localhost:3500/detect/${text}`)
+				.then((res) => {
+					setIsLoading(true);
+					if (res.length < 0) {
+						setIsLoading(false);
+					} else {
+						if (res.data == "Offensive lang" || res.data == "hate speech")
+							toast.error("Hate Speech Detect");
+						else sumbitDiscuss();
+						setIsLoading(false);
+					}
+				})
+				.catch((error) => {
+					setIsLoading(false);
+					console.error("Error fetching recommendations:", error);
+				});
+		} catch (error) {
+			throw new Error(`ERROR:${error}`);
+		}
+	};
 	const sumbitDiscuss = async () => {
 		try {
 			setIsLoading(true);
@@ -405,7 +430,9 @@ export default function Home() {
 													/>
 													<button
 														className="button-27"
-														onClick={sumbitDiscuss}
+														onClick={() => {
+															getTextReport(discussMsg);
+														}}
 													>
 														Submit
 													</button>

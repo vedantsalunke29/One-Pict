@@ -115,6 +115,7 @@ export default function DiscussionCard({ item }) {
 			throw new Error(`Error : ${error}`);
 		}
 	};
+	
 
 	const handleReply = () => {
 		setReplyOutput(!replyOutput);
