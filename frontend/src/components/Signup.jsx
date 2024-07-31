@@ -9,9 +9,11 @@ export default function Signup() {
 	const [form, setForm] = useState({
 		regIdNo: "",
 		name: "",
+		email: "",
 		password: "",
 		cPassword: "",
 	});
+	const [isClicked, setIsClicked] = useState("Student");
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const submit = async (e) => {
@@ -26,7 +28,7 @@ export default function Signup() {
 				setIsLoading(false);
 			} else {
 				await axios
-					.post("https://one-pict.onrender.com/signup", form)
+					.post("http://localhost:5000/signup", form)
 					.then((res) => {
 						if (res.data === "provide") {
 							toast.error("Provide All Inputs");
@@ -59,12 +61,12 @@ export default function Signup() {
 			<div className="main-signup-body">
 				{isLoading && <Loader />}
 				<div className="next-main-extra-sign">
-					<div className="side-video">
+					<div className="side-video-sign-up">
 						<video
 							autoPlay
 							muted
 							loop
-							className="video"
+							className="video-sign-up"
 						>
 							<source
 								src={video}
@@ -81,7 +83,32 @@ export default function Signup() {
 							onSubmit={submit}
 						>
 							<h1 className="title">Sign up </h1>
-
+							<ul className="info-about-sign-ul">
+								<li
+									onClick={() => {
+										setIsClicked("Student");
+									}}
+									className={isClicked === "Student" ? "is-active-li" : ""}
+								>
+									Student
+								</li>
+								<li
+									onClick={() => {
+										setIsClicked("Club");
+									}}
+									className={isClicked === "Club" ? "is-active-li" : ""}
+								>
+									Club
+								</li>
+								<li
+									onClick={() => {
+										setIsClicked("Teacher");
+									}}
+									className={isClicked === "Teacher" ? "is-active-li" : ""}
+								>
+									Teacher
+								</li>
+							</ul>
 							<div className="inputContainer">
 								<input
 									type="text"
@@ -97,7 +124,10 @@ export default function Signup() {
 									for=""
 									className="label"
 								>
-									Reg.ID.No./Club ID
+									{(isClicked === "Student" || isClicked === "Teacher") && (
+										<>Reg.ID.No.</>
+									)}
+									{isClicked === "Club" && <>Club.ID.No.</>}
 								</label>
 							</div>
 
@@ -120,6 +150,28 @@ export default function Signup() {
 									className="label"
 								>
 									Name
+								</label>
+							</div>
+
+							<div className="inputContainer">
+								<input
+									type="email"
+									className="input"
+									placeholder="a"
+									required
+									value={form.email}
+									onChange={(e) => {
+										setForm({
+											...form,
+											email: e.target.value,
+										});
+									}}
+								/>
+								<label
+									for=""
+									className="label"
+								>
+									Email
 								</label>
 							</div>
 

@@ -14,7 +14,6 @@ import { showImagetoNav } from "../store/slices/imageSlice";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
 
-
 export default function Account() {
 	const inputRef = useRef();
 	const [cookieVal, setCookieVal] = useState(Cookies.get("regIdNo"));
@@ -32,7 +31,7 @@ export default function Account() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/profile", { cookieVal })
+				.post("http://localhost:5000/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("");
@@ -50,7 +49,7 @@ export default function Account() {
 			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
 			axios
-				.post("https://one-pict.onrender.com/userImage-delete", {
+				.post("http://localhost:5000/userImage-delete", {
 					cookieVal,
 					imgSrc,
 				})
@@ -73,7 +72,7 @@ export default function Account() {
 		setIsLoading(true);
 		try {
 			axios
-				.post("https://one-pict.onrender.com/userImage-post", {
+				.post("http://localhost:5000/userImage-post", {
 					userImg,
 					cookieVal,
 				})
@@ -96,7 +95,7 @@ export default function Account() {
 	const changeName = async () => {
 		try {
 			axios
-				.post("https://one-pict.onrender.com/userName-update", {
+				.post("http://localhost:5000/userName-update", {
 					cookieVal,
 					userNameUpdate,
 				})
@@ -117,7 +116,7 @@ export default function Account() {
 		try {
 			setIsLoading(true);
 			axios
-				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
+				.post("http://localhost:5000/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") {
 						setShowUserImg(false);

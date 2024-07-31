@@ -13,13 +13,13 @@ export default function SignIn() {
 		password: "",
 	});
 	const [isLoading, setIsLoading] = useState(false);
-
+	const [isClicked, setIsClicked] = useState("Student");
 	const submit = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/signin", form)
+				.post("http://localhost:5000/signin", form)
 				.then((res) => {
 					if (res.data === "loginpass") {
 						Cookies.set("regIdNo", form.regIdNo, { expires: 7 });
@@ -50,12 +50,12 @@ export default function SignIn() {
 			<div className="main-signup-body">
 				{isLoading && <Loader />}
 				<div className="next-main-extra-sign">
-					<div className="side-video">
+					<div className="side-video-sign-in">
 						<video
 							autoPlay
 							muted
 							loop
-							className="video"
+							className="video-sign-in"
 						>
 							<source
 								src={video}
@@ -72,7 +72,32 @@ export default function SignIn() {
 							onSubmit={submit}
 						>
 							<h1 className="title">Sign in </h1>
-
+							<ul className="info-about-sign-ul">
+								<li
+									onClick={() => {
+										setIsClicked("Student");
+									}}
+									className={isClicked === "Student" ? "is-active-li" : ""}
+								>
+									Student
+								</li>
+								<li
+									onClick={() => {
+										setIsClicked("Club");
+									}}
+									className={isClicked === "Club" ? "is-active-li" : ""}
+								>
+									Club
+								</li>
+								<li
+									onClick={() => {
+										setIsClicked("Teacher");
+									}}
+									className={isClicked === "Teacher" ? "is-active-li" : ""}
+								>
+									Teacher
+								</li>
+							</ul>
 							<div className="inputContainer">
 								<input
 									type="text"
@@ -88,7 +113,10 @@ export default function SignIn() {
 									for=""
 									className="label"
 								>
-									Reg.ID.No./Club ID
+									{(isClicked === "Student" || isClicked === "Teacher") && (
+										<>Reg.ID.No.</>
+									)}
+									{isClicked === "Club" && <>Club.ID.No.</>}
 								</label>
 							</div>
 

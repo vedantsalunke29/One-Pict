@@ -45,7 +45,7 @@ export default function Buy() {
 			setIsLoading(true);
 			setShowCard(!showCard);
 			await axios
-				.get("https://one-pict.onrender.com/get-image")
+				.get("http://localhost:5000/get-image")
 				.then((res) => {
 					if (res.data === "nothing") {
 						setShowCard(false);
@@ -53,16 +53,14 @@ export default function Buy() {
 					} else {
 						setProductItem(res.data);
 						setIsLoading(false);
-
-						
 					}
 				})
 				.catch((error) => {
 					setIsLoading(false);
-
 					console.log(error);
 				});
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`ERROR:${error}`);
 		}
 	};

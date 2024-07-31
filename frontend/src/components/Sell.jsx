@@ -73,7 +73,7 @@ export default function Sell() {
 			setUploadStatus("uploading");
 			await axios
 				.post(
-					"https://one-pict.onrender.com/image",
+					"http://localhost:5000/image",
 					{ form, cookieVal },
 					{
 						onUploadProgress: (progressEvent) => {

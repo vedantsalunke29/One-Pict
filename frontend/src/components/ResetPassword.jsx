@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 export default function ResetPassword() {
 	const [cPassword, setCPassword] = useState("");
 	const [password, setPassword] = useState("");
 	const cookieVal = Cookies.get("resetRegister");
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
 	const submit = async (e) => {
@@ -17,8 +19,9 @@ export default function ResetPassword() {
 			else if (password !== cPassword)
 				toast.error("Password and Confirm Password does not match!!");
 			else {
+				setIsLoading(true);
 				await axios
-					.post("https://one-pict.onrender.com/resetpassword", {
+					.post("http://localhost:5000/resetpassword", {
 						cookieVal,
 						password,
 					})
@@ -26,20 +29,24 @@ export default function ResetPassword() {
 						if (res.data === "pass") {
 							Cookies.remove("resetRegister");
 							toast.success("Password changed successfully");
+							setIsLoading(false);
 							navigate("/signin");
-						} else if (res.data === "fail")
-							toast.error("Something went wrong!!");
+						} else if (res.data === "fail") setIsLoading(false);
+						toast.error("Something went wrong!!");
 					})
 					.catch((error) => {
+						setIsLoading(false);
 						throw new Error(`ERROR:${error}`);
 					});
 			}
 		} catch (error) {
+			setIsLoading(false);
 			throw new Error(`ERROR:${error}`);
 		}
 	};
 	return (
 		<>
+			{isLoading && <Loader />}
 			<div className="main-reset-body">
 				<div className="resetFrm">
 					<form

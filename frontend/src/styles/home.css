@@ -52,6 +52,7 @@
 }
 .page-2-home-div {
 	width: 100vw;
+	height: 100vh;
 }
 .event-announcement {
 	display: flex;
@@ -60,32 +61,13 @@
 }
 
 .card-slider {
-	min-height: 55vh;
+	min-height: 60vh;
 	aspect-ratio: 2/1;
-	margin: 2rem 0rem;
 	position: relative;
-	width: 53vw;
+	width: 83vw;
 }
 
-.slick-dots li.slick-active button::before {
-	font-size: 12px;
-	margin: 1px;
-	color: #000000;
-}
-.slick-dots li button::before {
-	margin: 1px;
-	font-size: 5px;
-	top: -6px;
-}
-.slick-prev:before {
-	display: none;
-}
-.slick-next:before {
-	display: none;
-}
 .inside-event-ann {
-	background: no-repeat center url(../assets/linear.png);
-	background-size: cover;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -103,19 +85,17 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
-	border: 1px solid rgba(247, 196, 113, 0.521);
 	justify-content: center;
 	padding: 0.8rem 0.3rem;
 	margin: 1rem;
-	max-height: 55vh;
+	max-height: 60vh;
 	aspect-ratio: 1/1;
-	width: 50vw;
+	width: 80vw;
 	border-radius: 20px;
-	background-color: #ffffff;
+	background-color: #f4ebf3;
 	transition: all 0.4s;
 	overflow: auto;
 	&:hover {
-		opacity: 0.9;
 		box-shadow: rgba(0, 0, 0, 0.205) 0px 3px 20px;
 	}
 	&:active {
@@ -130,9 +110,21 @@
 .container-event {
 	display: flex;
 	align-items: center;
-	flex-direction: column;
+	justify-content: space-between;
+	width: 80%;
+	> img {
+		width: 25vw;
+		aspect-ratio: 1/1;
+		border-radius: 10px;
+	}
+}
+.complete-event-info {
+	display: flex;
+	align-items: center;
 	justify-content: center;
-
+	flex-direction: column;
+	position: relative;
+	gap: 1vh;
 	> p {
 		display: flex;
 		gap: 8px;
@@ -140,68 +132,63 @@
 		justify-content: center;
 		flex-wrap: wrap;
 		margin: 0.3rem;
-		font-size: calc(0.6vw + 0.6vh + 0.8vmin);
-		font-weight: 200;
-		font-family: "Roboto Slab";
+		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
+		font-weight: 300;
+		font-family: "Source Serif 4";
 	}
-	> img {
-		width: 18vw;
-		padding: 0.5rem;
-		aspect-ratio: 1/1;
-		object-fit: contain;
-	}
+}
+
+.see-details-btn {
+	padding: 1vw 2vw;
+	border-radius: 50px;
+	cursor: pointer;
+	border: 1px solid black;
 }
 
 .name-of-event-h2 {
 	text-align: center;
 	margin: 0.2rem;
-	font-size: calc(1vw + 1vh + 2vmin);
-	font-weight: 350;
+	font-size: calc(1.8vw + 1.8vh + 1.2vmin);
+	font-weight: 400;
 	font-family: "Source Serif 4";
 }
 
 .page-3-main-div {
-	height: 100vh;
 	width: 100vw;
 	position: relative;
-	top: 5vh;
 }
 
 .background-page3 {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	justify-content: space-evenly;
-	height: 90vh;
-	background: linear-gradient(90deg, #ecfbf8 0%, rgb(222, 244, 252) 100%);
 	background-color: transparent;
+
 }
 
 .club-head {
 	position: relative;
-	font-size: calc(3vw + 3vh + 2vmin);
-	font-family: "Shadows Into Light";
-	font-weight: 300;
-	color: rgb(246, 168, 120);
+	font-size: calc(2vw + 2vh + 2vmin);
+	font-family: "Source Serif 4";
+	font-weight: 400;
+	color: rgb(243, 202, 176);
+	margin: 1rem 1rem;
 }
 
 .club-logo-conatiner {
+	/* background: linear-gradient(900deg, #ecfbf8 0%, rgb(222, 244, 252) 100%); */
 	display: flex;
-	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
 	height: 60vh;
-	width: 100%;
-	gap: 16px;
-	margin: 0rem 2rem;
+	align-items: center;
 }
 
 .logo-card-club {
 	cursor: pointer;
-	height: 24vh;
-	padding: 0.2rem;
+	max-height: 20vh;
+	padding: 0.1rem;
 	aspect-ratio: 1.5/1;
-	margin: 100px 10px 10px 10px;
-	background-color: #fff;
+	margin: 20px;
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
@@ -217,18 +204,18 @@
 	> p {
 		font-family: "Roboto Slab";
 		font-weight: 500;
-		font-size: calc(1vw + 1vh + 0.7vmin);
+		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	}
 	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 40px;
+		
 		transform: scale(1.06);
 	}
 }
 .logo-card-club-black {
 	cursor: pointer;
-	height: 24vh;
-	padding: 0.2rem;
-	aspect-ratio: 1.5/1;
+	height: 30vh;
+	padding: 0.1rem;
+	aspect-ratio: 1/1;
 	background-color: #000000;
 	color: #fff;
 	border-radius: 20px;
@@ -246,10 +233,10 @@
 	> p {
 		font-family: "Roboto Slab";
 		font-weight: 500;
-		font-size: calc(1vw + 1vh + 0.6vmin);
+		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	}
 	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 40px;
+		
 		transform: scale(1.06);
 	}
 }
@@ -306,7 +293,7 @@
 		text-align: center;
 		font-weight: 300;
 		font-family: "Roboto Slab";
-		font-size: calc(0.6vw + .6vh + .5vmin);
+		font-size: calc(0.6vw + 0.6vh + 0.5vmin);
 		border-radius: 5px;
 	}
 }
@@ -926,5 +913,9 @@
 	}
 	.card-event {
 		width: 65vw;
+	}
+	.container-event {
+		flex-direction: column;
+		justify-content: center;
 	}
 }

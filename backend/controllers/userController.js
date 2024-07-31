@@ -9,7 +9,7 @@ import nodemailer from "nodemailer"
 import { uploadCloudinary, deleteCloudinary } from "../utils/cloudinary.js";
 import Events from "../models/eventModel.js";
 import Discuss from "../models/discussModel.js";
-
+ 
 
 // Login SignUp Logout
 
@@ -17,9 +17,10 @@ const createUser = asyncHandler(async (req, res) => {
     const form = req.body;
     const regIdNo = form.regIdNo;
     const name = form.name
+    const email = form.email
     const password = form.password
 
-    if (!regIdNo || !name || !password) res.send("provide");
+    if (!regIdNo || !name || !password || !email) res.send("provide");
 
     const userValid = await Validate.findOne({ regIdNo });
     const userExist = await User.findOne({ regIdNo });
@@ -28,7 +29,7 @@ const createUser = asyncHandler(async (req, res) => {
         else if (userValid) {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newUser = new User({ regIdNo: regIdNo, name: name, password: hashedPassword })
+            const newUser = new User({ regIdNo: regIdNo, name: name, email: email, password: hashedPassword })
             generateToken(res, newUser._id);
             await newUser.save();
             res.json("create");
@@ -75,7 +76,8 @@ const sendEmail = asyncHandler(async (req, res) => {
         const otp = form.otp;
 
         const user = await User.findOne({ regIdNo: regIdNo });
-        if (user) {
+
+        if (user.email === email) {
             const transporter = nodemailer.createTransport({
                 service: "Gmail",
                 host: "smtp.gmail.com",

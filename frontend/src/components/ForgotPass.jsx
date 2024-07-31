@@ -44,7 +44,7 @@ export default function ForgotPass() {
 			form.otp = OTP;
 
 			await axios
-				.post("https://one-pict.onrender.com/send-email", form)
+				.post("http://localhost:5000/send-email", form)
 				.then((res) => {
 					if (res.data === "pass") {
 						setIsLoading(false);
@@ -120,7 +120,7 @@ export default function ForgotPass() {
 									required
 									value={form.regIdNo}
 									onChange={(e) => {
-										setForm({ ...form, regIdNo: e.target.value });
+										setForm({ ...form, regIdNo: e.target.value.toUpperCase() });
 									}}
 								/>
 								<label

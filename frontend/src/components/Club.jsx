@@ -31,7 +31,7 @@ export default function Club() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/profile", { cookieVal })
+				.post("http://localhost:5000/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("");
@@ -49,7 +49,7 @@ export default function Club() {
 			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
 			axios
-				.post("https://one-pict.onrender.com/userImage-delete", {
+				.post("http://localhost:5000/userImage-delete", {
 					cookieVal,
 					imgSrc,
 				})
@@ -76,7 +76,7 @@ export default function Club() {
 			setIsLoading(true);
 
 			axios
-				.post("https://one-pict.onrender.com/userImage-post", {
+				.post("http://localhost:5000/userImage-post", {
 					userImg,
 					cookieVal,
 				})
@@ -102,7 +102,7 @@ export default function Club() {
 			setIsLoading(true);
 
 			axios
-				.post("https://one-pict.onrender.com/userName-update", {
+				.post("http://localhost:5000/userName-update", {
 					cookieVal,
 					userNameUpdate,
 				})
@@ -130,7 +130,7 @@ export default function Club() {
 			setIsLoading(true);
 
 			axios
-				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
+				.post("http://localhost:5000/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") {
 						setShowUserImg(false);

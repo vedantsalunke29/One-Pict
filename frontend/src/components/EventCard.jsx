@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Img from "./Img";
-import randomColor from "randomcolor";
 import { SlCalender } from "react-icons/sl";
 import { AiFillDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
@@ -15,7 +14,7 @@ export default function EventCard({
 	setShowCard,
 }) {
 	const [showDelete, setShowDelete] = useState(false);
-	let color = randomColor();
+
 	const [isLoading, setIsLoading] = useState(false);
 
 	const deleteEvent = async () => {
@@ -23,7 +22,7 @@ export default function EventCard({
 			setIsLoading(true);
 
 			await axios
-				.post("https://one-pict.onrender.com/delete-event", {
+				.post("http://localhost:5000/delete-event", {
 					_id,
 				})
 				.then((res) => {
@@ -51,18 +50,15 @@ export default function EventCard({
 				key={_id}
 				onClick={() => setShowDelete(!showDelete)}
 			>
-				<div class="container-event">
+				<div className="container-event">
 					<Img img={imgSrc} />
-					<h2
-						className="name-of-event-h2"
-						style={{ color: color }}
-					>
-						{name}
-					</h2>
-					<p>
-						<SlCalender className="icon-cal" />
-						{eventDate}
-					</p>
+					<div className="complete-event-info">
+						<h2 className="name-of-event-h2">{name}</h2>
+						<p>
+							<SlCalender className="icon-cal" />
+							{eventDate}
+						</p>
+					</div>
 				</div>
 				{showDelete && (
 					<div

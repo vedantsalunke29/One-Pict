@@ -8,8 +8,37 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	top: 8vh;
+	top: 8.5vh;
 	position: relative;
+}
+
+.info-about-sign-ul {
+	display: flex;
+	list-style: none;
+	height: 8vh;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 50px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
+	color: #777575;
+	font-family: "Roboto";
+	margin: 1.2rem 0rem;
+	gap: 4px;
+	> li {
+		transition: all 0.3s;
+		padding: 1vh 2vw;
+		cursor: pointer;
+		border-radius: 50px;
+
+		&:hover {
+			background-color: #e2dddd5b;
+		}
+	}
+}
+
+.is-active-li {
+	background-color: #e2dddd5b;
 }
 
 .main-reset-body {
@@ -20,18 +49,31 @@
 	height: 100vh;
 }
 
-.side-video {
+.side-video-sign-up {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.side-video-sign-in {
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.video {
+.video-sign-in {
 	border-radius: 100px;
 	height: 60%;
 	object-fit: cover;
-	width: 54%;
+	width: 15vw;
+	aspect-ratio: 1/1;
+}
+.video-sign-up {
+	border-radius: 120px;
+	height: 70%;
+	object-fit: cover;
+	width: 18vw;
 	aspect-ratio: 1/1;
 }
 .resetFrm {
@@ -61,9 +103,10 @@
 	justify-content: left;
 	align-items: center;
 	text-align: justify;
-	margin: 30px 5px;
-	font: bold 30px/35px "Mona Sans", "Helvetica Neue", Helvetica, Arial,
-		sans-serif;
+	font-weight: 400;
+	margin: 2vh 1vw;
+	font-family: "Source Serif 4";
+	font-size: calc(1.5vw + 1.5vh + 1vmin);
 }
 
 .inputContainer {
@@ -81,8 +124,9 @@
 	width: 100%;
 	border: 1px solid #dadce0;
 	border-radius: 7px;
-	font-size: 16px;
-	padding: 0 20px;
+	font-family: "Roboto Slab";
+	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
+	padding: 0 2vw;
 	outline: none;
 	background: none;
 	z-index: 1;
@@ -101,9 +145,10 @@
 	padding: 0 4px;
 	background-color: rgb(255, 255, 255);
 	color: #b7b9bd;
-	font-size: 16px;
+	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
 	transition: 0.5s;
 	z-index: 0;
+	font-family: "Roboto Slab";
 }
 
 .submitBtn {
@@ -116,8 +161,9 @@
 	color: rgb(255, 255, 255);
 	border-radius: 6px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	margin-top: 30px;
+	font-family: "Roboto Slab";
 }
 
 .submitBtn:hover {
@@ -129,9 +175,10 @@
 	top: -7px;
 	left: 3px;
 	z-index: 10;
-	font-size: 14px;
-	font-weight: 600;
-	color: #000000;
+	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
+	font-family: "Roboto Slab";
+	font-weight: 500;
+	color: #181818;
 }
 
 .input:focus {
@@ -149,9 +196,10 @@
 
 .sign-up-redirect {
 	display: block;
-	padding: 8% 0%;
+	padding: 3vh 0%;
 	align-items: center;
-
+	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
+	font-family: "Roboto";
 	.link {
 		color: #000000;
 		text-decoration: underline;
@@ -168,6 +216,8 @@
 	.for-title {
 		color: #000000;
 		text-decoration: underline;
+		font-size: calc(0.6vw + 0.6vh + 0.5vmin);
+		font-family: "Roboto Slab";
 		&:hover {
 			opacity: 0.7;
 		}
@@ -192,20 +242,20 @@
 }
 
 .pop-title {
-	font-size: 1.5rem;
+	font-size: calc(1vw + 1vh + 1vmin);
 	padding: 0.2rem 0rem 2.2rem 0rem;
 	font-family: "Roboto Slab";
 }
 
 @media (max-width: 724px) {
-	.main-signup-body{
+	.main-signup-body {
 		align-items: normal;
-		
 	}
 	.next-main-extra-sign {
 		align-items: normal;
 		justify-content: center;
-		.side-video {
+		.side-video-sign-in,
+		.side-video-sign-up {
 			display: none;
 		}
 	}
@@ -217,9 +267,8 @@
 	}
 }
 
-@media (max-width: 465px)
-{
-	.form{
+@media (max-width: 465px) {
+	.form {
 		width: 300px;
 	}
 }
