@@ -124,10 +124,9 @@ export default function Signup() {
 									for=""
 									className="label"
 								>
-									{(isClicked === "Student" || isClicked === "Teacher") && (
-										<>Reg.ID.No.</>
-									)}
+									{isClicked === "Student" && <>Reg.ID.No.</>}
 									{isClicked === "Club" && <>Club.ID.No.</>}
+									{isClicked === "Teacher" && <>Emp.No.</>}
 								</label>
 							</div>
 

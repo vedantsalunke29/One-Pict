@@ -113,10 +113,11 @@ export default function SignIn() {
 									for=""
 									className="label"
 								>
-									{(isClicked === "Student" || isClicked === "Teacher") && (
+									{(isClicked === "Student") && (
 										<>Reg.ID.No.</>
 									)}
 									{isClicked === "Club" && <>Club.ID.No.</>}
+									{isClicked === "Teacher" && <>Emp.No.</>}
 								</label>
 							</div>
 
