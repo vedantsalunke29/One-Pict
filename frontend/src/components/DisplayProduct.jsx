@@ -29,7 +29,7 @@ export default function DisplayProduct() {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("http://localhost:5000/product-info", { _id })
+				.post("https://one-pict.onrender.com/product-info", { _id })
 				.then((res) => {
 					if (res.data === "not") {
 						setIsLoading(false);
@@ -66,7 +66,7 @@ export default function DisplayProduct() {
 		setIsLoading(true);
 		try {
 			await axios
-				.post("http://localhost:5000/buy-request", {
+				.post("https://one-pict.onrender.com/buy-request", {
 					buyerEmail,
 					ownerEmail,
 					productName,

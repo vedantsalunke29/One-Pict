@@ -17,16 +17,18 @@ export default function Contact() {
 		e.preventDefault();
 		setIsLoading(true);
 		try {
-			await axios.post("http://localhost:5000/contact", form).then((res) => {
-				if (res.data === "done") {
-					toast.success("Message Sent");
-					navigate("/");
-					setIsLoading(false);
-				} else {
-					setIsLoading(false);
-					toast.error("Something went wrong !!");
-				}
-			});
+			await axios
+				.post("https://one-pict.onrender.com/contact", form)
+				.then((res) => {
+					if (res.data === "done") {
+						toast.success("Message Sent");
+						navigate("/");
+						setIsLoading(false);
+					} else {
+						setIsLoading(false);
+						toast.error("Something went wrong !!");
+					}
+				});
 		} catch (error) {
 			setIsLoading(false);
 			console.log(error);

@@ -28,7 +28,7 @@ export default function Signup() {
 				setIsLoading(false);
 			} else {
 				await axios
-					.post("http://localhost:5000/signup", form)
+					.post("https://one-pict.onrender.com/signup", form)
 					.then((res) => {
 						if (res.data === "provide") {
 							toast.error("Provide All Inputs");

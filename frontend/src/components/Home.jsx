@@ -67,7 +67,7 @@ export default function Home() {
 		try {
 			setIsLoading(true);
 			await axios
-				.get("http://localhost:5000/get-eventInfo")
+				.get("https://one-pict.onrender.com/get-eventInfo")
 				.then((res) => {
 					if (res.data === "nothing") {
 						setShowCard(false);
@@ -117,7 +117,7 @@ export default function Home() {
 			setIsLoading(true);
 
 			await axios
-				.post("http://localhost:5000/postDiscuss", {
+				.post("https://one-pict.onrender.com/postDiscuss", {
 					cookieVal,
 					discussMsg,
 				})
@@ -145,7 +145,7 @@ export default function Home() {
 		try {
 			setIsLoading(true);
 			await axios
-				.get("http://localhost:5000/get-discussion-data")
+				.get("https://one-pict.onrender.com/get-discussion-data")
 				.then((res) => {
 					if (res.data === "fail") {
 						setIsLoading(false);

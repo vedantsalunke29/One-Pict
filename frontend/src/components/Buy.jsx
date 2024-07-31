@@ -45,7 +45,7 @@ export default function Buy() {
 			setIsLoading(true);
 			setShowCard(!showCard);
 			await axios
-				.get("http://localhost:5000/get-image")
+				.get("https://one-pict.onrender.com/get-image")
 				.then((res) => {
 					if (res.data === "nothing") {
 						setShowCard(false);
