@@ -56,7 +56,7 @@ export default function Navi() {
 
 	const userImageFetch = async () => {
 		try {
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") setShowUserImg(false);
@@ -184,18 +184,28 @@ export default function Navi() {
 						animate={{ y: [100, 0], opacity: [0, 1] }}
 						transition={{ duration: 1 }}
 					>
-						{cookieVal !== undefined && !cookieVal.includes("CB") && (
-							<Link
-								className="link-abt-ct"
-								to={"/my-profile"}
-							>
-								<ImProfile /> My Profile
-							</Link>
-						)}
+						{cookieVal !== undefined &&
+							!cookieVal.includes("CB") &&
+							!cookieVal.includes("T") && (
+								<Link
+									className="link-abt-ct"
+									to={"/my-profile"}
+								>
+									<ImProfile /> My Profile
+								</Link>
+							)}
 						{cookieVal !== undefined && cookieVal.includes("CB") && (
 							<Link
 								className="link-abt-ct"
 								to={"/club-my-profile"}
+							>
+								<ImProfile /> My Profile
+							</Link>
+						)}
+						{cookieVal !== undefined && cookieVal.includes("T") && (
+							<Link
+								className="link-abt-ct"
+								to={"/teacher-profile"}
 							>
 								<ImProfile /> My Profile
 							</Link>

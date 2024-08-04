@@ -1,19 +1,22 @@
 .main-home-conatiner {
 	width: 100%;
 	min-height: calc(100vh - 10px);
+	position: relative;
+	top: 5vh;
+	overflow: hidden;
 }
 .background {
 	position: relative;
-	top: 2em;
-	width: 100vw;
+	top: 3vh;
 	display: flex;
 	align-items: center;
 }
 .community {
 	position: relative;
-	left: 4em;
+	left: 1em;
+	top: -1rem;
 	color: #000000;
-	font-size: calc(1.6vw + 1.6vh + 1.6vmin);
+	font-size: calc(1.4vw + 1.4vh + 1.2vmin);
 	font-family: "Source Serif 4", serif;
 	font-weight: 400;
 	text-align: center;
@@ -45,13 +48,18 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	img {
+	width: 80%;
+	video {
 		width: 100%;
-		object-fit: cover;
+		object-fit: contain;
+		aspect-ratio: 1/1;
+		source {
+			width: 100%;
+			object-fit: contain;
+		}
 	}
 }
 .page-2-home-div {
-	width: 100vw;
 	height: 100vh;
 }
 .event-announcement {
@@ -154,7 +162,6 @@
 }
 
 .page-3-main-div {
-	width: 100vw;
 	position: relative;
 }
 
@@ -163,7 +170,6 @@
 	align-items: center;
 	flex-direction: column;
 	background-color: transparent;
-
 }
 
 .club-head {
@@ -176,7 +182,6 @@
 }
 
 .club-logo-conatiner {
-	/* background: linear-gradient(900deg, #ecfbf8 0%, rgb(222, 244, 252) 100%); */
 	display: flex;
 	justify-content: center;
 	height: 60vh;
@@ -207,7 +212,6 @@
 		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	}
 	&:hover {
-		
 		transform: scale(1.06);
 	}
 }
@@ -236,7 +240,6 @@
 		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	}
 	&:hover {
-		
 		transform: scale(1.06);
 	}
 }
@@ -269,7 +272,6 @@
 .third-page-div {
 	position: relative;
 	height: 100vh;
-	width: 100vw;
 	display: flex;
 	justify-content: center;
 	padding: 2rem 1rem;
@@ -396,7 +398,6 @@
 	justify-content: flex-start;
 	height: 100vh;
 	flex-direction: column;
-	width: 100vw;
 }
 
 .upper-main-container-div {
@@ -898,10 +899,22 @@
 	}
 }
 
+.academic-calendar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	iframe {
+		border: none;
+		height: 40vh;
+		aspect-ratio: 1/1;
+	}
+}
+
 @media (max-width: 700px) {
 	.background {
 		flex-direction: column;
-		top: 4.2em;
+		top: 4.9em;
 	}
 	.community {
 		font-size: calc(1.4vw + 1.4vh + 1.3vmin);
@@ -917,5 +930,14 @@
 	.container-event {
 		flex-direction: column;
 		justify-content: center;
+	}
+	.academic-calendar {
+		iframe {
+			border: none;
+			aspect-ratio: 1/1;
+		}
+	}
+	.home-announcement-view-div {
+		top: 4.9rem;
 	}
 }

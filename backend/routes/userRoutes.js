@@ -27,6 +27,12 @@ import {
     deleteDiscussion,
     replyDiscussion,
     getReply,
+    postNoteById,
+    getNotesById,
+    notesById,
+    addAnnouncement,
+    getAnnouncement,
+    getAnnouncementById,
 } from '../controllers/userController.js';
 
 
@@ -59,7 +65,12 @@ router.post("/handle-like", handleLike);
 router.post("/delete-discussion", deleteDiscussion);
 router.post("/reply-to-discussion", replyDiscussion)
 router.post("/get-reply-to-discussion", getReply);
-
-
-
+router.post("/add-notes-by-id", postNoteById)
+router.get("/get-post-by-id", getNotesById)
+router.post("/getNotes-by-id", notesById)
+router.post("/announcement-add", addAnnouncement)
+router.get("/get-announcement", getAnnouncement);
+router.post("/get-notice-by-id", getAnnouncementById);
 export default router;
+
+

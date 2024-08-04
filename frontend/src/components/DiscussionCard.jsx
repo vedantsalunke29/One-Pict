@@ -38,7 +38,7 @@ export default function DiscussionCard({ item }) {
 
 	const handleLike = async (count) => {
 		try {
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/handle-like", {
 					count,
 					_id,
@@ -54,7 +54,7 @@ export default function DiscussionCard({ item }) {
 
 	const deleteDiscussion = async () => {
 		try {
-			axios.post("https://one-pict.onrender.com/delete-discussion", {
+			await axios.post("https://one-pict.onrender.com/delete-discussion", {
 				_id,
 				replyArray,
 			});
@@ -67,7 +67,7 @@ export default function DiscussionCard({ item }) {
 		try {
 			setIsLoading(true);
 
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/reply-to-discussion", {
 					_id,
 					regIdNo,
@@ -94,7 +94,7 @@ export default function DiscussionCard({ item }) {
 	const getReply = async () => {
 		try {
 			setIsLoading(true);
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/get-reply-to-discussion", {
 					replyArray,
 					_id,

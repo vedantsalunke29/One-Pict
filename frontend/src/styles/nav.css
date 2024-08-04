@@ -38,7 +38,7 @@ nav {
 	color: #000000;
 	align-items: center;
 	justify-content: center;
-	gap: 3px;
+	gap: 6px;
 	transition: 0.5s;
 	img {
 		aspect-ratio: 1/1;
@@ -48,9 +48,11 @@ nav {
 		border-radius: 50%;
 	}
 	h3 {
-		font-family: "Roboto Slab", sans-serif;
+		font-family: "Source Serif 4";
+		font-size: calc(1vw + 1vh + .6vmin);
 		font-weight: 400;
 	}
+	
 }
 
 .logo {

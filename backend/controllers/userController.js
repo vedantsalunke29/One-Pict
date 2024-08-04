@@ -9,7 +9,9 @@ import nodemailer from "nodemailer"
 import { uploadCloudinary, deleteCloudinary } from "../utils/cloudinary.js";
 import Events from "../models/eventModel.js";
 import Discuss from "../models/discussModel.js";
- 
+import Note from "../models/notesModel.js";
+import Announcement from "../models/announcementModel.js";
+
 
 // Login SignUp Logout
 
@@ -732,5 +734,199 @@ const getReply = asyncHandler(async (req, res) => {
 })
 
 
+const postNoteById = asyncHandler(async (req, res) => {
+    const { cookieVal } = req.body;
+    const { subName } = req.body;
+    const { section1 } = req.body;
+    const { section2 } = req.body;
+    const { addLi1 } = req.body;
+    const { addLi2 } = req.body;
+    let image;
 
-export { createUser, signinUser, getImage, postImage, getCurrentUserProfile, sendEmail, resetPass, getUserImage, deleteUserImage, getProductById, postUserImg, getUserProfileImage, deleteUserProfileImage, updateUserName, uploadEventInfo, getEventInfo, getEventInfoById, getEventInfoByRegIdNo, deleteEvent, postContactMsg, buyRequestToOwner, postDiscussMsg, discussInfo, handleLike, deleteDiscussion, replyDiscussion, getReply };
+    try {
+        const user = await User.findOne({ regIdNo: cookieVal });
+        const response = await userImage.findOne({ regIdNo: cookieVal });
+
+        if (response)
+            image = response.userImg
+        else {
+            image = "notexist"
+        }
+
+        if (!user.regIdNo.includes("T")) res.send("Invalid Access");
+        else {
+            const newNote = new Note({
+                regIdNo: cookieVal,
+                teacherName: user.name,
+                image: image,
+                subName: subName,
+                section1: section1,
+                section2: section2,
+                addLi1: addLi1,
+                addLi2: addLi2
+            })
+            await newNote.save();
+
+            res.send("success")
+        }
+    } catch (error) {
+        res.send("error")
+        console.log(error)
+    }
+
+})
+
+const getNotesById = asyncHandler(async (req, res) => {
+
+    try {
+        const response = await Note.aggregate([
+            {
+                $group: {
+                    _id: "$regIdNo",
+                    document: { $first: "$$ROOT" }
+                }
+            },
+            {
+                $replaceRoot: { newRoot: "$document" }
+            }
+        ]);
+
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+})
+
+
+const notesById = asyncHandler(async (req, res) => {
+    const { regIdNo } = req.body
+
+    try {
+        const response = await Note.find({ regIdNo });
+        res.status(201).json(response);
+    } catch (error) {
+        res.status(500).json(error);
+
+    }
+})
+
+
+const addAnnouncement = asyncHandler(async (req, res) => {
+    const { form, cookieVal, notify } = req.body;
+    const title = form.title;
+    const message = form.message;
+    const link = form.link;
+    const images = form.img;
+    let teacherImg;
+
+    const img = []
+    try {
+        const user = await User.findOne({ regIdNo: cookieVal });
+        const response = await userImage.findOne({ regIdNo: cookieVal });
+        if (response)
+            teacherImg = response.userImg
+        else {
+            teacherImg = "notexist"
+        }
+
+        if (images.length) {
+            for (const i of images) {
+                //Cloudinary Upload
+                const imageRes = await uploadCloudinary(i).catch((e) => {
+                    console.log(e);
+                });
+                img.push(imageRes.url);
+            }
+        }
+        if (notify) {
+            const emailUser = await User.find(
+                {
+                    regIdNo: {
+                        $regex: "^[ICE].*",
+                    }
+                },
+                {
+                    email: 1,
+                    _id: 0
+                }
+            )
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                host: "smtp.gmail.com",
+                port: 587,
+                secure: false,
+                auth: {
+                    user: process.env.USER_EMAIL,
+                    pass: process.env.APP_PASS,
+                },
+            })
+            emailUser.map((email) => {
+
+                const mailOption = {
+                    from: "One PICT",
+                    to: email, // Recipient's email address
+                    subject: `Announcement: ${title}`, // Subject includes the title of the announcement
+                    html: `
+                        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                            <h2 style="color: #0056b3; font-size: 24px;">${title}</h2>
+                            <p style="font-size: 16px; margin: 10px 0;">${message}</p>
+                            ${link ? `<p style="font-size: 16px; margin: 10px 0;">For more details, visit: <a href="${link}" style="color: #0056b3; text-decoration: none;">${link}</a></p>` : ''}
+                            ${img.map(img => `
+                            <img src="${img}" alt="Announcement Image" style="max-width: 100%; height: auto; margin-top: 20px; border: 1px solid #ddd; padding: 5px;" />
+                            `).join('')}
+                        </div>
+                    `
+                }
+
+                transporter.sendMail(mailOption, (error, info) => {
+                    console.log(error);
+                })
+            })
+
+
+        }
+        if (!user.regIdNo.includes("T")) res.send("Invalid Access");
+        else {
+
+
+            const announcement = new Announcement({
+                regIdNo: cookieVal,
+                teacherName: user.name,
+                teacherImg: teacherImg,
+                title: title,
+                message: message,
+                link: link,
+                img: img
+            })
+            await announcement.save();
+            res.status(201).json(response);
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+});
+
+const getAnnouncement = asyncHandler(async (req, res) => {
+    try {
+        const data = await Announcement.find({}).sort({ _id: -1 });
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json(error)
+    }
+
+})
+
+const getAnnouncementById = asyncHandler(async (req, res) => {
+    const { _id } = req.body;
+    try {
+        const data = await Announcement.findById({ _id });
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+
+export { createUser, signinUser, getImage, postImage, getCurrentUserProfile, sendEmail, resetPass, getUserImage, deleteUserImage, getProductById, postUserImg, getUserProfileImage, deleteUserProfileImage, updateUserName, uploadEventInfo, getEventInfo, getEventInfoById, getEventInfoByRegIdNo, deleteEvent, postContactMsg, buyRequestToOwner, postDiscussMsg, discussInfo, handleLike, deleteDiscussion, replyDiscussion, getReply, postNoteById, getNotesById, notesById, addAnnouncement, getAnnouncement, getAnnouncementById };

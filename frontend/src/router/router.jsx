@@ -21,6 +21,11 @@ import DisplayEvent from "../components/DisplayEvent.jsx";
 import ClubInfo from "../components/ClubInfo.jsx";
 import Contact from "../components/Contact.jsx";
 import AboutUs from "../components/AboutUs.jsx";
+import Teacher from "../components/Teacher.jsx";
+import Notes from "../components/Notes.jsx";
+import NotesDisplay from "../components/NotesDisplay.jsx";
+import Announcement from "../components/Announcement.jsx";
+import DisplayNotice from "../components/DisplayNotice.jsx";
 
 export default function Router() {
 	const [cookieVal, setCookieVal] = useState(Cookies.get("regIdNo"));
@@ -83,6 +88,14 @@ export default function Router() {
 					path="/about-us"
 					element={<AboutUs />}
 				/>
+				<Route
+					path="/notes-page"
+					element={<NotesDisplay />}
+				/>
+				<Route
+					path="/view-announcement"
+					element={<DisplayNotice />}
+				/>
 				{cookieVal === undefined && (
 					<>
 						<Route
@@ -95,18 +108,21 @@ export default function Router() {
 						/>
 					</>
 				)}
-				{cookieVal !== undefined && !cookieVal.includes("CB") && (
-					<>
-						<Route
-							path="/my-profile"
-							element={<Account />}
-						/>
-						<Route
-							path="/your-products"
-							element={<YourProduct />}
-						/>
-					</>
-				)}
+				{cookieVal !== undefined &&
+					!cookieVal.includes("CB") &&
+					!cookieVal.includes("T") && (
+						<>
+							<Route
+								path="/my-profile"
+								element={<Account />}
+							/>
+							<Route
+								path="/your-products"
+								element={<YourProduct />}
+							/>
+						</>
+					)}
+
 				{cookieVal !== undefined && cookieVal.includes("CB") && (
 					<>
 						<Route
@@ -120,6 +136,22 @@ export default function Router() {
 						<Route
 							path="/upload-content"
 							element={<UploadContent />}
+						/>
+					</>
+				)}
+				{cookieVal !== undefined && cookieVal.includes("T") && (
+					<>
+						<Route
+							path="/teacher-profile"
+							element={<Teacher />}
+						/>
+						<Route
+							path="/teachers-notes-page"
+							element={<Notes />}
+						/>
+						<Route
+							path="/make-new-accouncement"
+							element={<Announcement />}
 						/>
 					</>
 				)}

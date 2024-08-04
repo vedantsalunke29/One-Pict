@@ -12,7 +12,7 @@ import PAC from "../assets/PAC.png";
 import PIC from "../assets/pictoreal.png";
 import { useNavigate } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
-import home from "../assets/unnamed-removebg.png";
+import home from "../assets/side-home.mp4";
 import forum from "../assets/oneforum.png";
 import { AiOutlineMessage } from "react-icons/ai";
 import Cookies from "js-cookie";
@@ -22,7 +22,9 @@ import "slick-carousel/slick/slick-theme.css";
 import toast from "react-hot-toast";
 import DiscussionCard from "./DiscussionCard";
 import { useSelector } from "react-redux";
+import SubjectDetails from "./SubjectDetails";
 import { DNA } from "react-loader-spinner";
+import AnnouncementHome from "./AnnouncementHome";
 
 export default function Home() {
 	let settings = {
@@ -218,13 +220,20 @@ export default function Home() {
 						/>
 					</div>
 					<div className="cloud">
-						<img
-							src={home}
-							alt=""
-						/>
+						<video
+							autoPlay
+							muted
+							loop
+						>
+							<source
+								src={home}
+								type="video/mp4"
+							/>
+							Sorry, your browser doesn't support videos.
+						</video>
 					</div>
 				</div>
-
+				<AnnouncementHome />
 				<div className="page-2-home-div">
 					<div className="inside-event-ann">
 						<p>Upcoming Event</p>
@@ -321,6 +330,7 @@ export default function Home() {
 						</Marquee>
 					</div>
 				</div>
+				<SubjectDetails />
 
 				<div className="main-container-for-page-4">
 					<h1 className="page-4-title">One Forum</h1>
@@ -392,8 +402,8 @@ export default function Home() {
 					{isLoading && (
 						<DNA
 							visible={true}
-							height="150"
-							width="150"
+							height="80"
+							width="80"
 							ariaLabel="dna-loading"
 							wrapperStyle={{}}
 							wrapperClass="dna-wrapper"
@@ -422,6 +432,12 @@ export default function Home() {
 
 				<div className="third-page-div">
 					<div className="main-div-third-page">
+						<div className="academic-calendar">
+							<iframe
+								src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FKolkata&src=cGljdC5lZHVfOHNuaW1ncXFlNWkxcGVsZzh0Y2VsbjkxMXNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%234285F4"
+								title="Academic Calendar"
+							></iframe>
+						</div>
 						<p>
 							Developed by PICT student for fostering connections, providing
 							support networks, facilitating knowledge sharing, and promoting

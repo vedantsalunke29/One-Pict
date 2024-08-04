@@ -1,0 +1,69 @@
+.teacher-account-main-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	top: 18vh;
+	flex-direction: column;
+}
+
+.main-teacher-center-div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 90%;
+	border-radius: 20px;
+	background-color: rgb(226, 228, 250);
+	padding: 2vh 0vh;
+}
+
+.tecaher-info-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 1vw;
+	margin: 1vw;
+	gap: 1vh;
+}
+
+.Emp-p {
+	padding: 0.2vw 0.5vw;
+	font-size: calc(0.8vw + 0.6vh + 0.5vmin);
+	font-family: "Source Serif 4";
+	font-weight: 500;
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.contain-btn-div-accoun {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 2vw;
+}
+
+.make-accouncement-div {
+	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
+	cursor: pointer;
+	font-family: "Source Serif 4";
+	border: 1px solid black;
+	padding: 0.4vw 1vw;
+	font-weight: 500;
+	background-color: #fff;
+	border-radius: 50px;
+	a{
+		color: rgb(84, 82, 82);
+	}
+	&:active {
+		transform: translateY(2px);
+	}
+}
+
+@media (max-width: 660px) {
+	.main-teacher-center-div {
+		flex-direction: column;
+	}
+}

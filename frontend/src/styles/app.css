@@ -19,7 +19,11 @@
 @import url(./contact.css);
 @import url(./about-us.css);
 @import url(./spinner.css);
-@import url(./movie.css);
+@import url(./tecaher.css);
+@import url(./notes.css);
+@import url(./notes-display.css);
+@import url(./announcement.css);
+
 * {
 	margin: 0;
 	padding: 0;
@@ -30,7 +34,6 @@
 
 body {
 	background-color: #fff;
-	height: 100vh;
 }
 
 ::-webkit-scrollbar {

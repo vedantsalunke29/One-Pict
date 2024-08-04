@@ -48,7 +48,7 @@ export default function Account() {
 		try {
 			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-delete", {
 					cookieVal,
 					imgSrc,
@@ -71,7 +71,7 @@ export default function Account() {
 		setShowDone(false);
 		setIsLoading(true);
 		try {
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-post", {
 					userImg,
 					cookieVal,
@@ -94,7 +94,7 @@ export default function Account() {
 
 	const changeName = async () => {
 		try {
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userName-update", {
 					cookieVal,
 					userNameUpdate,
@@ -115,7 +115,7 @@ export default function Account() {
 	const userImageFetch = async () => {
 		try {
 			setIsLoading(true);
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") {

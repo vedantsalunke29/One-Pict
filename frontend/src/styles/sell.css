@@ -168,24 +168,24 @@
 .file-btn {
 	width: 100%;
 	height: 180px;
-	font-size: 1.5rem;
+	font-size: calc(1vw + 1vh + 1vmin);
 	font-weight: 500;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 15px;
-	color: #5d4dcc;
+	color: #39739d;
 	background-color: #fff;
-	border: 1.5px dashed #5d4dcc;
+	border: 1.5px dashed #39739d;
 	border-radius: 20px;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
 
 .file-btn:hover {
-	transform: scale(1.05);
-	color: #5d4dcc;
+	transform: scale(1.02);
+	color: #39739d;
 	background-color: #fff;
 }
 
@@ -193,7 +193,7 @@
 	width: 50px;
 	height: 50px;
 	font-size: 30px;
-	color: #5d4dcc;
+	color: #39739d;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -261,7 +261,7 @@
 .progress {
 	width: 0%;
 	height: 5px;
-	background-color: #5d4dcc;
+	background-color: #39739d;
 	border-radius: 8px;
 	transition: width 0.5s ease;
 }

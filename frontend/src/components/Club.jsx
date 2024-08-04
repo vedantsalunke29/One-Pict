@@ -48,7 +48,7 @@ export default function Club() {
 		try {
 			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-delete", {
 					cookieVal,
 					imgSrc,
@@ -75,7 +75,7 @@ export default function Club() {
 		try {
 			setIsLoading(true);
 
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-post", {
 					userImg,
 					cookieVal,
@@ -101,7 +101,7 @@ export default function Club() {
 		try {
 			setIsLoading(true);
 
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userName-update", {
 					cookieVal,
 					userNameUpdate,
@@ -129,7 +129,7 @@ export default function Club() {
 		try {
 			setIsLoading(true);
 
-			axios
+			await axios
 				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") {
@@ -246,7 +246,7 @@ export default function Club() {
 						/>
 					</div>
 					<div className="user-info-div">
-						<p className="regId-p">Reg. ID. : {cookieVal}</p>
+						<p className="regId-p">Club. ID. : {cookieVal}</p>
 						<div className="username-edit-div">
 							{showEdit && (
 								<h1 className="username-h1">
