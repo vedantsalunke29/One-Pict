@@ -409,25 +409,27 @@ export default function Home() {
 							wrapperClass="dna-wrapper"
 						/>
 					)}
-					<div className="lower-dicussion-conatiner-div-main">
-						<div className="main-lower-div-page-5">
-							{showDiscussion && (
-								<div className="main-discuss-info-div">
-									{data.map((item) => {
-										return (
-											<DiscussionCard
-												key={item._id}
-												item={item}
-											/>
-										);
-									})}
-								</div>
-							)}
-							{!showDiscussion && !isLoading && (
-								<h1 className="no-discussion-available">No Discussion</h1>
-							)}
+					{!isLoading && (
+						<div className="lower-dicussion-conatiner-div-main">
+							<div className="main-lower-div-page-5">
+								{showDiscussion && (
+									<div className="main-discuss-info-div">
+										{data.map((item) => {
+											return (
+												<DiscussionCard
+													key={item._id}
+													item={item}
+												/>
+											);
+										})}
+									</div>
+								)}
+								{!showDiscussion && !isLoading && (
+									<h1 className="no-discussion-available">No Discussion</h1>
+								)}
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 
 				<div className="third-page-div">

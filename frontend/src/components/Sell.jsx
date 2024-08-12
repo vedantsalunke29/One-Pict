@@ -153,11 +153,12 @@ export default function Sell() {
 							<div className="div-input-container">
 								<div className="inputContainer">
 									<input
-										type="email"
+										type="number"
 										className="input"
 										placeholder="a"
+										min={0}
 										required
-										value={form.contactInfo}
+										value={form.currentProductPrice}
 										onChange={(e) => {
 											setForm({
 												...form,
