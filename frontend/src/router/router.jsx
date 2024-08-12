@@ -153,6 +153,10 @@ export default function Router() {
 							path="/make-new-accouncement"
 							element={<Announcement />}
 						/>
+						<Route
+							path="/your-products"
+							element={<YourProduct />}
+						/>
 					</>
 				)}
 			</Routes>

@@ -15,7 +15,6 @@
 	position: relative;
 	left: 1em;
 	top: -1rem;
-	color: #000000;
 	font-size: calc(1.4vw + 1.4vh + 1.2vmin);
 	font-family: "Source Serif 4", serif;
 	font-weight: 400;
@@ -39,8 +38,9 @@
 .type-speed {
 	font-size: calc(1.2vw + 1.2vh + 1vmin);
 	font-weight: 300;
-	color: rgb(53, 247, 53);
+	color: rgb(64, 247, 64);
 	text-transform: lowercase;
+	font-family: "Source Serif 4", serif;
 	height: 5vh;
 }
 
@@ -60,6 +60,7 @@
 	}
 }
 .page-2-home-div {
+	padding: 2vh 1vh;
 	height: 100vh;
 }
 .event-announcement {
@@ -79,12 +80,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 28vh;
+	height: 20vh;
 	p {
-		font-size: calc(2.2vw + 2.2vh + 2vmin);
+		font-size: calc(2vw + 2vh + 2vmin);
 		font-family: "Roboto", cursive;
-		font-weight: 300;
-		color: #f85b43;
+		font-weight: 400;
+		color: #1d3b5f;
 	}
 }
 
@@ -100,7 +101,7 @@
 	aspect-ratio: 1/1;
 	width: 80vw;
 	border-radius: 20px;
-	background-color: #f4ebf3;
+	background-color: #e7f0fb;
 	transition: all 0.4s;
 	overflow: auto;
 	&:hover {
@@ -177,20 +178,20 @@
 	font-size: calc(2vw + 2vh + 2vmin);
 	font-family: "Source Serif 4";
 	font-weight: 400;
-	color: rgb(243, 202, 176);
+	color: rgb(176, 222, 243);
 	margin: 1rem 1rem;
 }
 
 .club-logo-conatiner {
 	display: flex;
 	justify-content: center;
-	height: 60vh;
+	height: 50vh;
 	align-items: center;
 }
 
 .logo-card-club {
 	cursor: pointer;
-	max-height: 20vh;
+	max-height: 15vh;
 	padding: 0.1rem;
 	aspect-ratio: 1.5/1;
 	margin: 20px;
@@ -217,7 +218,7 @@
 }
 .logo-card-club-black {
 	cursor: pointer;
-	height: 30vh;
+	height: 25vh;
 	padding: 0.1rem;
 	aspect-ratio: 1/1;
 	background-color: #000000;
@@ -287,7 +288,7 @@
 	p {
 		text-transform: uppercase;
 		border: 1px solid rgba(160, 156, 156, 0.529);
-		background: linear-gradient(72deg, #f8d5d0 0%, #f5c9ef 100%);
+		background: linear-gradient(72deg, #93a6f0 0%, #c9f5d6 100%);
 		padding: 0.5rem 2rem;
 		margin-top: 4px;
 		margin-bottom: 4px;
@@ -377,7 +378,7 @@
 	padding: 1vw;
 	font-weight: 400;
 	color: rgb(0, 0, 0);
-	text-shadow: #fc0 1px 0px 40px;
+	text-shadow: rgb(0, 183, 255) 1px 0px 40px;
 }
 
 .img-page-4 {
@@ -429,7 +430,7 @@
 	justify-content: center;
 	gap: 10px;
 	min-width: 100%;
-	background-color: #effbec;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	border-radius: 10px;
 	padding: 1em;
 	max-height: 30vh;
@@ -442,7 +443,7 @@
 		font-size: calc(1vw + 1vh + 0.6vmin);
 		font-family: "Source Serif 4";
 		font-weight: 400;
-		color: #000000;
+		color: #232121;
 	}
 }
 
@@ -497,8 +498,7 @@
 	width: 90%;
 	height: 14vh;
 	border-radius: 6px;
-	border-style: none;
-	border-color: Transparent;
+	border-color: rgb(63, 61, 61);
 	overflow: auto;
 }
 
@@ -507,7 +507,7 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 10px;
-	background-color: #fafbec;
+	border: 1px solid #8ea5ec7e;
 	width: 100%;
 	border-radius: 10px;
 	padding: 1.4em 1em;
@@ -621,8 +621,9 @@
 }
 .no-discussion-available {
 	font-size: calc(1.4vw + 1.4vh + 1vmin);
-	font-family: "Roboto Slab";
-	color: #4f4d5154;
+	font-family: "Roboto";
+	font-weight: 400;
+	color: #000000b1;
 }
 
 .right-main-div-page-5 {
@@ -634,7 +635,7 @@
 
 .new-conversation-main-div {
 	display: flex;
-	background-color: rgba(249, 182, 106, 0.339);
+	border: 1px solid rgba(53, 53, 54, 0.363);
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
@@ -645,9 +646,9 @@
 	p {
 		margin: 0.6vw;
 		font-size: calc(0.6vw + 0.6vh + 0.6vmin);
-		font-family: "Shadows Into Light";
-		color: rgb(247, 149, 38);
-		font-weight: 550;
+		font-family: "Roboto";
+		color: #0b57d0;
+		font-weight: 300;
 		text-align: center;
 	}
 	&:hover {
@@ -671,7 +672,7 @@
 
 .no-reply-div {
 	font-size: calc(0.6vw + 0.6vh + 0.8vmin);
-	font-family: "Shadows Into Light";
+	font-family: "Roboto";
 	margin: 0.6em 0.3em;
 	text-align: start;
 	width: 95%;
@@ -692,7 +693,7 @@
 }
 
 .checkbox-wrapper-50 .plus-minus {
-	--primary: rgb(249, 168, 76);
+	--primary: #0b57d0;
 	--secondary: #ffffff;
 	--duration: 0.5s;
 	-webkit-appearance: none;

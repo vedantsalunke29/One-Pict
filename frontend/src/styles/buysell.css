@@ -23,7 +23,7 @@
 	padding: 1rem;
 	h2 {
 		margin: 0.5rem 0.5rem 0.5rem 1.6rem;
-		font: 300 1.3rem "Anta";
+		font: 300 1.3rem "Roboto";
 		text-align: center;
 	}
 	.p-present {
@@ -31,7 +31,7 @@
 			border-radius: 10px;
 			border: 1px solid rgb(67, 66, 66);
 			color: #363637;
-			font: 800 0.8rem "Shadows Into Light";
+			font: 800 0.8rem "Roboto";
 			text-transform: uppercase;
 			padding: 0.2rem 1rem;
 		}
@@ -50,9 +50,9 @@
 		border-radius: 20px;
 		cursor: pointer;
 		transition: all 0.7s;
-		box-shadow: rgba(0, 0, 0, 0.56) -20px -20px 60px 2px;
+		box-shadow: rgba(0, 0, 0, 0.251) -20px -20px 30px 2px;
 		&:hover {
-			box-shadow: rgba(0, 0, 0, 0.56) -20px -30px 50px 2px;
+			box-shadow: rgba(0, 0, 0, 0.347) -20px -30px 40px 2px;
 			transform: translateY(-6px);
 		}
 	}

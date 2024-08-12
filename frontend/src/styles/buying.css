@@ -115,7 +115,7 @@
 		background-color: transparent;
 	}
 	> h4 {
-		font-family: "Shadows Into Light";
+		font-family: "Roboto Slab";
 		font-size: calc(0.7vw + 0.4vh + 0.8vmin);
 		font-weight: 500;
 		display: flex;

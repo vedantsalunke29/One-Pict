@@ -119,6 +119,7 @@ export default function Navi() {
 		active: {
 			visibility: "visible",
 			transition: "all 0.5s",
+			backgroundColor: "#ffffff37",
 		},
 		hidden: {
 			visibility: "hidden",

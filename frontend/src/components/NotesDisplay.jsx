@@ -67,7 +67,7 @@ export default function NotesDisplay() {
 							</ul>
 						</div>
 					</div>
-					{notes.map((notes) => {
+					{isClicked == "Notes" && notes.map((notes) => {
 						return (
 							<div className="notes-info-container-div">
 								<h1>{notes.subName}</h1>

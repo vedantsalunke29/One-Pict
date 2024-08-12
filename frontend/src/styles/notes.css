@@ -3,7 +3,7 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 5vh;
-	top: 14vh;
+	top: 16vh;
 	position: relative;
 	padding: 3vh;
 }
@@ -31,7 +31,7 @@
 .active-notes-nav-class {
 	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	font-family: "Source Serif 4";
-	font-weight: 500;
+	font-weight: 400;
 	color: rgb(64, 64, 65);
 	padding: 1vh 1.8vw;
 	cursor: pointer;
@@ -182,7 +182,8 @@
 		gap: 6px;
 		font-size: calc(2vw + 1.8vh + 1vmin);
 		font-family: "Roboto";
-		color: #4a4949;
+		color: #363e43;
+		font-weight: 400;
 	}
 }
 

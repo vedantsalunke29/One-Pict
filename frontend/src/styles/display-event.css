@@ -20,12 +20,11 @@
 		justify-content: center;
 	}
 	.right-event-info {
-		background: linear-gradient(rgb(252, 249, 243), rgb(248, 238, 248));
-		background-color: rgb(252, 249, 243);
+		
 		position: relative;
 		top: 6vh;
 		color: #66745a;
-		box-shadow: rgba(0, 0, 0, 0.151) 0px 0px 50px;
+		border: 1px solid black;
 		gap: 0.8rem;
 		display: flex;
 		padding: 2rem 2.5rem;
@@ -33,7 +32,7 @@
 		flex-direction: column;
 		align-items: start;
 		justify-content: center;
-		border-radius: 0px 0px 20px 20px;
+		border-radius:20px;
 		min-width: 90vw;
 		.address-div-event {
 			display: flex;
@@ -90,8 +89,8 @@
 	position: relative;
 	top: 110px;
 	height: 16vh;
-	background-color: rgba(220, 200, 200, 0.465);
-	color: #f7444497;
+	background-color: rgba(182, 213, 244, 0.465);
+	color: #322d2d97;
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -10,12 +10,6 @@ import Foot from "./Foot";
 import {
 	ScrollContainer,
 	ScrollPage,
-	Animator,
-	batch,
-	Fade,
-	ZoomIn,
-	FadeIn,
-	MoveIn,
 } from "react-scroll-motion";
 
 export default function Buysell() {
@@ -85,7 +79,7 @@ export default function Buysell() {
 													color: color,
 													fontFamily: "Roboto Slab",
 													fontSize: 35,
-													fontWeight: 350,
+													fontWeight: 300,
 												}}
 											/>{" "}
 										</h1>
