@@ -199,7 +199,7 @@ const postImage = asyncHandler(async (req, res) => {
                 res.json(e)
             });
         }
-        const user = await User.find({ regIdNo: cookieVal })
+        const user = await User.findOne({ regIdNo: cookieVal })
 
         const newImageData = new Image(
             {
