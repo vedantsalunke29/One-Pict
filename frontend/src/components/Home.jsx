@@ -117,7 +117,6 @@ export default function Home() {
 	const sumbitDiscuss = async () => {
 		try {
 			setIsLoading(true);
-
 			await axios
 				.post("https://one-pict.onrender.com/postDiscuss", {
 					cookieVal,
@@ -372,6 +371,7 @@ export default function Home() {
 										<button
 											className="button-27"
 											onClick={() => {
+												setShowInput(!showInput)
 												getTextReport(discussMsg);
 											}}
 										>

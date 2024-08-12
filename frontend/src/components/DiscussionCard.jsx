@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { showNameToNav } from "../store/slices/userNameSlice";
 import { DNA } from "react-loader-spinner";
+import { MdDeleteOutline } from "react-icons/md";
 
 timeago.register("vi", vi);
 
@@ -38,15 +39,19 @@ export default function DiscussionCard({ item }) {
 
 	const handleLike = async (count) => {
 		try {
-			await axios
-				.post("https://one-pict.onrender.com/handle-like", {
-					count,
-					_id,
-					regIdNo,
-				})
-				.then((res) => {
-					if (res.data.message === "done") setLikes(res.data.contain);
-				});
+			if (regIdNo)
+				await axios
+					.post("https://one-pict.onrender.com/handle-like", {
+						count,
+						_id,
+						regIdNo,
+					})
+					.then((res) => {
+						if (res.data.message === "done") setLikes(res.data.contain);
+					});
+			else {
+				toast.error("Can't Like");
+			}
 		} catch (error) {
 			throw new Error(`Error : ${error}`);
 		}
@@ -54,13 +59,17 @@ export default function DiscussionCard({ item }) {
 
 	const deleteDiscussion = async () => {
 		try {
-			await axios.post("https://one-pict.onrender.com/delete-discussion", {
-				_id,
-				replyArray,
-			});
+			setIsLoading(true);
+			await axios
+				.post("https://one-pict.onrender.com/delete-discussion", {
+					_id,
+					replyArray,
+				})
+				.then(() => dispatch(showNameToNav(replyInput)));
 		} catch (error) {
 			throw new Error(`Error : ${error}`);
 		}
+		setIsLoading(false);
 	};
 
 	const submitReply = async () => {
@@ -193,6 +202,12 @@ export default function DiscussionCard({ item }) {
 					>
 						<p> {item.reply}</p>
 						<BsReplyAllFill />
+					</div>
+					<div
+						className="reply-div"
+						onClick={deleteDiscussion}
+					>
+						<MdDeleteOutline />
 					</div>
 				</div>
 				{replyOutput && (
