@@ -17,6 +17,10 @@ const imageSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    currentProductPrice: {
+        type: String,
+        required: true,
+    },
     contactInfo: {
         type: String,
         required: true,

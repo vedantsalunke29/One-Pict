@@ -22,7 +22,7 @@ export default function Sell() {
 		productName: "",
 		productPrice: "",
 		description: "",
-		contactInfo: "",
+		currentProductPrice: "",
 		img: [],
 	});
 
@@ -147,7 +147,7 @@ export default function Sell() {
 											});
 										}}
 									/>
-									<label className="label-sell">Product Price</label>
+									<label className="label-sell">Previous Product Price</label>
 								</div>
 							</div>
 							<div className="div-input-container">
@@ -161,11 +161,11 @@ export default function Sell() {
 										onChange={(e) => {
 											setForm({
 												...form,
-												contactInfo: e.target.value,
+												currentProductPrice: e.target.value,
 											});
 										}}
 									/>
-									<label className="label-sell">Email for Contact</label>
+									<label className="label-sell">Current Product Price</label>
 								</div>
 								<div className="des-inputContainer">
 									<textarea

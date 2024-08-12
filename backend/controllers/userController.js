@@ -181,30 +181,34 @@ const postImage = asyncHandler(async (req, res) => {
     const productName = form.productName;
     const productPrice = form.productPrice;
     const description = form.description;
-    const contactInfo = form.contactInfo;
+    const currentProductPrice = form.currentProductPrice;
     const images = form.img;
     const img = [];
 
 
-    for (const i of images) {
-        //Cloudinary Upload
-        await uploadCloudinary(i).then((res) => {
-            img.push(res.public_id);
-        }).catch((e) => {
-            res.json(e)
-        });
-    }
+
 
 
     //Database Updation
     try {
+        for (const i of images) {
+            //Cloudinary Upload
+            await uploadCloudinary(i).then((res) => {
+                img.push(res.public_id);
+            }).catch((e) => {
+                res.json(e)
+            });
+        }
+        const user = await User.find({ regIdNo: cookieVal })
+
         const newImageData = new Image(
             {
                 regIdNo: cookieVal,
                 productName: productName,
                 productPrice: productPrice,
                 description: description,
-                contactInfo: contactInfo,
+                currentProductPrice: currentProductPrice,
+                contactInfo: user.email,
                 img: img
             }
         )
@@ -348,17 +352,20 @@ const uploadEventInfo = asyncHandler(async (req, res) => {
     const images = form.eventImg;
     const img = [];
 
-    for (const i of images) {
-        //Cloudinary Upload
-        const imageRes = await uploadCloudinary(i).catch((e) => {
-            throw new Error(`ERROR : ${e}`);
-        });
-        img.push(imageRes.public_id);
-    }
+
 
 
     //Database Updation
     try {
+
+        for (const i of images) {
+            //Cloudinary Upload
+            const imageRes = await uploadCloudinary(i).catch((e) => {
+                throw new Error(`ERROR : ${e}`);
+            });
+            img.push(imageRes.public_id);
+        }
+
         const newEventData = new Events(
             {
                 regIdNo: cookieVal,
