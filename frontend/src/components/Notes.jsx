@@ -11,7 +11,6 @@ import Loader from "./Loader";
 import { useNavigate } from "react-router-dom";
 
 export default function Notes() {
-	const [isClicked, setIsClicked] = useState("Notes");
 	const [addSubject, setAddSubject] = useState(false);
 	const [subName, setSubName] = useState();
 	const [section1, setSection1] = useState();
@@ -86,22 +85,9 @@ export default function Notes() {
 				<div className="Teacher-intro-div">
 					<div className="notes-collect-nav">
 						<ul className="Inner-navbar-notes">
-							<li
-								onClick={() => setIsClicked("Notes")}
-								className={
-									isClicked === "Notes" ? "active-notes-nav-class" : ""
-								}
-							>
+							<li>
 								{" "}
 								Notes <GiBookshelf />
-							</li>
-							<li
-								onClick={() => setIsClicked("Extra")}
-								className={
-									isClicked === "Extra" ? "active-notes-nav-class" : ""
-								}
-							>
-								Extra <FiFolderPlus />
 							</li>
 						</ul>
 					</div>
@@ -117,7 +103,7 @@ export default function Notes() {
 					<IoIosAdd />
 				</div>
 
-				{addSubject && isClicked === "Notes" && (
+				{addSubject && (
 					<form
 						className="sub-input-form"
 						onSubmit={handleSubmit}

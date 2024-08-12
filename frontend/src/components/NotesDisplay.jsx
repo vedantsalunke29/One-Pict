@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 export default function NotesDisplay() {
 	const [notes, setNotes] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [isClicked, setIsClicked] = useState("Notes");
 
 	useEffect(() => {
 		let regIdNo = JSON.parse(sessionStorage.getItem("notesId"));
@@ -47,27 +46,14 @@ export default function NotesDisplay() {
 						</div>
 						<div className="notes-collect-nav">
 							<ul className="Inner-navbar-notes">
-								<li
-									onClick={() => setIsClicked("Notes")}
-									className={
-										isClicked === "Notes" ? "active-notes-nav-class" : ""
-									}
-								>
+								<li>
 									{" "}
 									Notes <GiBookshelf />
-								</li>
-								<li
-									onClick={() => setIsClicked("Extra")}
-									className={
-										isClicked === "Extra" ? "active-notes-nav-class" : ""
-									}
-								>
-									Extra <FiFolderPlus />
 								</li>
 							</ul>
 						</div>
 					</div>
-					{isClicked == "Notes" && notes.map((notes) => {
+					{notes.map((notes) => {
 						return (
 							<div className="notes-info-container-div">
 								<h1>{notes.subName}</h1>
