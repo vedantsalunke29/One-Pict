@@ -52,6 +52,9 @@ nav {
 		font-size: calc(1vw + 1vh + .6vmin);
 		font-weight: 400;
 	}
+	svg{
+		font-size: calc(1vw + 1vh + .6vmin);
+	}
 	
 }
 

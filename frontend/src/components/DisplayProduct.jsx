@@ -184,7 +184,15 @@ export default function DisplayProduct() {
 												</div>
 											</div>
 											<h3 className="price-tag">
-												Price : ₹ {data[0].productPrice}{" "}
+												Price :
+												<span
+													style={{
+														textDecoration: "line-through",
+													}}
+												>
+													₹{data[0].productPrice}
+												</span>{" "}
+												₹<span>{data[0].currentProductPrice}</span>
 											</h3>
 										</div>
 									</>

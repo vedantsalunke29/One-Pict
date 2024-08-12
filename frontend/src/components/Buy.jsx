@@ -85,7 +85,7 @@ export default function Buy() {
 										<ProductCard
 											id={i._id}
 											name={i.productName}
-											price={i.productPrice}
+											price={i.currentProductPrice}
 											imgSrc={i.img[0]}
 										/>
 									</>

@@ -11,8 +11,6 @@ function ProductCard({
 	name,
 	price,
 	imgSrc,
-	description,
-	contactInfo,
 	setShowCard,
 }) {
 	const [showDelete, setShowDelete] = useState(false);
