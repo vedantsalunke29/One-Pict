@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5
 app.use(express.json({ limit: "50mb" }))
 app.use(express.urlencoded({ extended: true, limit: "50mb" }))
 const corsConfig = {
-    origin: "*",
+    origin: "https://one-pict.vercel.app",
     methods: ["POST", "GET", "PUT", "DELETE"],
     credential: true
 }
