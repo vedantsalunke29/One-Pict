@@ -56,8 +56,8 @@ export default function SignIn() {
 	};
 	return (
 		<>
+			{isLoading && <Loader />}
 			<div className="main-signup-body">
-				{isLoading && <Loader />}
 				<div className="next-main-extra-sign">
 				<div className="title-logo-div">
 						<img src={logo} alt="" />

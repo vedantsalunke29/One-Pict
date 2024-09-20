@@ -94,8 +94,8 @@ export default function Signup() {
 	};
 	return (
 		<>
+			{isLoading && <Loader />}
 			<div className="main-signup-body">
-				{isLoading && <Loader />}
 				{showPop && (
 					<div className="main-verification-div">
 						<motion.div
