@@ -42,7 +42,7 @@
 			gap: 5px;
 			h3,
 			p {
-				font-family: "Roboto Slab";
+				font-family: "Roboto";
 			}
 		}
 		.desciption-event-div {
@@ -56,10 +56,10 @@
 				align-items: center;
 				justify-content: center;
 				gap: 5px;
-				font-family: "Roboto Slab";
+				font-family: "Roboto";
 			}
 			p {
-				font-family: "Roboto Slab";
+				font-family: "Roboto";
 			}
 			a {
 				color: #5e7059;
@@ -99,7 +99,7 @@
 	h1,
 	p {
 		font-weight: 300;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		padding: 0.2rem;
 	}
 }

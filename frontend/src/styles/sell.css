@@ -38,7 +38,7 @@
 		font-size: calc(1.3vh + 1.6vw + 1vmin);
 		font-weight: 400;
 		padding: 1.5rem;
-		font-family: "Roboto Slab", sans-serif;
+		font-family: "Roboto", sans-serif;
 	}
 }
 
@@ -65,7 +65,7 @@
 		resize: none;
 		padding: 0.8rem;
 		text-align: justify;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 	}
 }
 
@@ -105,7 +105,7 @@
 	font-size: 16px;
 	transition: 0.5s;
 	z-index: 0;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 }
 
 .postsubmitBtn-after {

@@ -1,19 +1,22 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from "react";
 import { PiChalkboardTeacherBold } from "react-icons/pi";
 import Img from "./Img";
 import { CgArrowsExpandUpRight } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { LineWave } from "react-loader-spinner";
-
-export default function AnnouncementHome() {
+AnnouncementHome.propTypes = {
+	cookieValue: PropTypes.string.isRequired,  
+};
+export default function AnnouncementHome({cookieValue}) {
 	const [data, setData] = useState([]);
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		getData();
-	}, []);
+	}, [cookieValue]);
 
 	const showNotice = (_id) => {
 		sessionStorage.setItem("noticeId", JSON.stringify(_id));
@@ -23,7 +26,7 @@ export default function AnnouncementHome() {
 		try {
 			setIsLoading(true);
 			await axios
-				.get("https://one-pict.onrender.com/get-announcement")
+				.get("http://localhost:5000/get-announcement")
 				.then((res) => {
 					if (res.data) {
 						setData(res.data);
@@ -38,7 +41,7 @@ export default function AnnouncementHome() {
 		<>
 			<div className="home-announcement-view-div">
 				<div className="div-svg-announcement-conatian"></div>
-				<div className="head-for-announcement-h1">New Announcement</div>
+				<div className="head-for-announcement-h1">New Notice</div>
 				<div className="body-for-the-announcement-div">
 					{isLoading && (
 						<LineWave
@@ -56,10 +59,10 @@ export default function AnnouncementHome() {
 					)}
 					{!isLoading && (
 						<ul>
-							{data.map((item) => {
+							{data.map((item,index) => {
 								return (
 									<li
-										key={item._id}
+										key={index}
 										onClick={() => {
 											showNotice(item._id);
 										}}

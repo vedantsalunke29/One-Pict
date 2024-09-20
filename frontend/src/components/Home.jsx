@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Marquee from "react-fast-marquee";
 import Foot from "./Foot";
@@ -41,7 +42,7 @@ export default function Home() {
 	const [showDiscussion, setShowDiscussion] = useState(false);
 	const navigate = useNavigate();
 	const [discussMsg, setDiscussMsg] = useState("");
-	const [cookieVal, setCookieVal] = useState(Cookies.get("regIdNo"));
+	const [cookieVal] = useState(Cookies.get("regIdNo"));
 	const [data, setData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -69,7 +70,7 @@ export default function Home() {
 		try {
 			setIsLoading(true);
 			await axios
-				.get("https://one-pict.onrender.com/get-eventInfo")
+				.get("http://localhost:5000/get-eventInfo")
 				.then((res) => {
 					if (res.data === "nothing") {
 						setShowCard(false);
@@ -91,8 +92,11 @@ export default function Home() {
 	};
 	const getTextReport = async (text) => {
 		try {
+			if (discussMsg === "") {
+				toast.error("Message Empty!");
+				return 1;
+			}
 			setIsLoading(true);
-
 			await axios
 				.get(`http://127.0.0.1:5000/detect/${text}`)
 				.then((res) => {
@@ -118,7 +122,7 @@ export default function Home() {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/postDiscuss", {
+				.post("http://localhost:5000/postDiscuss", {
 					cookieVal,
 					discussMsg,
 				})
@@ -137,7 +141,6 @@ export default function Home() {
 				});
 		} catch (error) {
 			setIsLoading(false);
-
 			console.log(error);
 		}
 	};
@@ -146,7 +149,7 @@ export default function Home() {
 		try {
 			setIsLoading(true);
 			await axios
-				.get("https://one-pict.onrender.com/get-discussion-data")
+				.get("http://localhost:5000/get-discussion-data")
 				.then((res) => {
 					if (res.data === "fail") {
 						setIsLoading(false);
@@ -172,7 +175,6 @@ export default function Home() {
 	useEffect(() => {
 		getDiscussion();
 	}, [replyInput]);
-
 	const EventCard = ({ id, name, eventDate, imgSrc }) => {
 		return (
 			<>
@@ -196,13 +198,18 @@ export default function Home() {
 			</>
 		);
 	};
+	EventCard.propTypes = {
+		id: PropTypes.any.isRequired,
+		name: PropTypes.any.isRequired,
+		eventDate: PropTypes.any.isRequired,
+		imgSrc: PropTypes.any.isRequired,
+	};
 
 	return (
 		<>
 			<div className="main-home-conatiner">
 				<div className="background">
 					<div className="community">
-						<p>Exclusive</p>
 						Welcome to one pict Community web which <br />
 						<TypeAnimation
 							sequence={[
@@ -228,11 +235,11 @@ export default function Home() {
 								src={home}
 								type="video/mp4"
 							/>
-							Sorry, your browser doesn't support videos.
+							Sorry, your browser does not support videos.
 						</video>
 					</div>
 				</div>
-				<AnnouncementHome />
+				<AnnouncementHome cookieValue={cookieVal}/>
 				<div className="page-2-home-div">
 					<div className="inside-event-ann">
 						<p>Upcoming Event</p>
@@ -329,7 +336,7 @@ export default function Home() {
 						</Marquee>
 					</div>
 				</div>
-				<SubjectDetails />
+				<SubjectDetails cookieValue={cookieVal} />
 
 				<div className="main-container-for-page-4">
 					<h1 className="page-4-title">One Forum</h1>
@@ -371,7 +378,6 @@ export default function Home() {
 										<button
 											className="button-27"
 											onClick={() => {
-												setShowInput(!showInput)
 												getTextReport(discussMsg);
 											}}
 										>

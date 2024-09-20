@@ -49,12 +49,6 @@
 		background: transparent;
 		border-radius: 20px;
 		cursor: pointer;
-		transition: all 0.7s;
-		box-shadow: rgba(0, 0, 0, 0.251) -20px -20px 30px 2px;
-		&:hover {
-			box-shadow: rgba(0, 0, 0, 0.347) -20px -30px 40px 2px;
-			transform: translateY(-6px);
-		}
 	}
 }
 
@@ -64,52 +58,6 @@
 	align-items: center;
 	justify-content: space-evenly;
 	width: 100%;
-}
-
-.button-52 {
-	font-size: 16px;
-	font-weight: 400;
-	letter-spacing: 1px;
-	padding: 13px 20px 13px;
-	outline: 0;
-	font-family: "Roboto";
-	border: 1px solid black;
-	cursor: pointer;
-	position: relative;
-	background-color: rgba(0, 0, 0, 0);
-	user-select: none;
-	-webkit-user-select: none;
-	touch-action: manipulation;
-	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 3.6px;
-	}
-	&:active {
-		transform: translate(4px, 4px);
-		box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 3.6px;
-	}
-}
-
-.button-52:after {
-	content: "";
-	background-color: #ffe54c;
-	width: 100%;
-	z-index: -1;
-	position: absolute;
-	height: 100%;
-	top: 7px;
-	left: 7px;
-	transition: 0.2s;
-}
-
-.button-52:hover:after {
-	top: 0px;
-	left: 0px;
-}
-
-@media (min-width: 768px) {
-	.button-52 {
-		padding: 13px 50px 13px;
-	}
 }
 
 .button-53 {
@@ -130,7 +78,6 @@
 	text-decoration-thickness: auto;
 	position: relative;
 	cursor: pointer;
-	transform: rotate(-2deg);
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: manipulation;
@@ -138,7 +85,6 @@
 		box-shadow: rgba(0, 0, 0, 0.15) -5px 5px 3.6px;
 	}
 	&:active {
-		transform: translate(-4px, 4px) rotate(-2deg);
 		box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 3.6px;
 	}
 }
@@ -197,7 +143,7 @@
 		font-size: 1.3rem;
 		text-transform: uppercase;
 		font-weight: 300;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		color: #fa8f15a6;
 	}
 }

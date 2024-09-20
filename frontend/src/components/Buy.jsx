@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Img from "./Img";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
+import PropTypes from "prop-types";
 
 export default function Buy() {
 	const [productItem, setProductItem] = useState([]);
@@ -16,7 +17,7 @@ export default function Buy() {
 		sessionStorage.setItem("ProductInfo", JSON.stringify(id));
 		navigate("/product-page");
 	};
-
+	
 	const ProductCard = ({ id, name, price, imgSrc }) => {
 		return (
 			<>
@@ -39,13 +40,19 @@ export default function Buy() {
 			</>
 		);
 	};
+	ProductCard.prototype = {
+		id: PropTypes.any.isRequired,
+		name: PropTypes.any.isRequired,
+		price: PropTypes.any.isRequired,
+		imgSrc: PropTypes.any.isRequired,
+	};
 
 	const getImageData = async () => {
 		try {
 			setIsLoading(true);
 			setShowCard(!showCard);
 			await axios
-				.get("https://one-pict.onrender.com/get-image")
+				.get("http://localhost:5000/get-image")
 				.then((res) => {
 					if (res.data === "nothing") {
 						setShowCard(false);

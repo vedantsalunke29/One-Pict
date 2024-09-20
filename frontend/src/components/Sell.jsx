@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { TbFileDescription } from "react-icons/tb";
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -73,7 +73,7 @@ export default function Sell() {
 			setUploadStatus("uploading");
 			await axios
 				.post(
-					"https://one-pict.onrender.com/image",
+					"http://localhost:5000/image",
 					{ form, cookieVal },
 					{
 						onUploadProgress: (progressEvent) => {
@@ -171,7 +171,7 @@ export default function Sell() {
 								<div className="des-inputContainer">
 									<textarea
 										className="input"
-										spellcheck="false"
+										spellCheck="false"
 										placeholder="a"
 										value={form.description}
 										onChange={(e) => {
@@ -216,9 +216,9 @@ export default function Sell() {
 										</span>
 
 										<div className="file-info">
-											{filesToShow.map((item) => {
+											{filesToShow.map((item,index) => {
 												return (
-													<div style={{ flex: 1 }}>
+													<div style={{ flex: 1 }} key={index}>
 														<h6>{item?.name}</h6>
 														<div className="progress-bg">
 															<div

@@ -203,7 +203,7 @@
 	display: flex;
 	align-items: center;
 	font-size: calc(0.6vw + 0.6vh + 0.6vmin);
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	gap: 2vw;
 	color: #2c5777;
 	border: 1px solid #39739d90;
@@ -237,10 +237,9 @@
 
 .head-for-announcement-h1 {
 	font-size: calc(1.4vw + 1.4vh + 1vmin);
-	font-family: "Source Serif 4";
+	font-family: "Roboto";
 	font-weight: 500;
 	position: absolute;
-	color: #848ea1;
 	top: 8vh;
 }
 
@@ -290,7 +289,7 @@
 		border-radius: 50%;
 	}
 	h3 {
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(0.5vw + 0.6vh + 0.6vmin);
 		font-weight: 400;
 	}
@@ -339,7 +338,7 @@
 
 .notice-card h2 {
 	font-size: calc(1vw + 1vh + 1vmin);
-	font-family: "Source Serif 4";
+	font-family: "Roboto";
 	font-weight: 400;
 	color: #2c2c2c;
 	text-align: center;
@@ -349,7 +348,7 @@
 	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	width: 80%;
 	text-align: center;
-	font-family: "Source Serif 4";
+	font-family: "Roboto";
 	font-weight: 400;
 	color: #555;
 }

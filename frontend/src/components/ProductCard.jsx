@@ -21,7 +21,7 @@ function ProductCard({
 			setIsLoading(true);
 
 			await axios
-				.post("https://one-pict.onrender.com/delete-user-image", {
+				.post("http://localhost:5000/delete-user-image", {
 					_id,
 				})
 				.then((res) => {

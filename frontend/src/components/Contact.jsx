@@ -18,7 +18,7 @@ export default function Contact() {
 		setIsLoading(true);
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/contact", form)
+				.post("http://localhost:5000/contact", form)
 				.then((res) => {
 					if (res.data === "done") {
 						toast.success("Message Sent");

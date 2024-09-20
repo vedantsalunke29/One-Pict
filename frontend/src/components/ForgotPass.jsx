@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -9,7 +9,6 @@ import Loader from "./Loader";
 export default function ForgotPass() {
 	const [form, setForm] = useState({
 		regIdNo: "",
-		email: "",
 		otp: "",
 	});
 
@@ -44,11 +43,11 @@ export default function ForgotPass() {
 			form.otp = OTP;
 
 			await axios
-				.post("https://one-pict.onrender.com/send-email", form)
+				.post("http://localhost:5000/send-email", form)
 				.then((res) => {
 					if (res.data === "pass") {
 						setIsLoading(false);
-						toast.success("Code send successfully");
+						toast.success("Code send successfully to registered gmail");
 						setShowPop(true);
 					} else if (res.data === "notexist") {
 						toast.error("This register ID not registered!!");
@@ -88,7 +87,7 @@ export default function ForgotPass() {
 								onChange={handleOtpChange}
 							/>
 							<label
-								for=""
+								htmlFor=""
 								className="label"
 							>
 								Verification Code
@@ -124,32 +123,12 @@ export default function ForgotPass() {
 									}}
 								/>
 								<label
-									for=""
+									htmlFor=""
 									className="label"
 								>
 									Reg.ID.No.
 								</label>
 							</div>
-
-							<div className="inputContainer">
-								<input
-									type="email"
-									className="input"
-									required
-									placeholder="a"
-									value={form.email}
-									onChange={(e) => {
-										setForm({ ...form, email: e.target.value });
-									}}
-								/>
-								<label
-									for=""
-									className="label"
-								>
-									Email
-								</label>
-							</div>
-
 							<input
 								type="submit"
 								className="submitBtn"

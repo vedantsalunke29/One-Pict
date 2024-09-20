@@ -21,7 +21,7 @@ export default function ResetPassword() {
 			else {
 				setIsLoading(true);
 				await axios
-					.post("https://one-pict.onrender.com/resetpassword", {
+					.post("http://localhost:5000/resetpassword", {
 						cookieVal,
 						password,
 					})

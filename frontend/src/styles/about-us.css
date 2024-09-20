@@ -24,7 +24,7 @@
 	flex-direction: column;
 	gap: 25px;
 	p {
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		font-size: calc(0.6vw + 0.6vh + 1vmin);
 		padding: 0.3rem 1rem;
 		background-color: rgb(125, 253, 93);
@@ -33,7 +33,7 @@
 		box-shadow: rgba(0, 0, 0, 0.39) 0px 5px 50px;
 	}
 	h2 {
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(1.4vw + 1.4vh + 1vmin);
 		font-weight: 400;
 		text-align: center;
@@ -49,7 +49,7 @@
 	height: 29vh;
 	padding: 0vh 1vh;
 	p {
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(0.6vw + 0.6vh + 0.8vmin);
 		font-weight: 400;
 		text-align: center;
@@ -65,7 +65,7 @@
 	border: 1px solid #266db6;
 	box-sizing: border-box;
 	color: #5f92d0;
-	font-family: "Roboto Slab", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: calc(0.5vw + 0.8vh + 0.5vmin);
 	font-weight: 600;
 	line-height: 2vh;
@@ -121,7 +121,7 @@
 	padding: 0vh 1vw;
 	p {
 		text-align: left;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(0.6vw + 0.6vh + 0.7vmin);
 		font-weight: 400;
 		padding: 0rem 1rem;
@@ -129,7 +129,7 @@
 	h2 {
 		color: rgb(255, 127, 131);
 		text-align: left;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(1vw + 1vh + 0.8vmin);
 		font-weight: 500;
 		padding: 0rem 1rem;
@@ -144,7 +144,7 @@
 	padding: 0vh 1vw;
 	p {
 		text-align: left;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(0.6vw + 0.6vh + 0.7vmin);
 		font-weight: 400;
 		padding: 0rem 1rem;
@@ -152,7 +152,7 @@
 	h2 {
 		color: rgb(255, 127, 246);
 		text-align: left;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(1vw + 1vh + 0.8vmin);
 		font-weight: 500;
 		padding: 0rem 1rem;
@@ -173,7 +173,7 @@
 		width: 100%;
 		text-align: center;
 		border-radius: 50px;
-		font-family: "Shadows Into Light";
+		font-family: "Roboto";
 		font-size: calc(1.3vw + 1.3vh + 1vmin);
 		font-weight: 500;
 		color: rgb(56, 73, 73);
@@ -212,7 +212,7 @@
 		aspect-ratio: 1/1;
 	}
 	.name-class {
-		font-family: "Shadows Into Light";
+		font-family: "Roboto";
 		font-size: calc(1.3vw + 1.3vh + 1vmin);
 		font-weight: 500;
 		padding: 0.8rem 0rem 1.2rem 0rem;

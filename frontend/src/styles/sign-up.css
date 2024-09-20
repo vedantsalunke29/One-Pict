@@ -1,44 +1,60 @@
 .main-signup-body {
+	height: 120vh;
+	background-color: #f0f4f9;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	width: 100%;
 }
 .next-main-extra-sign {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	top: 8.5vh;
+	justify-content: space-between;
+	background-color: #ffffff;
+	flex-wrap: wrap;
+	margin: 1vh 4vw;
+	padding: 2vw;
+	border-radius: 20px;
+	width: 70%;
+}
+.next-main-extra-sign-up {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	position: relative;
+	background-color: #ffffff;
+	flex-wrap: wrap;
+	margin: 1vh 4vw;
+	padding: 2vh;
+	border-radius: 20px;
+	width: 70%;
 }
 
 .info-about-sign-ul {
 	display: flex;
 	list-style: none;
-	height: 8vh;
 	justify-content: space-around;
 	align-items: center;
 	border-radius: 50px;
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
+	font-size: calc(0.8vw + 0.6vh + 0.5vmin);
 	color: #777575;
 	font-family: "Roboto";
+	height: 45px;
 	margin: 1.2rem 0rem;
 	gap: 4px;
 	> li {
 		transition: all 0.3s;
-		padding: 1vh 2vw;
+		padding: 1vh 1vw;
 		cursor: pointer;
 		border-radius: 50px;
-
-		&:hover {
-			background-color: #e2dddd5b;
-		}
 	}
 }
 
 .is-active-li {
-	background-color: #e2dddd5b;
+	color: #000000;
+	transform: scale(1.1);
 }
 
 .main-reset-body {
@@ -49,41 +65,7 @@
 	height: 100vh;
 }
 
-.side-video-sign-up {
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.side-video-sign-in {
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.video-sign-in {
-	border-radius: 100px;
-	height: 60%;
-	object-fit: cover;
-	width: 15vw;
-	aspect-ratio: 1/1;
-}
-.video-sign-up {
-	border-radius: 120px;
-	height: 70%;
-	object-fit: cover;
-	width: 18vw;
-	aspect-ratio: 1/1;
-}
 .resetFrm {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	position: relative;
-}
-.signupFrm {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -92,20 +74,27 @@
 }
 
 .form {
-	background-color: rgb(255, 255, 255);
 	width: 460px;
 	border-radius: 8px;
 	padding: 1vw 2vw;
 }
 
-.title {
+.title-logo-div{
 	display: flex;
-	justify-content: left;
+	justify-content: center;
+	padding: 0rem 1rem;
 	align-items: center;
-	text-align: justify;
+	flex-direction: column;
+	gap: 10px;
+	img{
+		height: 45px;
+	}
+}
+.title {
+	text-align: center;
 	font-weight: 400;
-	margin: 2vh 1vw;
-	font-family: "Source Serif 4";
+	padding: 0vh 2vw;
+	font-family: "Roboto";
 	font-size: calc(1.5vw + 1.5vh + 1vmin);
 }
 
@@ -124,7 +113,7 @@
 	width: 100%;
 	border: 1px solid #dadce0;
 	border-radius: 7px;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
 	padding: 0 2vw;
 	outline: none;
@@ -148,7 +137,7 @@
 	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
 	transition: 0.5s;
 	z-index: 0;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 }
 
 .submitBtn {
@@ -163,7 +152,7 @@
 	cursor: pointer;
 	font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	margin-top: 30px;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 }
 
 .submitBtn:hover {
@@ -176,7 +165,7 @@
 	left: 3px;
 	z-index: 10;
 	font-size: calc(0.6vw + 0.6vh + 0.5vmin);
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	font-weight: 500;
 	color: #181818;
 }
@@ -217,7 +206,7 @@
 		color: #000000;
 		text-decoration: underline;
 		font-size: calc(0.6vw + 0.6vh + 0.5vmin);
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		&:hover {
 			opacity: 0.7;
 		}
@@ -244,22 +233,10 @@
 .pop-title {
 	font-size: calc(1vw + 1vh + 1vmin);
 	padding: 0.2rem 0rem 2.2rem 0rem;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 }
 
 @media (max-width: 724px) {
-	.main-signup-body {
-		align-items: normal;
-	}
-	.next-main-extra-sign {
-		align-items: normal;
-		justify-content: center;
-		.side-video-sign-in,
-		.side-video-sign-up {
-			display: none;
-		}
-	}
-
 	.main-reset-body {
 		position: relative;
 		top: 20vh;
@@ -270,5 +247,11 @@
 @media (max-width: 465px) {
 	.form {
 		width: 300px;
+	}
+	.next-main-extra-sign-up{
+		width: 80%;
+	}
+	.next-main-extra-sign{
+		width: 80%;
 	}
 }

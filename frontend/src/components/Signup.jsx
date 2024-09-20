@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import video from "../assets/signup.mp4";
+import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
+import { easeIn, motion } from "framer-motion";
+import Cookies from "js-cookie";
 
 export default function Signup() {
 	const [form, setForm] = useState({
@@ -12,23 +14,58 @@ export default function Signup() {
 		email: "",
 		password: "",
 		cPassword: "",
+		otp: "",
 	});
 	const [isClicked, setIsClicked] = useState("Student");
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
+	const [otpValue, setOtpValue] = useState("");
+	const [showPop, setShowPop] = useState(false);
+	const digits = "0123456789";
+
+	const handleOtpChange = (e) => {
+		setOtpValue(e.target.value);
+	};
+	const otpCheck = () => {
+		if (form.otp !== otpValue) toast.error("Invalid Code");
+		else {
+			Cookies.set("resetRegister", form.regIdNo);
+			toast.success("Successfully Sign Up.");
+			navigate("/signin");
+		}
+	};
+
 	const submit = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 		try {
+			let OTP = "";
+			for (let i = 0; i < 6; i++) {
+				OTP += digits[Math.floor(Math.random() * 10)];
+			}
+			form.otp = OTP;
 			if (form.password.length < 8) {
 				toast.error("Password less than 8 character");
 				setIsLoading(false);
 			} else if (form.password !== form.cPassword) {
 				toast.error("Password and Confirm Password does not match!!");
 				setIsLoading(false);
+			} else if (form.regIdNo.includes("T") && isClicked !== "Teacher") {
+				toast.error("Please Select Teacher Section");
+				setIsLoading(false);
+			} else if (form.regIdNo.includes("CB") && isClicked !== "Club") {
+				toast.error("Please Select Club Section");
+				setIsLoading(false);
+			} else if (
+				/^[ICE]/.test(form.regIdNo) &&
+				!form.regIdNo.includes("CB") &&
+				isClicked !== "Student"
+			) {
+				toast.error("Please Select Student Section");
+				setIsLoading(false);
 			} else {
 				await axios
-					.post("https://one-pict.onrender.com/signup", form)
+					.post("http://localhost:5000/signup", form)
 					.then((res) => {
 						if (res.data === "provide") {
 							toast.error("Provide All Inputs");
@@ -38,12 +75,11 @@ export default function Signup() {
 							toast.error("User already exists.");
 							setIsLoading(false);
 						} else if (res.data === "create") {
-							toast.success("Successfully Sign Up.");
 							setIsLoading(false);
-
-							navigate("/signin");
+							toast.success("Code send successfully to registered gmail");
+							setShowPop(true);
 						} else if (res.data === "not") {
-							toast.error("Reg. ID Invalid.");
+							toast.error("Invalid Credential.");
 							setIsLoading(false);
 						}
 					})
@@ -60,29 +96,50 @@ export default function Signup() {
 		<>
 			<div className="main-signup-body">
 				{isLoading && <Loader />}
-				<div className="next-main-extra-sign">
-					<div className="side-video-sign-up">
-						<video
-							autoPlay
-							muted
-							loop
-							className="video-sign-up"
+				{showPop && (
+					<div className="main-verification-div">
+						<motion.div
+							className="pop-code"
+							animate={{ y: [200, 0], opacity: [0, 0, 1] }}
+							transition={{ duration: 1.5, ease: easeIn }}
 						>
-							<source
-								src={video}
-								type="video/mp4"
+							<h1 className="pop-title">Enter Verfication Code</h1>
+							<div className="inputContainer">
+								<input
+									type="text"
+									className="input"
+									placeholder="a"
+									required
+									value={otpValue}
+									onChange={handleOtpChange}
+								/>
+								<label
+									htmlFor=""
+									className="label"
+								>
+									Verification Code
+								</label>
+							</div>
+							<input
+								type="submit"
+								className="submitBtn"
+								value="Verify"
+								onClick={otpCheck}
 							/>
-							Sorry, your browser doesn't support videos.
-						</video>
+						</motion.div>
 					</div>
-
-					<div class="signupFrm">
+				)}
+				{!showPop && (
+					<div className="next-main-extra-sign-up">
+						<div className="title-logo-div">
+						<img src={logo} alt="" />
+						<h1 className="title">Sign up </h1>
+						</div>
 						<form
 							action=""
 							className="form"
 							onSubmit={submit}
 						>
-							<h1 className="title">Sign up </h1>
 							<ul className="info-about-sign-ul">
 								<li
 									onClick={() => {
@@ -117,11 +174,14 @@ export default function Signup() {
 									required
 									value={form.regIdNo}
 									onChange={(e) => {
-										setForm({ ...form, regIdNo: e.target.value.toUpperCase() });
+										setForm({
+											...form,
+											regIdNo: e.target.value.toUpperCase(),
+										});
 									}}
 								/>
 								<label
-									for=""
+									htmlFor=""
 									className="label"
 								>
 									{isClicked === "Student" && <>Reg.ID.No.</>}
@@ -145,7 +205,7 @@ export default function Signup() {
 									}}
 								/>
 								<label
-									for=""
+									htmlFor=""
 									className="label"
 								>
 									Name
@@ -167,10 +227,10 @@ export default function Signup() {
 									}}
 								/>
 								<label
-									for=""
+									htmlFor=""
 									className="label"
 								>
-									Email
+									College Email
 								</label>
 							</div>
 
@@ -186,7 +246,7 @@ export default function Signup() {
 									}}
 								/>
 								<label
-									for=""
+									htmlFor=""
 									className="label"
 								>
 									Password
@@ -205,7 +265,7 @@ export default function Signup() {
 									}}
 								/>
 								<label
-									for=""
+									htmlFor=""
 									className="label"
 								>
 									Confirm Password
@@ -228,7 +288,7 @@ export default function Signup() {
 							</span>
 						</form>
 					</div>
-				</div>
+				)}
 			</div>
 		</>
 	);

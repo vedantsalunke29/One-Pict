@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { VscAccount } from "react-icons/vsc";
 import axios from "axios";
 import Img from "./Img";
@@ -15,7 +16,9 @@ import { DNA } from "react-loader-spinner";
 import { MdDeleteOutline } from "react-icons/md";
 
 timeago.register("vi", vi);
-
+DiscussionCard.propTypes = {
+	item: PropTypes.object.isRequired,
+};
 export default function DiscussionCard({ item }) {
 	const [showUserImg, setShowUserImg] = useState(false);
 	const [data, setData] = useState([]);
@@ -30,7 +33,7 @@ export default function DiscussionCard({ item }) {
 	const [showReply, setShowReply] = useState(false);
 	const replyArray = item.replyBy;
 	const [isLoading, setIsLoading] = useState(false);
-
+	const [showDelete, setShowDelete] = useState(false);
 	const dispatch = useDispatch();
 
 	const handleClick = () => {
@@ -41,7 +44,7 @@ export default function DiscussionCard({ item }) {
 		try {
 			if (regIdNo)
 				await axios
-					.post("https://one-pict.onrender.com/handle-like", {
+					.post("http://localhost:5000/handle-like", {
 						count,
 						_id,
 						regIdNo,
@@ -61,11 +64,14 @@ export default function DiscussionCard({ item }) {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/delete-discussion", {
+				.post("http://localhost:5000/delete-discussion", {
 					_id,
 					replyArray,
 				})
-				.then(() => dispatch(showNameToNav(replyInput)));
+				.then(() => {
+					setIsLoading(false);
+					dispatch(showNameToNav(replyInput));
+				});
 		} catch (error) {
 			throw new Error(`Error : ${error}`);
 		}
@@ -77,7 +83,7 @@ export default function DiscussionCard({ item }) {
 			setIsLoading(true);
 
 			await axios
-				.post("https://one-pict.onrender.com/reply-to-discussion", {
+				.post("http://localhost:5000/reply-to-discussion", {
 					_id,
 					regIdNo,
 					replyMsg,
@@ -104,7 +110,7 @@ export default function DiscussionCard({ item }) {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/get-reply-to-discussion", {
+				.post("http://localhost:5000/get-reply-to-discussion", {
 					replyArray,
 					_id,
 				})
@@ -145,16 +151,16 @@ export default function DiscussionCard({ item }) {
 	}, [item]);
 
 	useEffect(() => {
-		if (
-			item.like &&
-			item.likeBy.find((ID) => {
-				return ID === regIdNo;
-			})
-		)
+		if (item.like && item.likeBy.find((ID) => ID === regIdNo)) {
 			setLiked(true);
-
-		if (new Date().valueOf() - date.valueOf() > 241920000) deleteDiscussion();
-	}, []);
+		}
+		if (item.regIdNo === regIdNo) {
+			setShowDelete(true);
+		}
+		if (new Date().valueOf() - date.valueOf() > 241920000) {
+			deleteDiscussion();
+		}
+	}, [liked]);
 
 	return (
 		<>
@@ -203,12 +209,12 @@ export default function DiscussionCard({ item }) {
 						<p> {item.reply}</p>
 						<BsReplyAllFill />
 					</div>
-					<div
+					{showDelete && <div
 						className="reply-div"
 						onClick={deleteDiscussion}
 					>
 						<MdDeleteOutline />
-					</div>
+					</div>}
 				</div>
 				{replyOutput && (
 					<div className="main-reply-container-div">

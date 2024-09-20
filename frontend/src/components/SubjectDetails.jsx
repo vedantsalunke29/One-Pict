@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from "react";
 import { IoBookSharp } from "react-icons/io5";
 import Img from "./Img";
 import { CgArrowsExpandUpRight } from "react-icons/cg";
@@ -7,7 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { PiChalkboardTeacherBold } from "react-icons/pi";
 import { DNA } from "react-loader-spinner";
 
-export default function SubjectDetails() {
+SubjectDetails.propTypes = {
+	cookieValue: PropTypes.string.isRequired,  
+};
+export default function SubjectDetails({cookieValue}) {
 	const [note, setNote] = useState([]);
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +25,7 @@ export default function SubjectDetails() {
 		try {
 			setIsLoading(true);
 			await axios
-				.get("https://one-pict.onrender.com/get-post-by-id")
+				.get("http://localhost:5000/get-post-by-id")
 				.then((res) => {
 					if (res.data) {
 						setNote(res.data);
@@ -34,7 +38,7 @@ export default function SubjectDetails() {
 	};
 	useEffect(() => {
 		getNotes();
-	}, []);
+	}, [cookieValue]);
 	return (
 		<>
 			<div className="main-notes-diplay-div-container">
@@ -56,7 +60,7 @@ export default function SubjectDetails() {
 					)}
 					{!isLoading && (
 						<li className="teacher-name-li-show">
-							{note.map((i) => {
+							{note.map((i,index) => {
 								return (
 									<>
 										<div
@@ -64,6 +68,7 @@ export default function SubjectDetails() {
 											onClick={() => {
 												showNotes(i.regIdNo);
 											}}
+											key={index}
 										>
 											{i.image === "notexist" ? (
 												<PiChalkboardTeacherBold />

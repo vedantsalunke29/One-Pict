@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import img from "../assets/logo.png";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiContactsLine, RiUserAddLine } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
@@ -24,7 +24,9 @@ export default function Navi() {
 	const [showUserImg, setShowUserImg] = useState(false);
 	const [userImgageSource, setUserImgageSource] = useState("");
 	const [cookieVal, setCookieVal] = useState(Cookies.get("regIdNo"));
+	const navigate = useNavigate();
 	let ref = useRef();
+	const location = useLocation();
 	const showEdit = useSelector((state) => {
 		return state.userName;
 	});
@@ -34,11 +36,16 @@ export default function Navi() {
 	const logOut = () => {
 		Cookies.remove("regIdNo");
 	};
-
+	const tagClass1 =
+		location.pathname === "/" ? "main-text-style-active" : "main-text-style";
+	const tagClass2 =
+		location.pathname === "/buy-sell"
+			? "main-text-style-active"
+			: "main-text-style";
 	const showName = async () => {
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/profile", { cookieVal })
+				.post("http://localhost:5000/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("User");
@@ -57,7 +64,7 @@ export default function Navi() {
 	const userImageFetch = async () => {
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
+				.post("http://localhost:5000/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") setShowUserImg(false);
 					else {
@@ -156,7 +163,10 @@ export default function Navi() {
 				)}
 				{show && <IoMdClose />}
 			</div>
-			<div className="logo">
+			<div
+				className="logo"
+				onClick={() => navigate("/")}
+			>
 				<img
 					src={img}
 					alt="Not Found"
@@ -165,13 +175,13 @@ export default function Navi() {
 			</div>
 			<div className="tech-notech-div">
 				<Link
-					className="main-text-style"
+					className={tagClass1}
 					to={"/"}
 				>
 					Community
 				</Link>
 				<Link
-					className="main-text-style"
+					className={tagClass2}
 					to={"/buy-sell"}
 				>
 					Pict OLX
@@ -228,7 +238,9 @@ export default function Navi() {
 							<Link
 								to={"/signin"}
 								className="link-abt-ct"
-								onClick={logOut}
+								onClick={() => {
+									logOut();
+								}}
 							>
 								<FiLogOut /> Logout
 							</Link>

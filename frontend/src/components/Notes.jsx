@@ -55,7 +55,7 @@ export default function Notes() {
 		else
 			try {
 				await axios
-					.post("https://one-pict.onrender.com/add-notes-by-id", {
+					.post("http://localhost:5000/add-notes-by-id", {
 						cookieVal,
 						subName,
 						section1,

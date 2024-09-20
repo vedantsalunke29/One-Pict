@@ -31,7 +31,7 @@
 		text-align: left;
 		cursor: pointer;
 		font-weight: 300;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		font-size: calc(1.5vw + 1.5vh + 1.5vmin);
 		padding: 0.5rem 3rem;
 		border-radius: 100px;
@@ -53,7 +53,7 @@
 		text-align: left;
 		cursor: pointer;
 		font-weight: 300;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(1.5vw + 1.5vh + 1.5vmin);
 		padding: 0.5rem 3rem;
 		border-radius: 100px;
@@ -105,7 +105,7 @@
 	gap: 4px;
 	padding: 0.5vh;
 	> p {
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-size: calc(0.8vw + 0.6vh + 1vmin);
 		font-weight: 500;
 		display: flex;
@@ -115,7 +115,7 @@
 		background-color: transparent;
 	}
 	> h4 {
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		font-size: calc(0.7vw + 0.4vh + 0.8vmin);
 		font-weight: 500;
 		display: flex;

@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Img from "./Img";
 import { GiBookshelf } from "react-icons/gi";
-import { FiFolderPlus } from "react-icons/fi";
 import { PiChalkboardTeacherBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
@@ -20,7 +19,7 @@ export default function NotesDisplay() {
 		setIsLoading(true);
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/getNotes-by-id", { regIdNo })
+				.post("http://localhost:5000/getNotes-by-id", { regIdNo })
 				.then((res) => {
 					if (res.data) setNotes(res.data);
 				});
@@ -53,9 +52,9 @@ export default function NotesDisplay() {
 							</ul>
 						</div>
 					</div>
-					{notes.map((notes) => {
+					{notes.map((notes,index) => {
 						return (
-							<div className="notes-info-container-div">
+							<div className="notes-info-container-div" key={index}>
 								<h1>{notes.subName}</h1>
 								<ul>
 									<h2>{notes.section1}</h2>
@@ -78,10 +77,10 @@ export default function NotesDisplay() {
 								<ul>
 									<h2>{notes.section2 && notes.section2}</h2>
 									{notes.addLi2 &&
-										notes.addLi2.map((i) => {
+										notes.addLi2.map((i,index) => {
 											return (
 												<>
-													<li>
+													<li key={index}>
 														<Link
 															to={!i ? "" : i.link}
 															target="_blank"

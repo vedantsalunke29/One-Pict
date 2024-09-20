@@ -115,7 +115,7 @@
 		font-weight: 500;
 		font-size: calc(0.6vw + 0.6vh + 0.8vmin);
 		text-align: center;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		display: flex;
 		align-items: center;
 		flex-direction: column;
@@ -123,14 +123,14 @@
 		gap: 10px;
 		b {
 			font-size: calc(0.6vw + 0.6vh + 0.8vmin);
-			font-family: "Source Serif 4";
+			font-family: "Roboto";
 		}
 	}
 	.p-div-info {
 		font-weight: 500;
 		font-size: calc(0.6vw + 0.6vh + 0.8vmin);
 		text-align: center;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		display: flex;
 		align-items: center;
 		flex-direction: column;
@@ -140,13 +140,13 @@
 		overflow: auto;
 		b {
 			font-size: calc(0.6vw + 0.6vh + 0.8vmin);
-			font-family: "Source Serif 4";
+			font-family: "Roboto";
 		}
 	}
 
 	.h2-title-div {
 		font-size: calc(0.8vw + 0.8vh + 0.8vmin);
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-weight: 500;
 	}
 	.user-mail-input {
@@ -155,7 +155,7 @@
 		padding: 0.2vh 0.2vh;
 		border-radius: 4px;
 		width: 18vh;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 	}
 }
 
@@ -163,26 +163,16 @@
 	max-width: 300px;
 	letter-spacing: 2px;
 	cursor: pointer;
-	border: 1px solid rgb(78, 76, 76);
 	padding: 0.5em 0.5em;
 	position: relative;
 	user-select: none;
 	border-radius: 5px;
 	transition: all 0.6s;
-	color: #0b57d0;
 	font-size: calc(1vw + 1vh + 1vmin);
 	text-align: center;
 	font-family: "Roboto", sans-serif;
-	&:hover {
-		background-color: #0b57d00d;
-	}
 }
 
-.button-54:active {
-	box-shadow: 0px 0px 0px 0px;
-	top: 5px;
-	left: 5px;
-}
 
 @media (min-width: 768px) {
 	.button-54 {
@@ -202,7 +192,7 @@
 	color: #36395a;
 	cursor: pointer;
 	display: inline-flex;
-	font-family: "Source Serif 4", monospace;
+	font-family: "Roboto", monospace;
 	height: 6vh;
 	justify-content: center;
 	line-height: 1;

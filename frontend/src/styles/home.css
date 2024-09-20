@@ -16,7 +16,7 @@
 	left: 1em;
 	top: -1rem;
 	font-size: calc(1.4vw + 1.4vh + 1.2vmin);
-	font-family: "Source Serif 4", serif;
+	font-family: "Roboto", serif;
 	font-weight: 400;
 	text-align: center;
 	align-items: center;
@@ -24,23 +24,13 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	p {
-		font-size: calc(0.5vw + 0.5vh + 0.7vmin);
-		border: 1.5px solid rgb(252, 227, 194);
-		box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 90px;
-		padding: 0.4rem 0rem;
-		font-family: "Shadows Into Light";
-		border-radius: 10px;
-		width: 50%;
-		margin: 1rem 0rem;
-	}
 }
 .type-speed {
 	font-size: calc(1.2vw + 1.2vh + 1vmin);
 	font-weight: 300;
 	color: rgb(64, 247, 64);
 	text-transform: lowercase;
-	font-family: "Source Serif 4", serif;
+	font-family: "Roboto";
 	height: 5vh;
 }
 
@@ -85,7 +75,6 @@
 		font-size: calc(2vw + 2vh + 2vmin);
 		font-family: "Roboto", cursive;
 		font-weight: 400;
-		color: #1d3b5f;
 	}
 }
 
@@ -143,7 +132,7 @@
 		margin: 0.3rem;
 		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 		font-weight: 300;
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 	}
 }
 
@@ -159,7 +148,7 @@
 	margin: 0.2rem;
 	font-size: calc(1.8vw + 1.8vh + 1.2vmin);
 	font-weight: 400;
-	font-family: "Source Serif 4";
+	font-family: "Roboto";
 }
 
 .page-3-main-div {
@@ -176,9 +165,8 @@
 .club-head {
 	position: relative;
 	font-size: calc(2vw + 2vh + 2vmin);
-	font-family: "Source Serif 4";
+	font-family: "Roboto";
 	font-weight: 400;
-	color: rgb(176, 222, 243);
 	margin: 1rem 1rem;
 }
 
@@ -208,7 +196,7 @@
 		background-color: transparent;
 	}
 	> p {
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		font-weight: 500;
 		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	}
@@ -236,7 +224,7 @@
 		background-color: transparent;
 	}
 	> p {
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		font-weight: 500;
 		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
 	}
@@ -288,14 +276,14 @@
 	p {
 		text-transform: uppercase;
 		border: 1px solid rgba(160, 156, 156, 0.529);
-		background: linear-gradient(72deg, #93a6f0 0%, #c9f5d6 100%);
+		background-color: #e7f0fb;
 		padding: 0.5rem 2rem;
 		margin-top: 4px;
 		margin-bottom: 4px;
 		margin: 6px;
 		text-align: center;
 		font-weight: 300;
-		font-family: "Roboto Slab";
+		font-family: "Roboto";
 		font-size: calc(0.6vw + 0.6vh + 0.5vmin);
 		border-radius: 5px;
 	}
@@ -313,11 +301,10 @@
 	border-width: 2px;
 	box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
 	box-sizing: border-box;
-	color: #41403e;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Source Serif 4", sans-serif;
-	font-size: calc(1vw + 1vh + 0.5vmin);
+	font-family: "Roboto";
+	font-size: calc(.6vw + .6vh + 0.5vmin);
 	line-height: 15px;
 	outline: none;
 	padding: 0.75rem;
@@ -346,21 +333,21 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 30px;
+	position: relative;
+	top: 10vh;
 }
 
 .page-4-title {
-	font-size: calc(2.5vw + 2.5vh + 2vmin);
-	font-family: "Source Serif 4";
+	font-size: calc(2vw + 2vh + 2vmin);
+	font-family: "Roboto";
 	font-weight: 400;
-	color: rgb(64, 172, 244);
 	padding: 0vh 0.5vh;
 }
 
 .page-4-2-title {
 	font-size: calc(1.4vw + 1.4vh + 0.8vmin);
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	font-weight: 300;
-	color: rgb(8, 72, 94);
 	padding: 0.2vh 5vh;
 	border-radius: 50px;
 	border: 1px solid rgb(157, 247, 49);
@@ -369,7 +356,7 @@
 
 .page-4-3-info {
 	font-size: calc(0.9vw + 0.9vh + 0.8vmin);
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -378,7 +365,7 @@
 	padding: 1vw;
 	font-weight: 400;
 	color: rgb(0, 0, 0);
-	text-shadow: rgb(0, 183, 255) 1px 0px 40px;
+	text-shadow: rgb(6, 38, 103) 1px 0px 40px;
 }
 
 .img-page-4 {
@@ -397,7 +384,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	height: 100vh;
 	flex-direction: column;
 }
 
@@ -405,7 +391,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 90.8%;
+	width: 90%;
 	flex-wrap: wrap-reverse;
 }
 .lower-dicussion-conatiner-div-main {
@@ -430,9 +416,7 @@
 	justify-content: center;
 	gap: 10px;
 	min-width: 100%;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	border-radius: 10px;
-	padding: 1em;
+	padding: .5em;
 	max-height: 30vh;
 	h3 {
 		display: flex;
@@ -441,7 +425,7 @@
 		width: 89%;
 		gap: 4px;
 		font-size: calc(1vw + 1vh + 0.6vmin);
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-weight: 400;
 		color: #232121;
 	}
@@ -458,7 +442,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	font-size: calc(0.6vw + 0.6vh + 0.6vmin);
 	font-weight: 500;
 	line-height: normal;
@@ -494,7 +478,7 @@
 	resize: none;
 	padding: 1rem;
 	text-align: justify;
-	font-family: "Roboto Slab";
+	font-family: "Roboto";
 	width: 90%;
 	height: 14vh;
 	border-radius: 6px;
@@ -507,10 +491,10 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 10px;
-	border: 1px solid #8ea5ec7e;
+	border: 1px solid #3a3b3f7e;
 	width: 100%;
 	border-radius: 10px;
-	padding: 1.4em 1em;
+	padding: 1rem;
 	overflow: auto;
 }
 
@@ -518,7 +502,6 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	height: 85vh;
 	gap: 16px;
 	width: 100%;
 }
@@ -527,8 +510,8 @@
 	align-items: start;
 	flex-direction: column;
 	gap: 8px;
-	background-color: #f0f4f6;
-	width: 98%;
+	background-color: #e7f0fb;
+	width: 100%;
 	box-shadow: #39383824 0px 0px 10px;
 	border-radius: 10px;
 	padding: 1em;
@@ -599,7 +582,7 @@
 	flex-direction: column;
 	h3 {
 		font-size: calc(0.8vw + 0.8vh + 0.5vmin);
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-weight: 400;
 	}
 	p {
@@ -615,7 +598,7 @@
 	align-items: center;
 	h2 {
 		font-size: calc(1vw + 1vh + 0.6vmin);
-		font-family: "Source Serif 4";
+		font-family: "Roboto";
 		font-weight: 400;
 	}
 }
@@ -623,7 +606,6 @@
 	font-size: calc(1.4vw + 1.4vh + 1vmin);
 	font-family: "Roboto";
 	font-weight: 400;
-	color: #000000b1;
 }
 
 .right-main-div-page-5 {
@@ -647,12 +629,8 @@
 		margin: 0.6vw;
 		font-size: calc(0.6vw + 0.6vh + 0.6vmin);
 		font-family: "Roboto";
-		color: #0b57d0;
-		font-weight: 300;
+		font-weight: 400;
 		text-align: center;
-	}
-	&:hover {
-		transform: scale(1.03);
 	}
 }
 .main-reply-container-div {
@@ -693,7 +671,7 @@
 }
 
 .checkbox-wrapper-50 .plus-minus {
-	--primary: #0b57d0;
+	--primary: #000000;
 	--secondary: #ffffff;
 	--duration: 0.5s;
 	-webkit-appearance: none;

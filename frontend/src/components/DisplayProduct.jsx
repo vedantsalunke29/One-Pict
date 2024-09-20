@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Img from "./Img";
 import axios from "axios";
 import Slider from "react-slick";
@@ -19,7 +19,6 @@ export default function DisplayProduct() {
 	const [data, setData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [showCard, setShowCard] = useState(false);
-	const [showDesc, setShowDesc] = useState(false);
 	const [mailBox, setMailBox] = useState(false);
 	const [buyerEmail, setBuyerEmail] = useState("");
 	const [ownerEmail, setOwnerEmail] = useState("");
@@ -29,7 +28,7 @@ export default function DisplayProduct() {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/product-info", { _id })
+				.post("http://localhost:5000/product-info", { _id })
 				.then((res) => {
 					if (res.data === "not") {
 						setIsLoading(false);
@@ -58,15 +57,12 @@ export default function DisplayProduct() {
 		showProduct(id);
 	}, []);
 
-	const showDescription = () => {
-		setShowDesc(!showDesc);
-	};
 
 	const buyRequest = async () => {
 		setIsLoading(true);
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/buy-request", {
+				.post("http://localhost:5000/buy-request", {
 					buyerEmail,
 					ownerEmail,
 					productName,
@@ -105,9 +101,9 @@ export default function DisplayProduct() {
 									<div className="card-slider-image">
 										{data[0].img.length > 1 ? (
 											<Slider {...settings}>
-												{data[0].img?.map((i) => {
+												{data[0].img?.map((i,index) => {
 													return (
-														<div className="image-div">
+														<div className="image-div" key={index}>
 															<Img img={i} />
 														</div>
 													);
@@ -124,13 +120,9 @@ export default function DisplayProduct() {
 							<div className="middle-div">
 								<div
 									className="button-54"
-									onClick={() => {
-										showDescription();
-									}}
 								>
 									Description
 								</div>
-								{showDesc && (
 									<>
 										<div className="about-prod-desc-info">
 											<div className="information-div-main">
@@ -196,7 +188,6 @@ export default function DisplayProduct() {
 											</h3>
 										</div>
 									</>
-								)}
 							</div>
 						</div>
 					</div>

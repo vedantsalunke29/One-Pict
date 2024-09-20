@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { TbFileDescription } from "react-icons/tb";
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -74,7 +74,7 @@ export default function Announcement() {
 
 			await axios
 				.post(
-					"https://one-pict.onrender.com/announcement-add",
+					"http://localhost:5000/announcement-add",
 					{ form, cookieVal, notify },
 					{
 						onUploadProgress: (progressEvent) => {
@@ -165,9 +165,9 @@ export default function Announcement() {
 								</span>
 
 								<div className="file-info">
-									{filesToShow.map((item) => {
+									{filesToShow.map((item,index) => {
 										return (
-											<div style={{ flex: 1 }}>
+											<div style={{ flex: 1 }} key={index}>
 												<h6>{item?.name}</h6>
 												<div className="progress-bg">
 													<div
@@ -204,9 +204,9 @@ export default function Announcement() {
 					)}
 					<div className="notify-student-div-wrap">
 						Notify Students through email
-						<div class="checkbox-wrapper-34">
+						<div className="checkbox-wrapper-34">
 							<input
-								class="tgl tgl-ios"
+								className="tgl tgl-ios"
 								id="toggle-34"
 								type="checkbox"
 								onClick={() => {
@@ -214,13 +214,13 @@ export default function Announcement() {
 								}}
 							/>
 							<label
-								class="tgl-btn"
-								for="toggle-34"
+								className="tgl-btn"
+								htmlFor="toggle-34"
 							></label>
 						</div>
 					</div>
 					<button
-						class="button-8"
+						className="button-8"
 						role="button"
 						type="submit"
 					>

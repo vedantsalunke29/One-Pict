@@ -22,7 +22,7 @@ export default function EventCard({
 			setIsLoading(true);
 
 			await axios
-				.post("https://one-pict.onrender.com/delete-event", {
+				.post("http://localhost:5000/delete-event", {
 					_id,
 				})
 				.then((res) => {

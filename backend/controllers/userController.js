@@ -12,7 +12,6 @@ import Discuss from "../models/discussModel.js";
 import Note from "../models/notesModel.js";
 import Announcement from "../models/announcementModel.js";
 
-
 // Login SignUp Logout
 
 const createUser = asyncHandler(async (req, res) => {
@@ -21,12 +20,12 @@ const createUser = asyncHandler(async (req, res) => {
     const name = form.name
     const email = form.email
     const password = form.password
-
+    const otp = form.otp;
     if (!regIdNo || !name || !password || !email) res.send("provide");
 
-    const userValid = await Validate.findOne({ regIdNo });
-    const userExist = await User.findOne({ regIdNo });
     try {
+        const userValid = await Validate.findOne({ regIdNo, email });
+        const userExist = await User.findOne({ regIdNo });
         if (userExist) res.json("exits");
         else if (userValid) {
             const salt = await bcrypt.genSalt(10);
@@ -34,10 +33,30 @@ const createUser = asyncHandler(async (req, res) => {
             const newUser = new User({ regIdNo: regIdNo, name: name, email: email, password: hashedPassword })
             generateToken(res, newUser._id);
             await newUser.save();
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                host: "smtp.gmail.com",
+                port: 587,
+                secure: false,
+                auth: {
+                    user: process.env.USER_EMAIL,
+                    pass: process.env.APP_PASS,
+                },
+            })
+
+            const mailOption = {
+                from: "One Pict",
+                to: userValid.email,
+                subject: "Verification Code for Sign Up",
+                text: `The 6-digit code to verify your email is ${otp}`
+            }
+
+            transporter.sendMail(mailOption, (error, info) => {
+                if (error) { res.status(500) }
+            })
             res.json("create");
         }
         else res.send("not");
-
     } catch (error) {
         res.status(404);
         res.send('not')
@@ -50,8 +69,8 @@ const signinUser = asyncHandler(async (req, res) => {
     const regIdNo = form.regIdNo;
     const password = form.password;
 
-    const existingUser = await User.findOne({ regIdNo: regIdNo });
     try {
+        const existingUser = await User.findOne({ regIdNo: regIdNo });
         if (existingUser) {
             const isPasswordValid = await bcrypt.compare(password, existingUser.password);
 
@@ -74,12 +93,11 @@ const sendEmail = asyncHandler(async (req, res) => {
     try {
         const form = req.body;
         const regIdNo = form.regIdNo;
-        const email = form.email;
         const otp = form.otp;
 
         const user = await User.findOne({ regIdNo: regIdNo });
 
-        if (user.email === email) {
+        if (user.email) {
             const transporter = nodemailer.createTransport({
                 service: "Gmail",
                 host: "smtp.gmail.com",
@@ -93,7 +111,7 @@ const sendEmail = asyncHandler(async (req, res) => {
 
             const mailOption = {
                 from: "One Pict",
-                to: email,
+                to: user.email,
                 subject: "Password Reset",
                 text: `The 6-digit code to reset your password is ${otp}`
             }
@@ -146,11 +164,16 @@ const updateUserName = asyncHandler(async (req, res) => {
 
 const getCurrentUserProfile = asyncHandler(async (req, res) => {
     const regIdNo = req.body.cookieVal;
-    const user = await User.findOne({ regIdNo: regIdNo });
-    if (user) {
-        res.send(user.name);
-    } else {
-        res.send("not");
+    try {
+        const user = await User.findOne({ regIdNo: regIdNo });
+        if (user) {
+            res.send(user.name);
+        } else {
+            res.send("not");
+        }
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
     }
 })
 
@@ -160,15 +183,20 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
 
 
 const getImage = asyncHandler(async (req, res) => {
-    const image = await Image.find({}).catch((e) => {
-        console.log(e)
-    })
+    try {
+        const image = await Image.find({}).catch((e) => {
+            console.log(e)
+        })
 
-    if (image.length) {
-        res.json(image);
-    }
-    else {
-        res.json("nothing")
+        if (image.length) {
+            res.json(image);
+        }
+        else {
+            res.json("nothing")
+        }
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
     }
 
 });
@@ -184,10 +212,6 @@ const postImage = asyncHandler(async (req, res) => {
     const currentProductPrice = form.currentProductPrice;
     const images = form.img;
     const img = [];
-
-
-
-
 
     //Database Updation
     try {
@@ -223,13 +247,16 @@ const postImage = asyncHandler(async (req, res) => {
 
 const getUserImage = asyncHandler(async (req, res) => {
     const { regIdNo } = req.body;
-
-    const image = await Image.find({ regIdNo: regIdNo });
-    if (image.length) {
-        res.json(image)
-    } else {
-        res.json('nothing')
-
+    try {
+        const image = await Image.find({ regIdNo: regIdNo });
+        if (image.length) {
+            res.json(image)
+        } else {
+            res.json('nothing')
+        }
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
     }
 });
 
@@ -264,18 +291,23 @@ const getProductById = asyncHandler(async (req, res) => {
     const { _id } = req.body;
 
     const data = [];
-    const imageInfo = await Image.findById({ _id: _id }).catch((e) => {
-        console.log(e);
-    })
-    const user = await User.findOne({ regIdNo: imageInfo.regIdNo }).catch((e) => {
-        console.log(e);
-    })
+    try {
+        const imageInfo = await Image.findById({ _id: _id }).catch((e) => {
+            console.log(e);
+        })
+        const user = await User.findOne({ regIdNo: imageInfo.regIdNo }).catch((e) => {
+            console.log(e);
+        })
 
-    data.push(imageInfo);
+        data.push(imageInfo);
 
-    data.push(user.name)
+        data.push(user.name)
 
-    res.json(data);
+        res.json(data);
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
+    }
 
 })
 
@@ -352,9 +384,6 @@ const uploadEventInfo = asyncHandler(async (req, res) => {
     const images = form.eventImg;
     const img = [];
 
-
-
-
     //Database Updation
     try {
 
@@ -365,7 +394,6 @@ const uploadEventInfo = asyncHandler(async (req, res) => {
             });
             img.push(imageRes.public_id);
         }
-
         const newEventData = new Events(
             {
                 regIdNo: cookieVal,
@@ -388,71 +416,85 @@ const uploadEventInfo = asyncHandler(async (req, res) => {
 
 
 const getEventInfo = asyncHandler(async (req, res) => {
-    const event = await Events.find({}).catch((e) => {
-        console.log(e)
-    })
+    try {
+        const event = await Events.find({}).catch((e) => {
+            console.log(e)
+        })
 
-    if (event.length) {
-        res.json(event);
-    }
-    else {
-        res.json("nothing");
+        if (event.length) {
+            res.json(event);
+        }
+        else {
+            res.json("nothing");
+        }
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
     }
 })
 
 const getEventInfoById = asyncHandler(async (req, res) => {
     const { _id } = req.body;
-
-    const data = await Events.findById({ _id: _id }).catch((e) => {
-        console.log(e);
-    })
-    if (data)
-        res.json(data);
-    else res.json("not");
+    try {
+        const data = await Events.findById({ _id: _id }).catch((e) => {
+            console.log(e);
+        })
+        if (data)
+            res.json(data);
+        else res.json("not");
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
+    }
 })
 
 const getEventInfoByRegIdNo = asyncHandler(async (req, res) => {
     const { regIdNo } = req.body;
+    try {
+        const data = await Events.find({ regIdNo: regIdNo }).catch((e) => {
+            console.log(e)
+        })
 
-    const data = await Events.find({ regIdNo: regIdNo }).catch((e) => {
-        console.log(e)
-    })
-
-    if (data.length)
-        res.json(data);
-    else res.json("nothing")
+        if (data.length)
+            res.json(data);
+        else res.json("nothing")
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
+    }
 })
 
 const deleteEvent = asyncHandler(async (req, res) => {
 
     const { _id } = req.body;
+    try {
+        const object = await Events.findOne({ _id: _id }).catch((e) => {
 
-    const object = await Events.findOne({ _id: _id }).catch((e) => {
+            console.log(e)
+        })
 
-        console.log(e)
-    })
+        const image = object.eventImg;
 
+        await image.map(async (i) => {
 
-    const image = object.eventImg;
+            await deleteCloudinary(i).catch((e) => {
+                console.log(e)
+                res.status(404)
 
-    await image.map(async (i) => {
+            })
+        })
 
-        await deleteCloudinary(i).catch((e) => {
+        await Events.deleteOne({ _id: _id }).catch((e) => {
             console.log(e)
             res.status(404)
 
-        })
-    })
+        });
 
-
-    await Events.deleteOne({ _id: _id }).catch((e) => {
-        console.log(e)
-        res.status(404)
-
-    });
-
-
-    res.json("success");
+        res.json("success");
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
+    }
 })
 
 
@@ -462,80 +504,89 @@ const postContactMsg = asyncHandler(async (req, res) => {
     const name = form.name;
     const email = form.email;
     const message = form.message;
+    try {
+        const transporter = nodemailer.createTransport({
+            service: "Gmail",
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.USER_EMAIL,
+                pass: process.env.APP_PASS,
+            },
+        })
 
-    const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.USER_EMAIL,
-            pass: process.env.APP_PASS,
-        },
-    })
+        const mailOption = {
+            from: "One Pict",
+            to: process.env.USER_EMAIL,
+            subject: "Contact Us Query",
+            text: `Query from ${name}.\n Mail Id : ${email}\nThe Message is ${message} .`
+        }
+        const mailToUser = {
+            from: "One Pict",
+            to: email,
+            subject: "Contact Us Form Related",
+            text: `Hi ${name},\nGreetings from One Pict!\nThankyou for contacting One Pict.\nWe will work on your message and let you know soon! Have a good day 😀.\nBest Regards,\nTeam One Pict`
+        }
 
-    const mailOption = {
-        from: "One Pict",
-        to: process.env.USER_EMAIL,
-        subject: "Contact Us Query",
-        text: `Query from ${name}.\n Mail Id : ${email}\nThe Message is ${message} .`
+
+        transporter.sendMail(mailOption, (error, info) => {
+            if (error) { res.json('fail'); }
+            else res.json('done');
+        })
+        transporter.sendMail(mailToUser, (error, info) => {
+            if (error) { res.json('fail'); }
+        })
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
     }
-    const mailToUser = {
-        from: "One Pict",
-        to: email,
-        subject: "Contact Us Form Related",
-        text: `Hi ${name},\nGreetings from One Pict!\nThankyou for contacting One Pict.\nWe will work on your message and let you know soon! Have a good day 😀.\nBest Regards,\nTeam One Pict`
-    }
 
-
-    transporter.sendMail(mailOption, (error, info) => {
-        if (error) { res.json('fail'); }
-        else res.json('done');
-    })
-    transporter.sendMail(mailToUser, (error, info) => {
-        if (error) { res.json('fail'); }
-    })
 })
 
 const buyRequestToOwner = asyncHandler(async (req, res) => {
     const { buyerEmail } = req.body;
     const { ownerEmail } = req.body;
     const { productName } = req.body;
+    try {
+        const transporter = nodemailer.createTransport({
+            service: "Gmail",
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.USER_EMAIL,
+                pass: process.env.APP_PASS,
+            },
+        })
 
-    const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.USER_EMAIL,
-            pass: process.env.APP_PASS,
-        },
-    })
+        const mailOption = {
+            from: "One Pict",
+            to: ownerEmail,
+            subject: "Product Purchase Request from One Pict",
+            text: `I hope this message finds you well. I am writing to place a purchase request on behalf of a member of our esteemed One Pict community.
+    
+    Buyer Email: ${buyerEmail}
+    
+    The buyer has expressed interest in ${productName}, and after careful consideration, they are eager to proceed with the purchase.
+    
+    Would you kindly facilitate the necessary steps to complete this transaction? If there are any additional details required or steps to be followed, please do not hesitate to ensure prompt communication with the buyer. You can contact buyer with buyer email provided.
+    
+    Thank you for your attention to this matter. We greatly appreciate your commitment to providing quality products and service to our community members.
+    
+    Warm regards,
+    
+    Team One Pict`
+        };
 
-    const mailOption = {
-        from: "One Pict",
-        to: ownerEmail,
-        subject: "Product Purchase Request from One Pict",
-        text: `I hope this message finds you well. I am writing to place a purchase request on behalf of a member of our esteemed One Pict community.
-
-Buyer Email: ${buyerEmail}
-
-The buyer has expressed interest in ${productName}, and after careful consideration, they are eager to proceed with the purchase.
-
-Would you kindly facilitate the necessary steps to complete this transaction? If there are any additional details required or steps to be followed, please do not hesitate to ensure prompt communication with the buyer. You can contact buyer with buyer email provided.
-
-Thank you for your attention to this matter. We greatly appreciate your commitment to providing quality products and service to our community members.
-
-Warm regards,
-
-Team One Pict`
-    };
-
-    transporter.sendMail(mailOption, (error, info) => {
-        if (error) { res.json('fail'); }
-        else res.json('done');
-    })
+        transporter.sendMail(mailOption, (error, info) => {
+            if (error) { res.json('fail'); }
+            else res.json('done');
+        })
+    } catch (error) {
+        res.json("fail");
+        res.status(401);
+    }
 
 });
 
@@ -597,6 +648,7 @@ const discussInfo = asyncHandler(async (req, res) => {
         })
         if (data.length)
             res.json(data)
+        else res.json('fail')
     } catch (error) {
         res.send("fail");
         console.log(error)
@@ -644,28 +696,27 @@ const handleLike = asyncHandler(async (req, res) => {
 })
 
 const deleteDiscussion = asyncHandler(async (req, res) => {
-    const { _id } = req.body;
-    const { replyArray } = req.body;
+    const { _id, replyArray } = req.body;
 
     try {
-
-        await Discuss.deleteMany({ regIdNo: { $in: replyArray }, repliedTo: _id }).catch((e) => {
-            console.log(e)
-        });
-
-        await Discuss.deleteOne({ _id: _id }).catch((e) => {
-            console.log(e)
-        });
-
-
-        res.send("done");
+        await Discuss.deleteMany({ regIdNo: { $in: replyArray }, repliedTo: _id });
+        const data = await Discuss.findOne({ _id });
+        if (!data) {
+            return res.status(404).send("Discussion not found");
+        }
+        if (data.repliedTo !== 'self') {
+            await Discuss.updateOne({ _id: data.repliedTo }, { $inc: { reply: -1 } });
+            await Discuss.updateOne({ _id: data.repliedTo }, { $pull: { replyBy: data.regIdNo } });
+        }
+        await Discuss.deleteOne({ _id });
+        res.status(200).send("Discussion deleted successfully");
 
     } catch (error) {
-        console.log(error)
-        res.status(404)
-
+        console.log(error);
+        res.status(500).send("An error occurred while deleting the discussion");
     }
-})
+});
+
 
 const replyDiscussion = asyncHandler(async (req, res) => {
     const { _id } = req.body;
@@ -729,10 +780,10 @@ const getReply = asyncHandler(async (req, res) => {
             console.log(e);
         })
         if (response.length) res.json(response);
-
+        else res.send("fail");
     } catch (error) {
-
         res.send("fail");
+
         console.log(error)
         res.status(404)
 
@@ -871,8 +922,8 @@ const addAnnouncement = asyncHandler(async (req, res) => {
 
                 const mailOption = {
                     from: "One PICT",
-                    to: email, // Recipient's email address
-                    subject: `Announcement: ${title}`, // Subject includes the title of the announcement
+                    to: email,
+                    subject: `Announcement: ${title}`,
                     html: `
                         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                             <h2 style="color: #0056b3; font-size: 24px;">${title}</h2>

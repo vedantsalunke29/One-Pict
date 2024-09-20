@@ -31,7 +31,7 @@ export default function Teacher() {
 	const showName = async () => {
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/profile", { cookieVal })
+				.post("http://localhost:5000/profile", { cookieVal })
 				.then((res) => {
 					if (res.data === "not") {
 						setUserName("");
@@ -48,7 +48,7 @@ export default function Teacher() {
 	const changeName = async () => {
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/userName-update", {
+				.post("http://localhost:5000/userName-update", {
 					cookieVal,
 					userNameUpdate,
 				})
@@ -70,7 +70,7 @@ export default function Teacher() {
 			setIsLoading(true);
 			const imgSrc = userImageSource.userImg;
 			await axios
-				.post("https://one-pict.onrender.com/userImage-delete", {
+				.post("http://localhost:5000/userImage-delete", {
 					cookieVal,
 					imgSrc,
 				})
@@ -93,7 +93,7 @@ export default function Teacher() {
 		setIsLoading(true);
 		try {
 			await axios
-				.post("https://one-pict.onrender.com/userImage-post", {
+				.post("http://localhost:5000/userImage-post", {
 					userImg,
 					cookieVal,
 				})
@@ -117,7 +117,7 @@ export default function Teacher() {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/userImage-get", { cookieVal })
+				.post("http://localhost:5000/userImage-get", { cookieVal })
 				.then((res) => {
 					if (res.data === "notexist") {
 						setShowUserImg(false);

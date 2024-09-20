@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Img from "./Img";
 import { PiChalkboardTeacherBold } from "react-icons/pi";
@@ -29,7 +29,7 @@ export default function DisplayNotice() {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/get-notice-by-id", { _id })
+				.post("http://localhost:5000/get-notice-by-id", { _id })
 				.then((res) => {
 					if (res.data) {
 						setData(res.data);

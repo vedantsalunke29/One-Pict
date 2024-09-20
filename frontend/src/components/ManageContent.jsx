@@ -15,7 +15,7 @@ export default function ManageContent() {
 		try {
 			setIsLoading(true);
 			await axios
-				.post("https://one-pict.onrender.com/eventInfo-get-regIdNo", {
+				.post("http://localhost:5000/eventInfo-get-regIdNo", {
 					regIdNo,
 				})
 				.then((res) => {
